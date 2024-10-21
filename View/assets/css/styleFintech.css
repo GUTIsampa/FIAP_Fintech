@@ -1,0 +1,131 @@
+:root {
+    --bluef: #11405A;
+    --orangef: #BE6513;
+}
+
+body {
+    background-image: url(/assets/images/Background.png);
+    background-attachment: fixed;
+    font-family: "Bruno Ace", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+
+}
+
+.titulo {
+    color: #BE6513;
+    ;
+}
+
+.logofin {
+width: 10em;    
+border-radius: 10px;
+box-shadow: 10px 10px 10px;
+
+}
+
+.bv {
+    margin-top: 0;
+
+}
+
+.caixa{
+    margin-bottom: 1em;
+    
+}
+
+.inserir{
+    margin-bottom: 10px;
+}
+
+.botao{
+    background-color: #BE6513;
+    border-width: 1px;
+    border-color: #11405A;
+    color:#11405A;
+    
+
+}
+
+.botao:hover{
+    background-color: #11405A;
+    border-width: 1px;
+    border-color:#BE6513;
+    color: #BE6513;
+}
+
+.login {
+    border-width: 3px;
+    border-color: #BE6513;
+    height: auto;
+    box-shadow: 20px 20px 20px;
+}
+
+.esqueci    {
+    text-decoration: none;
+    color:#11405A;
+    font-size: 10px;
+
+}
+
+.esqueci:hover {
+    text-decoration: underline #BE6513;
+
+}
+
+.esquecer{
+    margin-bottom: 10px;
+}
+
+.divbotao1{
+    margin-bottom: 20px;
+}
+
+.ainda{
+    color: #BE6513;
+}
+
+.sac1{
+    text-decoration: none;
+}
+
+.sac1:hover{
+    text-decoration: underline;
+    color:#BE6513;
+}
+
+.ajuda{
+    margin-right: 8px;
+}
+
+.icones3{
+    margin-left: 2px;
+    margin-right: 8px;
+}
+
+.redes{
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+@media (max-height: 690px) {
+    .icones3 {
+    display: none;
+    }
+}
+
+@media (min-height: 1024px) {
+    .bv {
+        margin-bottom: 150px;
+    }
+    .logofin {
+        min-width: 280px;
+    }
+    .bemvindo {
+        font-size: 50px;
+    }
+}
