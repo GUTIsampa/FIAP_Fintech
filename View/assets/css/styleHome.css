@@ -1,0 +1,88 @@
+:root {
+    --bluef: #11405A;
+    --orangef: #BE6513;
+    --bluefd: #152e3b
+}
+
+body{
+    font-family: "Bruno Ace", sans-serif;
+    font-style: normal;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background-image:url(/View/assets/images/Background.png);
+    background-position:200px 10px;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    z-index: 1000;
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.nav-item {
+    margin: 15px 0;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: var(--orangef);
+    padding: 5px;
+    border-radius: 5px;
+}
+.nav-item:hover {
+    text-decoration: underline;
+    color: var(--orangef);
+}
+
+.nav-item.active a {
+    border: 2px solid #152e3b;;
+    color: var(--bluef);
+    background-color: #BE6513;
+}
+.nav-item.active:hover {
+    text-decoration: none;
+}
+
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        flex-direction: row;
+        height: auto;
+        position: relative;
+        width: 100%;
+    }
+
+    .nav-item {
+        flex: 1;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 651px){
+    #content {
+        padding-left: 255px;
+    }
+}
+
+.logofin {
+    width: 5em;    
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px;
+    
+    }
+
+    .icones{
+        font-size: 1.2em;
+        margin-right: 3px;
+    }
