@@ -14,7 +14,11 @@
 </head>
 <body>
     <!-- Cartão com saldo -->
-    <section class="card-section">
+    <div class="conteudo">
+        <section class="card-section">
+        <div class="welcome-message">
+            <h1 class="bemvindo">Bem vindo Usuário</h1>
+        </div>
         <div class="card">
             <div class="card-info">
                 <p class="numero_cartao">----.----.----.--23</p>
@@ -24,7 +28,42 @@
                     <img class="card-logo" src="/View/assets/images/cartao.png" alt="Mastercard">
                 </div>
             </div>
+
         </div>
-    </section>
+    </section></div>
+    
+    <div class="container mt-5 fatura">
+        <h5 class="text-center titulofatura">Fatura do Cartão</h5>
+        <table class="table table-bordered table-responsive custom-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Compra</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supermercado</td>
+                    <td>R$ 150,00</td>
+                    <td>10/10/2024</td>
+                </tr>
+                <tr>
+                    <td>Farmácia</td>
+                    <td>R$ 75,00</td>
+                    <td>11/10/2024</td>
+                </tr>
+                <tr>
+                    <td>Gasolina</td>
+                    <td>R$ 200,00</td>
+                    <td>12/10/2024</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-center botaofatura">Adicionar Valor</button>
+    </div>
+    
+    <script src="/View/assets/js/navegacao.js" defer></script>
+    <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>

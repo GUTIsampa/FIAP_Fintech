@@ -1,6 +1,6 @@
 :root {
     --bluef: #11405A;
-    --orangef: #BE6513;
+    --orangef: #be6613;
     --bluefd: #152e3b
 }
 
@@ -13,8 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 250px;
-    background-image:url(/View/assets/images/Background.png);
-    background-position:200px 10px;
+    background-image:url(/View/assets/images/background2.png);
     padding: 20px;
     position: fixed;
     height: 100%;
@@ -28,24 +27,23 @@ body{
 
 .nav-item a {
     text-decoration: none;
-    color: var(--orangef);
+    color: var(--bluef);
     padding: 5px;
     border-radius: 5px;
 }
 .nav-item:hover {
     text-decoration: underline;
-    color: var(--orangef);
+    color: var(--bluef);
 }
 
 .nav-item.active a {
-    border: 2px solid #152e3b;;
-    color: var(--bluef);
-    background-color: #BE6513;
+    border: 2px solid var(--bluefd);;
+    color: var(--orangef);
+    background-color: var(--bluef);
 }
 .nav-item.active:hover {
     text-decoration: none;
 }
-
 
 .content {
     margin-left: 220px;
@@ -53,11 +51,8 @@ body{
 }
 
 @media (max-width: 650px) {
-    .navbar {
-        flex-direction: row;
-        height: auto;
-        position: relative;
-        width: 100%;
+    .desktop {
+        display: none;
     }
 
     .nav-item {

@@ -44,3 +44,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+document.getElementById('btnAdicionarCartao').addEventListener('click', function() {
+    document.getElementById('listaCartoes').style.display = 'none';
+    document.getElementById('formAdicionarCartao').style.display = 'block';
+});
+
+document.getElementById('formNovoCartao').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Aqui você pode adicionar a lógica para salvar o cartão
+
+    alert('Cartão adicionado com sucesso!'); // Exemplo de mensagem de sucesso
+    document.getElementById('formNovoCartao').reset();
+    document.getElementById('formAdicionarCartao').style.display = 'none';
+    document.getElementById('listaCartoes').style.display = 'block';
+});
+
