@@ -1,0 +1,43 @@
+:root {
+    --bluef: #11405A;
+    --orangef: #BE6513;
+    --bluefd: #152e3b
+}
+.card-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9em;
+}
+
+.card {
+    background-image: url('/View/assets/images/cartao_azul.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    max-width: 350px;
+    height: 200px; /* Altura fixa para o cartão */
+    border-radius: 15px;
+    padding: 20px; /* Espaço interno para o conteúdo */
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo verticalmente */
+    justify-content: space-between; /* Espaça os itens dentro do cartão */
+    position: relative; /* Permite ajustes finos no conteúdo */
+    color: var(--orangef);
+}
+
+.card-info {
+    padding: 2em 1em 0em 1.5em;
+}
+
+
+.card-details {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    gap: 10em; /* Espaçamento entre a validade e a imagem */
+}
+
+.validade_cartao {
+    padding-left: 1.4em;
+}
