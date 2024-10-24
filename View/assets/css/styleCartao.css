@@ -18,7 +18,7 @@
     width: 100%;
     max-width: 350px;
     height: 200px; /* Altura fixa para o cartão */
-    border-radius: 15px;
+    border-radius: 30px;
     padding: 20px; /* Espaço interno para o conteúdo */
     display: flex;
     flex-direction: column; /* Alinha o conteúdo verticalmente */
