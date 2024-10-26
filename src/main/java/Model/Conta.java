@@ -9,7 +9,6 @@ public class Conta {
     String senha;
     Date dt_abertura;
     String status_conta;
-    String tipo_conta;
     String nomeUsuario;
     Date dt_nascimento;
 
@@ -24,13 +23,12 @@ public class Conta {
 
     }
 
-    public Conta(Double saldo, String email, String senha, Date dt_abertura, String status_conta, String tipo_conta, String nomeUsuario) {
+    public Conta(Double saldo, String email, String senha, Date dt_abertura, String status_conta, String nomeUsuario) {
         super();
         this.saldo = saldo;
         this.email = email;
         this.dt_abertura = dt_abertura;
         this.status_conta = status_conta;
-        this.tipo_conta = tipo_conta;
         this.nomeUsuario = nomeUsuario;
         setSenha(senha);
     }
@@ -77,14 +75,6 @@ public class Conta {
 
     public void setStatus_conta(String status_conta) {
         this.status_conta = status_conta;
-    }
-
-    public String getTipo_conta() {
-        return tipo_conta;
-    }
-
-    public void setTipo_conta(String tipo_conta) {
-        this.tipo_conta = tipo_conta;
     }
 
     public String getNomeUsuario() {

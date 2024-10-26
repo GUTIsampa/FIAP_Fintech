@@ -19,6 +19,12 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
+
+        .cadastro-message {
+            margin-top: 10px;
+
+        }
+
         h2 {
             text-align: center;
         }
@@ -46,10 +52,24 @@
 <body>
 <div class="login-container">
     <h2>Login</h2>
+
+    <% if (request.getAttribute("Erro") != null) { %>
+    <div class="error-message">
+        <%= request.getAttribute("Erro") %>
+    </div>
+    <% } %>
+
+
     <form action="loginServlet" method="post">
         <input type="email" placeholder="Email" name="email" id="email" required>
         <input type="password" placeholder="Senha" name="senha" id="senha" required>
         <button type="submit">Entrar</button>
+
+        <% if (request.getAttribute("Cadastrar") != null) { %>
+        <div class="cadastro-message">
+            <%= request.getAttribute("Cadastrar") %>
+        </div>
+        <% } %>
     </form>
 </div>
 </body>
