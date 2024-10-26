@@ -3,17 +3,19 @@ package Controller;
 import Model.ContaBuilder;
 import Model.ContaModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CadastroController {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         ContaModel conta = new ContaBuilder()
-                .IdEmail("user@example.com")
+                .IdEmail("novos@gmail.com")
                 .StConta("ativo")
-                .Senha("senha123")
-                .NmUsuario("Nome Usuario")
+                .Senha("outrasenhaaaaaaa")
+                .NmUsuario("novonomeeeeee")
+                .DtNasc(new SimpleDateFormat("dd/MM/yyyy").parse("04/06/2004"))
                 .build();
-        //System.out.printf(conta.getTp_conta()+conta.getId_email()+conta.getSenha());
         // Agora você pode usar o objeto conta como quiser
 
         try{
@@ -21,6 +23,5 @@ public class CadastroController {
         } catch (Exception e) {
             e.getMessage();
         }
-
     }
 }

@@ -3,6 +3,7 @@ package Model;
 import DAO.ContaDAO;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ContaModel {
@@ -81,8 +82,8 @@ public class ContaModel {
         this.nm_usuario = nm_usuario;
     }
 
-    public java.sql.Date getDt_nasc() {
-        return (java.sql.Date) dt_nasc;
+    public Date getDt_nasc() {
+        return dt_nasc;
     }
 
     public void setDt_nasc(Date dt_nasc) {
