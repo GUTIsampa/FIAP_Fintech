@@ -48,7 +48,7 @@ public class ContaDAO {
 
         }
     }
-    public ContaModel buscar(int id) throws SQLException {
+    public ContaModel buscarPorId(int id) throws SQLException {
         String sql = "SELECT * FROM T_conta WHERE cd_conta = ?";
         ContaModel conta = null;
 
@@ -59,7 +59,6 @@ public class ContaDAO {
             try (ResultSet resultado = stm.executeQuery()) {
                 if (resultado.next()) {
                     ContaBuilder contaBuilder = new ContaBuilder();
-                    System.out.println(resultado.getString("id_email"));
                     conta = new ContaBuilder()
                             .CdConta(resultado.getInt("cd_conta"))
                             .NrSaldo(resultado.getDouble("nr_saldo"))
@@ -107,6 +106,48 @@ public class ContaDAO {
         }
 
         return lista;
+    }
+
+    public void exluirPorId(int id) throws SQLException {
+        String sql = "delete FROM T_conta WHERE cd_conta = ?";
+        Connection conectar = this.abrirConexao();
+        PreparedStatement stm = conectar.prepareStatement(sql);
+
+        stm.setInt(1, id);
+        try{
+            stm.executeQuery();
+        }catch(SQLException e){
+            e.getMessage();
+        }
+
+    }
+    public void alterar(ContaModel conta) throws SQLException {
+        Connection conectar = this.abrirConexao();
+        String sql = "update T_conta set nr_saldo = ?, id_email = ?, st_conta = ?, senha = ?, nm_usuario = ?, dt_abertura = ?, dt_nasc = ? where cd_conta = ?";
+
+        //
+
+        try (PreparedStatement stm = conectar.prepareStatement(sql)) {
+
+            stm.setDouble(1, conta.getNr_saldo());
+            stm.setString(2, conta.getId_email());
+            stm.setString(3, conta.getSt_conta());
+            stm.setString(4, conta.getSenha());
+            stm.setString(5, conta.getNm_usuario());
+            // Para pegar a data atual
+            java.sql.Date dt_abertura = new java.sql.Date(conta.getDt_abertura().getTime());
+            // Convertendo para java.sql.Date
+            stm.setDate(6, dt_abertura);
+            // Para a data de nascimento
+            Date dt_nasc = new java.sql.Date(conta.getDt_nasc().getTime());
+            stm.setDate(7, dt_nasc);
+            stm.setInt(8, conta.getCd_conta());
+
+            stm.executeQuery();
+
+            conectar.close();
+
+        }
     }
 
 }

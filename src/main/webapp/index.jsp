@@ -25,13 +25,22 @@
 <br/><br/>
 <a href="cadastros?acao=listar"> listar</a>
 <br/><br/>
-<h1>Formulário de Entrada</h1>
+<h1>Formulário de busca</h1>
 <form action="cadastros?acao=buscaPorId" method="post">
     <label for="id">ID:</label>
-    <input type="text" id="id" name="id" required>
+    <input type="text" id="idBusca" name="id" required>
     <br><br>
     <input type="submit" value="Enviar">
 </form>
+<br/><br/>
+<h1>Formulário de excluir</h1>
+<form action="cadastros?acao=excluirPorId" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="idExcluir" name="id" required>
+    <br><br>
+    <input type="submit" value="Enviar">
+</form>
+<a href="cadastros?acao=alterar">Alterar</a>
 
 </body>
 </html>

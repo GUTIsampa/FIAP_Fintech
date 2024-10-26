@@ -28,9 +28,9 @@ public class CadastroServlet extends HttpServlet {
                 String email = req.getParameter("email");
                 String senha = req.getParameter("senha");
                 String dataNascimento = req.getParameter("dataNascimento");
-                ContaModel conta = null;
+                ContaModel contaModel;
                 try {
-                    conta = new ContaBuilder()
+                    contaModel = new ContaBuilder()
                             .IdEmail(email)
                             .Senha(senha)
                             .NmUsuario(nome)
@@ -42,16 +42,34 @@ public class CadastroServlet extends HttpServlet {
                 // Agora você pode usar o objeto conta como quiser
 
                 try {
-                    conta.cadastrarConta();
+                    contaModel.cadastrarConta();
                 } catch (Exception e) {
                     e.getMessage();
                 }
             case "buscaPorId":
-                String id = req.getParameter("id");
-                ContaModel contaModel = new ContaModel();
+                String idBusca = req.getParameter("id");
+                contaModel = new ContaModel();
                 try {
-                    String id_email = contaModel.buscaPorId(Integer.parseInt(id)).getId_email();
-                    System.out.println(id_email);
+                    ContaModel contaAchada = contaModel.buscaPorId(Integer.parseInt(idBusca));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            case "excluirPorId":
+                String idExcluir = req.getParameter("id");
+                contaModel = new ContaModel();
+                try {
+                    contaModel.excluirPorId(Integer.parseInt(idExcluir));
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            case "alterar":
+                contaModel = new ContaModel();
+                try {
+                    ContaModel contaParaAlterar = contaModel.buscaPorId(50);
+                    System.out.println(contaParaAlterar.getNm_usuario());
+                    System.out.println("chegou");
+                    contaParaAlterar.setSenha("EssaSenha");
+                    contaParaAlterar.alterar();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -69,6 +87,15 @@ public class CadastroServlet extends HttpServlet {
                     for (ContaModel conta : contaModel.getAll()) {
                         System.out.println(conta.getId_email());
                     }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            case "alterar":
+                contaModel = new ContaModel();
+                try {
+                    ContaModel contaParaAlterar = contaModel.buscaPorId(50);
+                    contaParaAlterar.setSenha("EssaSenha");
+                    contaParaAlterar.alterar();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

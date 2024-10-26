@@ -15,7 +15,6 @@ public class ContaModel {
     private String id_email;
     private Date dt_abertura;
     private String st_conta;
-    private String tp_conta;
     private String senha;
     private String nm_usuario;
     private Date dt_nasc;
@@ -60,14 +59,6 @@ public class ContaModel {
         this.st_conta = st_conta;
     }
 
-    public String getTp_conta() {
-        return tp_conta;
-    }
-
-    public void setTp_conta(String tp_conta) {
-        this.tp_conta = tp_conta;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -110,7 +101,6 @@ public class ContaModel {
         this.id_email = conta.id_email;
         this.dt_abertura = conta.dt_abertura;
         this.st_conta = conta.st_conta;
-        this.tp_conta = conta.tp_conta;
         this.senha = conta.senha;
         this.nm_usuario = conta.nm_usuario;
         this.dt_nasc = conta.dt_nasc;
@@ -130,8 +120,16 @@ public class ContaModel {
 
     public ContaModel buscaPorId(int id) throws SQLException {
         ContaDAO contaDao = new ContaDAO();
-        return contaDao.buscar(id);
+        return contaDao.buscarPorId(id);
 
+    }
+    public void excluirPorId(int id) throws SQLException {
+        ContaDAO contaDao = new ContaDAO();
+        contaDao.exluirPorId(id);
+    }
+    public void alterar() throws SQLException {
+        ContaDAO contaDao = new ContaDAO();
+        contaDao.alterar(this);
     }
 
 }

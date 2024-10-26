@@ -8,7 +8,6 @@ public class ContaBuilder {
     protected String id_email;
     protected Date dt_abertura;
     protected String st_conta;
-    protected String tp_conta;
     protected String senha;
     protected String nm_usuario;
     protected Date dt_nasc;
@@ -38,11 +37,6 @@ public class ContaBuilder {
 
     public ContaBuilder StConta(String st_conta) {
         this.st_conta = st_conta;
-        return this;
-    }
-
-    public ContaBuilder TpConta(String tp_conta) {
-        this.tp_conta = tp_conta;
         return this;
     }
 
