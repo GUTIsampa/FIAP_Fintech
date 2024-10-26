@@ -4,11 +4,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class CriptografiaUtils {
-<<<<<<< Updated upstream
-=======
 
     //Metodo que criptografa a senha do usuário
->>>>>>> Stashed changes
     public static String criptografar(String senha)  throws Exception {
         // Obtém a instância de um algoritmo
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -22,13 +19,6 @@ public class CriptografiaUtils {
         //Retorna a senha criptografada
         return hash.toString(16);
     }
-<<<<<<< Updated upstream
-
-   /*public static void main(String[] args) {
-        try {
-            System.out.println(CriptografiaUtils.criptografar("1245"));
-        } catch (Exception e) {
-=======
     //metodo que criptografa o numero do cartao debito/credito
     public static String criptografarDado(String dado)  throws Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -65,14 +55,7 @@ public class CriptografiaUtils {
             System.out.println("Concatenado: " + cartaoCvvConcatenado);
 
         }  catch (Exception e) {
->>>>>>> Stashed changes
             e.printStackTrace();
         }
     }*/
 }
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
