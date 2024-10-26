@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ContaBuilder {
     protected int cd_conta;
-    protected int nr_saldo;
+    protected double nr_saldo;
     protected String id_email;
     protected Date dt_abertura;
     protected String st_conta;
@@ -21,7 +21,7 @@ public class ContaBuilder {
         return this;
     }
 
-    public ContaBuilder NrSaldo(int nr_saldo) {
+    public ContaBuilder NrSaldo(Double nr_saldo) {
         this.nr_saldo = nr_saldo;
         return this;
     }

@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Formulário de Cadastro</h2>
-<form action="cadastros" method="POST">
+<form action="cadastros?acao=cadastrar" method="POST">
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" required><br><br>
 
@@ -22,5 +22,16 @@
 
     <input type="submit" value="Cadastrar">
 </form>
+<br/><br/>
+<a href="cadastros?acao=listar"> listar</a>
+<br/><br/>
+<h1>Formulário de Entrada</h1>
+<form action="cadastros?acao=buscaPorId" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required>
+    <br><br>
+    <input type="submit" value="Enviar">
+</form>
+
 </body>
 </html>

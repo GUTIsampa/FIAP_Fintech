@@ -4,12 +4,14 @@ import DAO.ContaDAO;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ContaModel {
 
     private int cd_conta;
-    private int nr_saldo;
+    private double nr_saldo;
     private String id_email;
     private Date dt_abertura;
     private String st_conta;
@@ -26,7 +28,7 @@ public class ContaModel {
         this.cd_conta = cd_conta;
     }
 
-    public int getNr_saldo() {
+    public double getNr_saldo() {
         return nr_saldo;
     }
 
@@ -90,6 +92,18 @@ public class ContaModel {
         this.dt_nasc = dt_nasc;
     }
 
+    public List<ContaModel> getAll() throws SQLException {
+        ContaDAO contaDAO = new ContaDAO();
+
+        return new ArrayList<ContaModel>(contaDAO.getAll());
+    }
+
+    public ContaModel(int cd_conta, double nr_saldo, String id_email) {
+        this.cd_conta = cd_conta;
+        this.nr_saldo = nr_saldo;
+        this.id_email = id_email;
+    }
+
     public ContaModel(ContaBuilder conta) {
         this.cd_conta = conta.cd_conta;
         this.nr_saldo = conta.nr_saldo;
@@ -102,6 +116,9 @@ public class ContaModel {
         this.dt_nasc = conta.dt_nasc;
     }
 
+    public ContaModel() {
+    }
+
     public void cadastrarConta() throws SQLException {
         try{
             ContaDAO contaDao = new ContaDAO();
@@ -110,5 +127,12 @@ public class ContaModel {
             e.getMessage();
         }
     }
+
+    public ContaModel buscaPorId(int id) throws SQLException {
+        ContaDAO contaDao = new ContaDAO();
+        return contaDao.buscar(id);
+
+    }
+
 }
 
