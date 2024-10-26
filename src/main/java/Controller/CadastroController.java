@@ -7,14 +7,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CadastroController {
+public class CadastroController{
+
+
     public static void main(String[] args) throws ParseException {
         ContaModel conta = new ContaBuilder()
-                .IdEmail("novos@gmail.com")
-                .StConta("ativo")
-                .Senha("outrasenhaaaaaaa")
-                .NmUsuario("novonomeeeeee")
-                .DtNasc(new SimpleDateFormat("dd/MM/yyyy").parse("04/06/2004"))
+                .IdEmail("testando@oemail.com")
+                .Senha("outrasenhaaaaaaaa")
+                .NmUsuario("Onovonomeeeeee")
+                .DtNasc(new SimpleDateFormat("dd/MM/yyyy").parse("01/06/2004"))
                 .build();
         // Agora você pode usar o objeto conta como quiser
 

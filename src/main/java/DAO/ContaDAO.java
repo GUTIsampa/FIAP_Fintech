@@ -27,7 +27,7 @@ public class ContaDAO {
 
         try (PreparedStatement stm = conectar.prepareStatement(sql)) {
             stm.setString(1, conta.getId_email());
-            stm.setString(2, conta.getSt_conta());
+            stm.setString(2, "Ativo");
             stm.setString(3, conta.getSenha());
             stm.setString(4, conta.getNm_usuario());
             // Para pegar a data atual
