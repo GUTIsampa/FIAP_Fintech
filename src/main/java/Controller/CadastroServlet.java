@@ -22,14 +22,13 @@ public class CadastroServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
         String dataNascimento = req.getParameter("dataNascimento");
-        System.out.println(nome);
-        /*ContaModel conta = null;
+        ContaModel conta = null;
         try {
             conta = new ContaBuilder()
                     .IdEmail(email)
                     .Senha(senha)
                     .NmUsuario(nome)
-                    .DtNasc(new SimpleDateFormat("dd/MM/yyyy").parse(dataNascimento))
+                    .DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento))
                     .build();
         } catch (ParseException e) {
             throw new RuntimeException(e);
@@ -41,6 +40,5 @@ public class CadastroServlet extends HttpServlet {
         } catch (Exception e) {
             e.getMessage();
         }
-*/
     }
 }
