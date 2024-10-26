@@ -5,6 +5,7 @@ import DAO.ContaDAO;
 import Impl.OracleCartaoDAO;
 import Utils.CriptografiaUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,10 @@ public class Cartao {
         this.bandeira = bandeira;
         this.vencimento = vencimento;
         setCd_seguranca(cd_seguranca);
+    }
+
+    public Cartao() {
+
     }
 
     public Integer getCartao() {
@@ -84,13 +89,49 @@ public class Cartao {
         }
     }
 
-    /*public static void main(String[] args) throws ParseException, DBException {
-
-        Cartao cartao = new Cartao("5555222233334444","Mastercard", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
+    public void adicionarCartao() throws DBException {
         OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
-        oracleCartaoDAO.cadastrar(cartao);
+        oracleCartaoDAO.cadastrar(this);
+    }
+
+    public void atualizarCartao() throws DBException {
+        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
+        oracleCartaoDAO.atualizar(this);
+    }
+
+    public void excluirCartao(int codigo) throws DBException {
+        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
+        oracleCartaoDAO.excluir(codigo);
+    }
+
+    public Cartao buscarCartao(int id) throws DBException {
+        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
+        return oracleCartaoDAO.buscar(id);
+    }
+
+    public List<Cartao> listarCartao() throws DBException {
+        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
+        return new ArrayList<Cartao>(oracleCartaoDAO.listar());
+    }
 
 
 
-    }*/
+    public static void main(String[] args) throws ParseException, DBException {
+
+    // Cartao cartao = new Cartao("5555222233334449","Mastercard", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
+        // cartao.adicionarCartao();
+
+//        Cartao cartao = new Cartao("555522233331111","Visa", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
+//        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
+//        oracleCartaoDAO.atualizar(cartao);
+
+//        Cartao cartao = new Cartao();
+//        cartao.excluirCartao(1);
+
+//       Cartao cartao = new Cartao();
+//        List<Cartao> cartaoAchado = cartao.listarCartao();
+//        for (Cartao c : cartaoAchado) {
+//            System.out.println(c.getBandeira());
+//        }
+    }
 }
