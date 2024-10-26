@@ -37,6 +37,7 @@ public class loginServlet extends HttpServlet {
             req.getRequestDispatcher("Success.jsp").forward(req, res);
         } else {
             req.setAttribute("Erro", "E-mail/senha incorretos");
+            req.setAttribute("Cadastrar", "Ainda não possui uma conta? Cadastre-se agora mesmo!");
             req.getRequestDispatcher("index.jsp").forward(req, res);
         }
     }
