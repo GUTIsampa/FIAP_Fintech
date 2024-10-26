@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 public class ConnectionManager {
 
     private static ConnectionManager connectionManager;
+    private final String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+    private final String usuario = "RM555028";
+    private final String senha =  "020106";
 
     private ConnectionManager(){
 
@@ -22,10 +25,8 @@ public class ConnectionManager {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            connection = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
-                    "RM555028",
-                    "020106");
+            connection = DriverManager.getConnection (this.url, this.usuario, this.senha);
+            System.out.println("Conexão aberta");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,10 +34,11 @@ public class ConnectionManager {
     }
 
 
-    public static void main(String[] args) {
+
+    /*public static void main(String[] args) {
         ConnectionManager connectionManager = ConnectionManager.getInstance();
         Connection connection = connectionManager.getConnection();
-    }
+    }*/
 
 
 }
