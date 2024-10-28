@@ -4,10 +4,13 @@
     --bluefd: #152e3b
 }
 
+
+
 body{
     font-family: "Bruno Ace", sans-serif;
     font-style: normal;
 }
+
 
 .navbar {
     display: flex;
@@ -59,14 +62,65 @@ body{
         flex: 1;
     }
 
-    .content {
+    #content {
         margin-left: 0;
+        padding-top: 70px;
     }
+
+    .navMobile {
+        background-image:url(/View/assets/images/background2.png);
+        padding: 20px 10px;
+        position: fixed;
+        height: 100%;
+        max-width: 300px; 
+    }
+
+    .itemMobile {
+        margin-top: 30px;
+        width: fit-content;
+    }
+
+    .mobile{
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        position: fixed;
+        background-image:url(/View/assets/images/background2.png);
+        background-size: cover;
+        width: 100%;
+        height: 70px;
+        z-index: 1000;
+        padding: 10px;
+    }
+
+    .logoMobile{
+        height: 90%; 
+        width: auto; 
+        border-radius: 10px;
+        margin-right: 0; /* Centraliza horizontalmente */
+    }
+
+
+    .menuSandu{
+        font-size: 2em;
+        color: #11405A;
+        margin-right: auto;
+    }
+
+    .itemMobile {
+        margin-top: 30px;
+        width: fit-content;
+    }
+
+
 }
 
 @media (min-width: 651px){
     #content {
         padding-left: 255px;
+    }
+    .mobile{
+        display: none;
     }
 }
 
@@ -81,3 +135,4 @@ body{
         font-size: 1.2em;
         margin-right: 3px;
     }
+
