@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class OracleContaDAO implements ContaDAO {
     private Connection con;
 
-    @Override
+
     public boolean validarUsuario(Conta conta) {
         PreparedStatement ps = null;
         ResultSet rs = null;

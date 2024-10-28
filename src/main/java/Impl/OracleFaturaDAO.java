@@ -1,7 +1,6 @@
 package Impl;
 
 import DAO.ConnectionManager;
-import DAO.FaturaDAO;
 import Model.Cartao;
 import Model.Fatura;
 
@@ -13,10 +12,9 @@ import java.util.List;
 
 import Exception.DBException;
 
-public class OracleFaturaDAO implements FaturaDAO {
+public class OracleFaturaDAO {
     private Connection con;
 
-    @Override
     public void cadastrar(Fatura fatura) throws DBException {
         PreparedStatement stmt = null;
 
@@ -47,22 +45,20 @@ public class OracleFaturaDAO implements FaturaDAO {
         }
     }
 
-    @Override
+
     public void atualizar(Fatura fatura) throws DBException {
+
 
     }
 
-    @Override
     public void excluir(int codigo) throws DBException {
 
     }
 
-    @Override
     public Cartao buscar(int id) {
         return null;
     }
 
-    @Override
     public List<Cartao> listar() {
         return List.of();
     }
