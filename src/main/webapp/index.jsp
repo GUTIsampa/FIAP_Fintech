@@ -60,10 +60,37 @@
     <% } %>
 
 
+<<<<<<< HEAD
     <form action="loginServlet" method="post">
         <input type="email" placeholder="Email" name="email" id="email" required>
         <input type="password" placeholder="Senha" name="senha" id="senha" required>
         <button type="submit">Entrar</button>
+=======
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" name="dataNascimento" required><br><br>
+
+    <input type="submit" value="Cadastrar">
+</form>
+<br/><br/>
+<a href="cadastros?acao=listar"> listar</a>
+<br/><br/>
+<h1>Formulário de busca</h1>
+<form action="cadastros?acao=buscaPorId" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="idBusca" name="id" required>
+    <br><br>
+    <input type="submit" value="Enviar">
+</form>
+<br/><br/>
+<h1>Formulário de excluir</h1>
+<form action="cadastros?acao=excluirPorId" method="post">
+    <label for="id">ID:</label>
+    <input type="text" id="idExcluir" name="id" required>
+    <br><br>
+    <input type="submit" value="Enviar">
+</form>
+<a href="cadastros?acao=alterar">Alterar</a>
+>>>>>>> parent of ad8fc6d (Update index.jsp)
 
         <% if (request.getAttribute("Cadastrar") != null) { %>
         <div class="cadastro-message">
