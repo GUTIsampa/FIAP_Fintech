@@ -13,12 +13,15 @@
     <link rel="stylesheet" href="/View/assets/css/styleCartao.css">
 </head>
 <body>
+
+    
     <!-- Cartão com saldo -->
     <div class="conteudo">
         <section class="card-section">
         <div class="welcome-message">
             <h1 class="bemvindo">Bem vindo Usuário</h1>
         </div>
+
         <div class="card">
             <div class="card-info">
                 <p class="numero_cartao">----.----.----.--23</p>
@@ -28,42 +31,127 @@
                     <img class="card-logo" src="/View/assets/images/cartao.png" alt="Mastercard">
                 </div>
             </div>
+            
 
+        </div>
+        <div class="AddCard">
+            <button class="btn btn-center botaoPadrao botaoAdd" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title textoModal" id="addCardModalLabel">Cadastrar Cartão</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="cardForm">
+                                <div class="mb-3">
+                                    <label for="cardHolder" class="form-label textoModal">Nome do Titular</label>
+                                    <input type="text" class="form-control" id="cardHolder" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label textoModal">Número do Cartão</label>
+                                    <input type="text" class="form-control" id="cardNumber" maxlength="16" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardCvv" class="form-label textoModal">CVV</label>
+                                    <input type="text" class="form-control" id="cardCvv" maxlength="3" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="expiryDate" class="form-label textoModal">Data de Vencimento</label>
+                                    <input type="date" class="form-control" id="expiryDate" placeholder="MM/AA" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardBrand" class="form-label textoModal">Bandeira</label>
+                                    <select class="form-select" id="cardBrand" required>
+                                        <option value="" disabled selected>Selecione a bandeira</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="mastercard">MasterCard</option>
+                                        <option value="amex">American Express</option>
+                                        <option value="discover">Discover</option>
+                                        <option value="elo">Elo</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn botaoFechar" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" form="cardForm" class="btn botaoCadastrar">Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dropdown mt-3">
+            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Alterar Cartão
+            </button>
+            <ul class="dropdown-menu menuCartao" aria-labelledby="dropdownMenuButton">
+                <li>
+                <div class="d-flex justify-content-between">
+                    <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
+                    <button class="btn btn-sm excluir-cartao" data-cartao="Cartão"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+            <li>
+                <div class="d-flex justify-content-between">
+                    <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
+                    <button class="btn btn-sm excluir-cartao" data-cartao="Cartão"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+            <li>
+                <div class="d-flex justify-content-between">
+                    <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
+                    <button class="btn btn-sm excluir-cartao" data-cartao="Cartão"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+            <li>
+                <div class="d-flex justify-content-between">
+                    <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
+                    <button class="btn btn-sm excluir-cartao" data-cartao="Cartão"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+            <li>
+                <div class="d-flex justify-content-between">
+                    <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
+                    <button class="btn btn-sm excluir-cartao" data-cartao="Cartão"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </li>
+            </ul>
         </div>
     </section></div>
     
     <div class="container mt-5 fatura">
         <h5 class="text-center titulofatura">Fatura do Cartão</h5>
-        <table class="table table-bordered table-responsive custom-table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Compra</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Supermercado</td>
-                    <td>R$ 150,00</td>
-                    <td>10/10/2024</td>
-                </tr>
-                <tr>
-                    <td>Farmácia</td>
-                    <td>R$ 75,00</td>
-                    <td>11/10/2024</td>
-                </tr>
-                <tr>
-                    <td>Gasolina</td>
-                    <td>R$ 200,00</td>
-                    <td>12/10/2024</td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="btn btn-center botaofatura">Adicionar Valor</button>
-    </div>
-    
+        <section class="transactions">
+            <div class="transaction">
+                <div class="details">
+                    <p>Shopping</p>
+                    <small>16/05</small>
+                </div>
+                <div class="amount">R$16,89</div>
+            </div>
+            <div class="transaction">
+                <div class="details">
+                    <p>Ayrton Nunes</p>
+                    <small>13/05</small>
+                </div>
+                <div class="amount">R$5,00</div>
+            </div>
+            <div class="transaction">
+                <div class="details">
+                    <p>Uber</p>
+                    <small>12/05</small>
+                </div>
+                <div class="amount">R$12,99</div>
+            </div>
+        </section>
+   
     <script src="/View/assets/js/navegacao.js" defer></script>
     <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/View/assets/js/cartao.js" defer></script>
 </body>
 </html>

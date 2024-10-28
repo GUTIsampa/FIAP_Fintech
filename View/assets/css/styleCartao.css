@@ -27,8 +27,9 @@ body{
     border-color: var(--orangef);
     border-radius: 10px;
     box-shadow: 10px 10px 10px 10px;
-    margin: 10px 10em;
+    margin:10px 10em;
     background-color: #11405A;
+    color: #000;
 }
 
 .card {
@@ -69,6 +70,43 @@ body{
 
 .validade_cartao {
     padding-left: 1.4em;
+}
+
+.transactions {
+    border: 3px solid var(--orangef);
+    background-color: var(--bluef);
+    box-shadow: 10px 10px 10px 10px #000;
+    color: var(--orangef);
+    border-radius: 15px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+.transaction .icon img {
+    width: 50px; /* Aumenta a largura do ícone */
+    height: 50px; /* Aumenta a altura do ícone */
+    border-radius: 50%; /* Torna o ícone circular */
+    border: 2px solid var(--orangef); /* Adiciona uma borda ao redor do ícone */
+    padding: 5px; /* Adiciona um pouco de espaço entre o ícone e a borda */
+
+}
+
+.transaction .details small {
+    color: #777;
 }
 
 /* Media Queries para responsividade */
@@ -139,10 +177,57 @@ body{
     color: #BE6513;
 }
 
-.botaofatura:hover{
+.botaoPadrao:hover{
     background-color: #11405A;
     border-style: solid;
     border-color: #BE6513;
     color: #BE6513;
     text-decoration: underline;
 }
+
+.excluir-cartao {
+    margin-left: 10px;
+    margin-right: 5px; /* Espaçamento entre o link e o botão */
+    color: #BE6513;
+}
+
+.menuCartao {
+    background-color: #152e3b;
+    border-style:solid 3px ;
+    border-color: #BE6513;
+}
+
+.itemCartao{
+    color: #BE6513;
+}
+
+.itemCartao:hover{
+    background-color: #152e3b;
+    color: white;
+    text-decoration: underline;
+}
+
+.excluir-cartao:hover{
+    color: red;
+}
+
+.botaoFechar{
+    color: #BE6513;
+}
+ .botaoFechar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .botaoCadastrar{
+    color: #BE6513;
+ }
+
+ .botaoCadastrar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .textoModal{
+    color: #11405A;
+ }
