@@ -126,29 +126,34 @@
     
     <div class="container mt-5 fatura">
         <h5 class="text-center titulofatura">Fatura do Cartão</h5>
-        <section class="transactions">
-            <div class="transaction">
-                <div class="details">
-                    <p>Shopping</p>
-                    <small>16/05</small>
-                </div>
-                <div class="amount">R$16,89</div>
-            </div>
-            <div class="transaction">
-                <div class="details">
-                    <p>Ayrton Nunes</p>
-                    <small>13/05</small>
-                </div>
-                <div class="amount">R$5,00</div>
-            </div>
-            <div class="transaction">
-                <div class="details">
-                    <p>Uber</p>
-                    <small>12/05</small>
-                </div>
-                <div class="amount">R$12,99</div>
-            </div>
-        </section>
+        <table class="table table-bordered table-responsive custom-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Compra</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supermercado</td>
+                    <td>R$ 150,00</td>
+                    <td>10/10/2024</td>
+                </tr>
+                <tr>
+                    <td>Farmácia</td>
+                    <td>R$ 75,00</td>
+                    <td>11/10/2024</td>
+                </tr>
+                <tr>
+                    <td>Gasolina</td>
+                    <td>R$ 200,00</td>
+                    <td>12/10/2024</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-center botaoPadrao">Adicionar Valor</button>
+    </div>
    
     <script src="/View/assets/js/navegacao.js" defer></script>
     <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
