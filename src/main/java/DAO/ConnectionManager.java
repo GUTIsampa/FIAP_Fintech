@@ -2,14 +2,13 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class ConnectionManager {
 
-
-     // Classe que etsabelece a conexão com o banco de dados
-
     private static ConnectionManager connectionManager;
+    private final String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+    private final String usuario = "RM555028";
+    private final String senha =  "020106";
 
     private ConnectionManager(){
 
@@ -21,16 +20,13 @@ public class ConnectionManager {
         }
         return connectionManager;
     }
-    public Connection getConnection() {
+    public Connection getConnection(){
         Connection connection = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            connection = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
-                    "RM555028",
-                    "020106");
-            System.out.println("Connection established!");
+            connection = DriverManager.getConnection (this.url, this.usuario, this.senha);
+            System.out.println("Conexão aberta");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,9 +34,11 @@ public class ConnectionManager {
     }
 
 
-   /* public static void main(String[] args) {
+
+    /*public static void main(String[] args) {
         ConnectionManager connectionManager = ConnectionManager.getInstance();
         Connection connection = connectionManager.getConnection();
     }*/
+
 
 }
