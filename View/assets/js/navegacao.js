@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(html => {
                 document.getElementById("content").innerHTML = html;
                 updateActiveNav(page);
-                setupCardDeletion();
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -51,4 +50,13 @@ document.getElementById('btnAdicionarCartao').addEventListener('click', function
     document.getElementById('formAdicionarCartao').style.display = 'block';
 });
 
+document.getElementById('formNovoCartao').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Aqui você pode adicionar a lógica para salvar o cartão
+
+    alert('Cartão adicionado com sucesso!'); // Exemplo de mensagem de sucesso
+    document.getElementById('formNovoCartao').reset();
+    document.getElementById('formAdicionarCartao').style.display = 'none';
+    document.getElementById('listaCartoes').style.display = 'block';
+});
 
