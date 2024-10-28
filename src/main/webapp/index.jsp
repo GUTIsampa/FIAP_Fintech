@@ -40,7 +40,7 @@
     <br><br>
     <input type="submit" value="Enviar">
 </form>
-<a href="cadastros?acao=alterar">Alterar</a>
+<a href="cadastros?acao=alterar">Alteraar</a>
 
 </body>
 </html>
