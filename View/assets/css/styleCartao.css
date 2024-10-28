@@ -27,7 +27,7 @@ body{
     border-color: var(--orangef);
     border-radius: 10px;
     box-shadow: 10px 10px 10px 10px;
-    margin: 10px 10em;
+    margin:10px 10em;
     background-color: #11405A;
 }
 
@@ -139,10 +139,57 @@ body{
     color: #BE6513;
 }
 
-.botaofatura:hover{
+.botaoPadrao:hover{
     background-color: #11405A;
     border-style: solid;
     border-color: #BE6513;
     color: #BE6513;
     text-decoration: underline;
 }
+
+.excluir-cartao {
+    margin-left: 10px;
+    margin-right: 5px; /* Espaçamento entre o link e o botão */
+    color: #BE6513;
+}
+
+.menuCartao {
+    background-color: #152e3b;
+    border-style:solid 3px ;
+    border-color: #BE6513;
+}
+
+.itemCartao{
+    color: #BE6513;
+}
+
+.itemCartao:hover{
+    background-color: #152e3b;
+    color: white;
+    text-decoration: underline;
+}
+
+.excluir-cartao:hover{
+    color: red;
+}
+
+.botaoFechar{
+    color: #BE6513;
+}
+ .botaoFechar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .botaoCadastrar{
+    color: #BE6513;
+ }
+
+ .botaoCadastrar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .textoModal{
+    color: #11405A;
+ }
