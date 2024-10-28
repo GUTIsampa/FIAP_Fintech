@@ -1,6 +1,5 @@
 package Impl;
 
-import DAO.CartaoDAO;
 import DAO.ConnectionManager;
 import Exception.DBException;
 import Model.Cartao;
@@ -14,44 +13,82 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OracleCartaoDAO implements CartaoDAO {
+public class OracleCartaoDAO {
     private Connection connect;
 
-    @Override
-    public void cadastrar(Cartao cartao) throws DBException {
-        PreparedStatement stmt = null;
+    public int contarCartoes(int idConta) throws SQLException, DBException {
+        Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        int quantidade = 0;
 
         try {
-            connect = ConnectionManager.getInstance().getConnection();
+            conectar = ConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO t_cartao (ID_CARTAO, CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV) VALUES (1, 48, ?, ?, ?, ?)";
+            String sql = "select count(*) from t_cartao where cd_conta = ?";
+            pst = conectar.prepareStatement(sql);
+            pst.setInt(1, idConta);
 
-
-
-            stmt = connect.prepareStatement(sql);
-            stmt.setString(1, cartao.getNr_cartao());
-            stmt.setString(2, cartao.getBandeira());
-            java.sql.Date dt_vencimento = new java.sql.Date(cartao.getVencimento().getTime());
-            stmt.setDate(3, dt_vencimento);
-            stmt.setString(4, cartao.getCd_seguranca());
-            stmt.executeUpdate();
-            stmt.close();
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new DBException("Erro ao cadastrar cartao");
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                quantidade = rs.getInt(1);
+            }
         } finally {
+            if (rs != null) rs.close();
+            if (pst != null) pst.close();
+            if (conectar != null) conectar.close();
+        }
+
+        return quantidade;
+    }
+
+
+    public void cadastrar(Cartao cartao) throws DBException, SQLException {
+        PreparedStatement stmt = null;
+
+        int idConta = cartao.getConta();
+
+        // Verificar quantos cartões já estão cadastrados para essa conta
+        int qtdCartao = contarCartoes(idConta);
+        if (qtdCartao < 5) {
+
+
             try {
+                connect = ConnectionManager.getInstance().getConnection();
+
+                String sql = "INSERT INTO t_cartao (ID_CARTAO, CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV) VALUES ( ?, ?, ?, ?, ?, ?)";
+
+
+                stmt = connect.prepareStatement(sql);
+                stmt.setInt(1, cartao.getCartao());
+                stmt.setInt(2, idConta);
+                stmt.setString(3, cartao.getNr_cartao());
+                stmt.setString(4, cartao.getBandeira());
+                java.sql.Date dt_vencimento = new java.sql.Date(cartao.getVencimento().getTime());
+                stmt.setDate(5, dt_vencimento);
+                stmt.setString(6, cartao.getCd_seguranca());
+                stmt.executeUpdate();
+                String commit = "commit";
+                stmt.executeQuery(commit);
                 stmt.close();
-                connect.close();
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
+                throw new DBException("Erro ao cadastrar cartao");
+            } finally {
+                try {
+                    stmt.close();
+                    connect.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+        } else {
+            throw new DBException("A conta já possui limite máximo de 5 Cartões permitidos");
         }
     }
 
-    @Override
     public void atualizar(Cartao cartao) throws DBException {
 
         PreparedStatement stmt = null;
@@ -65,7 +102,6 @@ public class OracleCartaoDAO implements CartaoDAO {
                     "DT_VENCIMENTO = ?," +
                     "NR_CVV = ? " +
                     "where ID_CARTAO = 1";
-
 
 
             stmt = connect.prepareStatement(sql);
@@ -97,7 +133,6 @@ public class OracleCartaoDAO implements CartaoDAO {
 
     }
 
-    @Override
     public void excluir(int codigo) throws DBException {
         PreparedStatement stmt = null;
 
@@ -121,7 +156,6 @@ public class OracleCartaoDAO implements CartaoDAO {
 
     }
 
-    @Override
     public Cartao buscar(int id) {
         Cartao cartao = null;
         PreparedStatement stmt = null;
@@ -135,12 +169,13 @@ public class OracleCartaoDAO implements CartaoDAO {
             rs = stmt.executeQuery();
 
             if (rs.next()) {
+                Integer id_conta = rs.getInt("ID_CARTAO");
                 String nr_cartao = rs.getString("NR_CARTAO");
                 String bandeira = rs.getString("NM_BANDEIRA");
                 Date date_vencimento = rs.getDate("DT_VENCIMENTO");
                 String cvv = rs.getString("NR_CVV");
 
-                cartao = new Cartao(nr_cartao, bandeira, date_vencimento, cvv);
+                cartao = new Cartao(id_conta,nr_cartao, bandeira, date_vencimento, cvv);
 
             }
         } catch (SQLException e) {
@@ -157,7 +192,6 @@ public class OracleCartaoDAO implements CartaoDAO {
         return cartao;
     }
 
-    @Override
     public List<Cartao> listar() {
         List<Cartao> lista = new ArrayList<Cartao>();
         PreparedStatement stmt = null;
@@ -170,14 +204,16 @@ public class OracleCartaoDAO implements CartaoDAO {
 
             //Percorre todos os registros encontrados
             while (rs.next()) {
+                Integer cd_conta = rs.getInt("CD_CONTA");
                 String nr_cartao = rs.getString("NR_CARTAO");
                 String bandeira = rs.getString("NM_BANDEIRA");
                 Date date_vencimento = rs.getDate("DT_VENCIMENTO");
                 LocalDate data = rs.getDate("DT_VENCIMENTO")
                         .toLocalDate();
                 String cvv = rs.getString("NR_CVV");
+                Integer id = rs.getInt("ID_CARTAO");
 
-                Cartao cartao = new Cartao(nr_cartao, bandeira, date_vencimento, cvv);
+                Cartao cartao = new Cartao(cd_conta, nr_cartao, bandeira, date_vencimento, cvv, id);
                 lista.add(cartao);
             }
         } catch (SQLException e) {
@@ -193,5 +229,4 @@ public class OracleCartaoDAO implements CartaoDAO {
         }
         return lista;
     }
-
 }

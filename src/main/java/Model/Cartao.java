@@ -1,10 +1,9 @@
 package Model;
 
-import DAO.CartaoDAO;
-import DAO.ContaDAO;
 import Impl.OracleCartaoDAO;
 import Utils.CriptografiaUtils;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
@@ -21,12 +20,21 @@ public class Cartao {
     private Date vencimento;
     private String cd_seguranca;
 
-    public Cartao( String nr_cartao, String bandeira, Date vencimento, String cd_seguranca) {
-
+    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca) {
+        this.conta = conta;
         setNr_cartao(nr_cartao);
         this.bandeira = bandeira;
         this.vencimento = vencimento;
         setCd_seguranca(cd_seguranca);
+    }
+
+    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca, Integer cartao) {
+        this.conta = conta;
+        setNr_cartao(nr_cartao);
+        this.bandeira = bandeira;
+        this.vencimento = vencimento;
+        setCd_seguranca(cd_seguranca);
+        this.cartao = cartao;
     }
 
     public Cartao() {
@@ -89,7 +97,7 @@ public class Cartao {
         }
     }
 
-    public void adicionarCartao() throws DBException {
+    public void adicionarCartao() throws DBException, SQLException {
         OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
         oracleCartaoDAO.cadastrar(this);
     }
@@ -116,10 +124,10 @@ public class Cartao {
 
 
 
-    public static void main(String[] args) throws ParseException, DBException {
+    public static void main(String[] args) throws ParseException, DBException, SQLException {
 
-    // Cartao cartao = new Cartao("5555222233334449","Mastercard", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
-        // cartao.adicionarCartao();
+//   Cartao cartao = new Cartao(48, "988","Visa", new SimpleDateFormat("yyyy-MM-dd").parse("2014-03-23"), "327", 14);
+//   cartao.adicionarCartao();
 
 //        Cartao cartao = new Cartao("555522233331111","Visa", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
 //        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
@@ -128,10 +136,10 @@ public class Cartao {
 //        Cartao cartao = new Cartao();
 //        cartao.excluirCartao(1);
 
-//       Cartao cartao = new Cartao();
-//        List<Cartao> cartaoAchado = cartao.listarCartao();
-//        for (Cartao c : cartaoAchado) {
-//            System.out.println(c.getBandeira());
-//        }
+//         Cartao cartao = new Cartao();
+//         List<Cartao> cartaoAchado = cartao.listarCartao();
+//         for (Cartao c : cartaoAchado) {
+//          System.out.println(c.getCartao());
+//       }
     }
 }
