@@ -140,6 +140,7 @@ public class OracleCartaoDAO {
             connect = ConnectionManager.getInstance().getConnection();
             String sql = "DELETE FROM t_cartao WHERE ID_CARTAO = ?";
             stmt = connect.prepareStatement(sql);
+            stmt.setInt(1, codigo);
             stmt.executeUpdate();
 
         } catch (SQLException e) {

@@ -23,6 +23,10 @@ public class Fatura {
         this.nm_fatura = nm_fatura;
     }
 
+    public Fatura() {
+
+    }
+
     public Integer getId_fatura() {
         return id_fatura;
     }
@@ -69,11 +73,31 @@ public class Fatura {
         oracleFaturaDAO.cadastrar(this);
     }
 
+    public void removerFatura(int codigo) throws DBException {
+        OracleFaturaDAO oracleFaturaDAO = new OracleFaturaDAO();
+        oracleFaturaDAO.excluir(codigo);
+    }
+
+    public void atualizarFatura() throws DBException {
+        OracleFaturaDAO oracleFaturaDAO = new OracleFaturaDAO();
+        oracleFaturaDAO.atualizar(this);
+    }
+
+    public void buscarFatura(int codigoFatura) throws DBException {
+        OracleFaturaDAO oracleFaturaDAO = new OracleFaturaDAO();
+        oracleFaturaDAO.buscar(codigoFatura);
+    }
 
     public static void main(String[] args) throws ParseException, DBException {
-        Fatura fatura = new Fatura(2, 2, 1000.00, new SimpleDateFormat("yyyy-MM-dd").parse("2025-12-23"), "Pagamento Fatura Cartão Crédito");
-        OracleFaturaDAO oracleFaturaDAO = new OracleFaturaDAO();
-        oracleFaturaDAO.cadastrar(fatura);
+       /*Fatura fatura = new Fatura();
+       fatura.removerFatura(1);*/
+
+       /* Fatura fatura = new Fatura(2, 2, 2500.50, new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "Pagamento atualizado do cartão de crédito");
+        fatura.atualizarFatura();*/
+
+        Fatura fatura = new Fatura();
+        fatura.buscarFatura(2);
+
     }
 
 }
