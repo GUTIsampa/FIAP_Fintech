@@ -16,25 +16,13 @@
 
     
     <!-- Cartão com saldo -->
-    <div class="conteudo">
-        <section class="card-section">
+<div class="conteudo">
         <div class="welcome-message">
             <h1 class="bemvindo">Bem vindo Usuário</h1>
+            <h3 class="bemvindoMobile"> Bem vindo Usuário</h3>
         </div>
-
-        <div class="card">
-            <div class="card-info">
-                <p class="numero_cartao">----.----.----.--23</p>
-                <p class="nome_cartao">AUGUSTO SAMPAIO</p>
-                <div class="card-details">
-                    <small class="validade_cartao">01/30</small>
-                    <img class="card-logo" src="/View/assets/images/cartao.png" alt="Mastercard">
-                </div>
-            </div>
-            
-
-        </div>
-        <div class="AddCard">
+    <div class="areaCartao container-fluid"> 
+        <div class="AddCard container-fluid">
             <button class="btn btn-center botaoPadrao botaoAdd" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
 
             <!-- Modal -->
@@ -85,11 +73,31 @@
             </div>
         </div>
         
+        <div class="container-fluid cartao">
+            <div class="cartao-content">
+                <div class="icon-container">
+                    <img src="/View/assets/images/Chip Card.png" alt="Chip" class="card-icon">
+                </div>
+                <div class="card-holder">
+                    <p class="card-holder-name">Nome do Titular</p>
+                </div>
+                <div class="card-number numeroCartao">
+                    <p>#### #### #### ####</p>
+                </div>
+                <div class="card-footer">
+                    <p class="expiry-date">MM/AA</p>
+                    <p class="card-brand">Visa</p>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="dropdown mt-3">
             <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Alterar Cartão
             </button>
-            <ul class="dropdown-menu menuCartao" aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu menuCard" aria-labelledby="dropdownMenuButton">
                 <li>
                 <div class="d-flex justify-content-between">
                     <a class="dropdown-item itemCartao" href="#">Cartão Final: ####</a>
@@ -122,7 +130,10 @@
             </li>
             </ul>
         </div>
-    </section></div>
+    </div>
+</div>
+
+
     
     <div class="container mt-5 fatura">
         <h5 class="text-center titulofatura">Fatura do Cartão</h5>
@@ -149,9 +160,10 @@
                 <div class="amount">R$12,99</div>
             </div>
         </section>
-   
-    <script src="/View/assets/js/navegacao.js" defer></script>
-    <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
-    <script src="/View/assets/js/cartao.js" defer></script>
+</div>   
+
+<script src="/View/assets/js/navegacao.js" defer></script>
+<script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="/View/assets/js/cartao.js" defer></script>
 </body>
 </html>

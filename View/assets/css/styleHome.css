@@ -71,8 +71,7 @@ body{
         background-image:url(/View/assets/images/background2.png);
         padding: 20px 10px;
         position: fixed;
-        height: 100%;
-        max-width: 300px; 
+        height: 100%; 
     }
 
     .itemMobile {

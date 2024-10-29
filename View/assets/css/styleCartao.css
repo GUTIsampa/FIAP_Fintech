@@ -14,68 +14,87 @@ body{
 .bemvindo{
     color: #BE6513;
 }
+
+.bemvindoMobile{
+    color: #BE6513;
+}
 .conteudo{
     padding-top: 25px;
 }
-.card-section {
-    display: flex;
-    flex-direction: column; /* Alinha o título e o cartão verticalmente */
-    justify-content: center; /* Centraliza o conteúdo */
-    align-items: center; /* Centraliza o conteúdo */
-    padding: 2em;
-    border-style: solid;
-    border-color: var(--orangef);
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px 10px;
-    margin:10px 10em;
+
+
+.areaCartao{
+    border: 3px solid var(--orangef);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
     background-color: #11405A;
-    color: #000;
 }
 
-.card {
-    background-image: url('/View/assets/images/cartaoimg.png');
-    background-color: #11405A;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    max-width: 350px;
-    height: 100%; /* Altura fixa para o cartão */
-    border-radius: 30px;
-    padding: 20px; /* Espaço interno para o conteúdo */
+.cartao{
+    border: 3.8px solid var(--bluefd);
+    border-radius: 40px;
+    background-color: #BE6513;
+    max-height: 40vmax;
+    max-width: 45vmax;
+    min-width: 30vmax;
+    min-height: 20vmax;
+    
+
+}
+.cartao-content {
+    position: relative;
+    padding: 20px 10px;
+    height: 100%; /* Para que o conteúdo ocupe a altura total do cartão */
     display: flex;
-    flex-direction: column; /* Alinha o conteúdo verticalmente */
-    justify-content: space-between; /* Espaça os itens dentro do cartão */
-    position: relative; /* Permite ajustes finos no conteúdo */
-    color: var(--bluef);
-    border-style: none;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #BE6513;
 }
 
-.nome_cartao{
-    color: var(--bluef);
-    margin-top: 60px;
+.icon-container {
+    position: absolute;
+    top: 10px;
 }
 
-.card-info {
-    padding: 1em 1em 1em 1.5em;
-    margin-top: 15px;
+.card-icon {
+    width: 5vmax; /* Ajuste o tamanho do ícone conforme necessário */
+    height: 4vmax; /* Ajuste o tamanho do ícone conforme necessário */
 }
 
+.card-holder {
+    margin-top: 50px; /* Espaço abaixo do ícone */
+}
 
-.card-details {
+.card-holder-name {
+    font-size: 1.5vmax; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #11405A;
+}
+
+.card-number {
+    text-align: center;
+    font-size: 2.3vmax; /* Tamanho maior para o número do cartão */
+    margin: 10px 0; /* Espaçamento em cima e embaixo */
+    color: #152e3b;
+}
+
+.numeroCartao{
+    white-space: nowrap;
+}
+
+.card-footer {
     display: flex;
-    align-items: center; /* Centraliza verticalmente os itens */
-    gap: 8em; /* Espaçamento entre a validade e a imagem */
+    justify-content: space-between;
+    font-size: 1.2vmax; /* Tamanho da fonte para validade e bandeira */
+    margin-top: 3em;
+
+    color: #152e3b;
 }
 
-.validade_cartao {
-    padding-left: 1.4em;
-}
 
 .transactions {
     border: 3px solid var(--orangef);
     background-color: var(--bluef);
-    box-shadow: 10px 10px 10px 10px #000;
+    box-shadow: 5px 5px 5px 5px #000;
     color: var(--orangef);
     border-radius: 15px;
     margin: 20px auto;
@@ -114,32 +133,49 @@ body{
     .card-section {
         padding: 4em 1em; /* Diminui o padding para telas menores */
     }
-
-    .card {
-        height: auto; /* Deixa a altura do cartão dinâmica */
-        padding: 1em; /* Ajusta o padding */
-        border-radius: 30px;
+    .bemvindo{
+        display: none;
+    }
+    .cartao{
+        max-height: 35vmax;
     }
 
-    .card-details {
-        flex-direction: column; /* Muda para coluna em telas pequenas */
-        align-items: flex-start; /* Alinha itens à esquerda */
-        gap: 0.5em; /* Diminui o espaçamento */
+    .card-footer{
+        font-size: 2vmax;
     }
-
-    .validade_cartao {
-        padding-left: 0; /* Remove o padding desnecessário */
+    .card-holder-name{
+        font-size: 2vmax;
     }
+    
+}
 
-    .numero_cartao {
-        font-size: 1.2em; /* Aumenta o tamanho da fonte no mobile */
+@media (min-width: 651px) {
+    .bemvindoMobile{
+        display: none;
     }
-
-    .nome_cartao {
-        font-size: 1.5em; /* Aumenta o tamanho da fonte no mobile */
+    .conteudo{
+        margin-right: 10vmax;
+        margin-left: 10vmax;
+    }
+}
+@media (min-height:1024px) {
+    .bemvindoMobile{
+        display: none;
+    }
+    .conteudo{
+        margin-right: 5vmax;
+        margin-left: 5vmax;
     }
 }
 
+@media (min-width: 1000px){
+    .card-number{
+        font-size: 3vmax;
+    }
+    .card-holder-name{
+        margin-top: 2vmax;
+    }
+}
 .custom-table {
     max-width: 600px; /* Ajuste a largura máxima da tabela */
     margin: 0 auto; /* Centraliza a tabela na página */
@@ -191,7 +227,7 @@ body{
     color: #BE6513;
 }
 
-.menuCartao {
+.menuCard {
     background-color: #152e3b;
     border-style:solid 3px ;
     border-color: #BE6513;
