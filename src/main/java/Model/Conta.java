@@ -1,9 +1,18 @@
 package Model;
 
-import java.sql.Date;
+
+import Impl.OracleContaDAO;
 import Utils.CriptografiaUtils;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Conta {
+    Integer cd_conta;
     Double saldo;
     String email;
     String senha;
@@ -31,6 +40,24 @@ public class Conta {
         this.status_conta = status_conta;
         this.nomeUsuario = nomeUsuario;
         setSenha(senha);
+    }
+
+    public Conta(ContaBuilder contaBuilder) {
+        this.saldo = contaBuilder.nr_saldo;
+        this.email = contaBuilder.id_email;
+        setSenha(contaBuilder.senha);
+        this.dt_abertura = contaBuilder.dt_abertura;
+        this.status_conta = contaBuilder.st_conta;
+        this.nomeUsuario = contaBuilder.nm_usuario;
+        this.dt_nascimento = contaBuilder.dt_nasc;
+    }
+
+    public Integer getCd_conta() {
+        return cd_conta;
+    }
+
+    public void setCd_conta(Integer cd_conta) {
+        this.cd_conta = cd_conta;
     }
 
     public Double getSaldo() {
@@ -92,4 +119,44 @@ public class Conta {
     public void setDt_nascimento(Date dt_nascimento) {
         this.dt_nascimento = dt_nascimento;
     }
+
+    public void cadastrarConta(Conta builder) throws SQLException {
+        try{
+            OracleContaDAO contaDao = new OracleContaDAO();
+            contaDao.cadastrar(this);
+        }catch(Exception e){
+            e.getMessage();
+        }
+    }
+
+    public Conta buscaPorId(int id) throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        return contaDao.buscarPorId(id);
+
+    }
+    public void excluirPorId(int id) throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        contaDao.exluirPorId(id);
+    }
+    public void alterar() throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        contaDao.alterar(this);
+    }
+
+    public List<Conta> getAll() throws SQLException {
+        OracleContaDAO contaDAO = new OracleContaDAO();
+
+        return new ArrayList<Conta>(contaDAO.getAll());
+    }
+
+    public static void main(String[] args) throws SQLException, ParseException {
+        Conta conta = new Conta();
+        Conta builder = new ContaBuilder().IdEmail("asdas@gmail.com").DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29")).Senha("EstaSenha").NmUsuario("OutroTeste").build();
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29").getTime());
+        conta.cadastrarConta(builder);
+      /*  Conta cuenta = conta.buscaPorId(47);
+        System.out.println(cuenta.getEmail());*/
+
+          }
+
 }

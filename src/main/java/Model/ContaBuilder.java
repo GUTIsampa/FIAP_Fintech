@@ -55,8 +55,8 @@ public class ContaBuilder {
         return this;
     }
 
-    public ContaModel build() {
+    public Conta build() {
         this.dt_abertura = new Date();
-        return new ContaModel(this);
+        return new Conta(this);
     }
 }

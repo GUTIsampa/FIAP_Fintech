@@ -1,17 +1,9 @@
 package Model;
 
-<<<<<<< HEAD
-import DAO.CartaoDAO;
-import DAO.ContaDAO;
-import Impl.OracleCartaoDAO;
-import Utils.CriptografiaUtils;
-
-=======
 import Impl.OracleCartaoDAO;
 import Utils.CriptografiaUtils;
 
 import java.sql.SQLException;
->>>>>>> parent of 01f3cba (revert)
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
@@ -28,21 +20,14 @@ public class Cartao {
     private Date vencimento;
     private String cd_seguranca;
 
-<<<<<<< HEAD
-    public Cartao( String nr_cartao, String bandeira, Date vencimento, String cd_seguranca) {
-
-=======
     public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca) {
         this.conta = conta;
->>>>>>> parent of 01f3cba (revert)
         setNr_cartao(nr_cartao);
         this.bandeira = bandeira;
         this.vencimento = vencimento;
         setCd_seguranca(cd_seguranca);
     }
 
-<<<<<<< HEAD
-=======
     public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca, Integer cartao) {
         this.conta = conta;
         setNr_cartao(nr_cartao);
@@ -52,7 +37,6 @@ public class Cartao {
         this.cartao = cartao;
     }
 
->>>>>>> parent of 01f3cba (revert)
     public Cartao() {
 
     }
@@ -78,11 +62,11 @@ public class Cartao {
     }
 
     public void setNr_cartao(String nm_cartao) {
-       try {
-        this.nr_cartao = CriptografiaUtils.criptografarNumeroCartao(nm_cartao);
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
+        try {
+            this.nr_cartao = CriptografiaUtils.criptografarNumeroCartao(nm_cartao);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getBandeira() {
@@ -113,11 +97,7 @@ public class Cartao {
         }
     }
 
-<<<<<<< HEAD
-    public void adicionarCartao() throws DBException {
-=======
     public void adicionarCartao() throws DBException, SQLException {
->>>>>>> parent of 01f3cba (revert)
         OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
         oracleCartaoDAO.cadastrar(this);
     }
@@ -144,17 +124,10 @@ public class Cartao {
 
 
 
-<<<<<<< HEAD
-    public static void main(String[] args) throws ParseException, DBException {
-
-    // Cartao cartao = new Cartao("5555222233334449","Mastercard", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
-        // cartao.adicionarCartao();
-=======
     public static void main(String[] args) throws ParseException, DBException, SQLException {
 
 //   Cartao cartao = new Cartao(48, "988","Visa", new SimpleDateFormat("yyyy-MM-dd").parse("2014-03-23"), "327", 14);
 //   cartao.adicionarCartao();
->>>>>>> parent of 01f3cba (revert)
 
 //        Cartao cartao = new Cartao("555522233331111","Visa", new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "321");
 //        OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
@@ -163,18 +136,10 @@ public class Cartao {
 //        Cartao cartao = new Cartao();
 //        cartao.excluirCartao(1);
 
-<<<<<<< HEAD
-//       Cartao cartao = new Cartao();
-//        List<Cartao> cartaoAchado = cartao.listarCartao();
-//        for (Cartao c : cartaoAchado) {
-//            System.out.println(c.getBandeira());
-//        }
-=======
 //         Cartao cartao = new Cartao();
 //         List<Cartao> cartaoAchado = cartao.listarCartao();
 //         for (Cartao c : cartaoAchado) {
 //          System.out.println(c.getCartao());
 //       }
->>>>>>> parent of 01f3cba (revert)
     }
 }

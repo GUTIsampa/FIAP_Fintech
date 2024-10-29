@@ -1,8 +1,7 @@
 package Controller;
 
+import Model.Conta;
 import Model.ContaBuilder;
-import Model.ContaModel;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,7 +27,7 @@ public class CadastroServlet extends HttpServlet {
                 String email = req.getParameter("email");
                 String senha = req.getParameter("senha");
                 String dataNascimento = req.getParameter("dataNascimento");
-                ContaModel contaModel;
+                Conta contaModel;
                 try {
                     contaModel = new ContaBuilder()
                             .IdEmail(email)
@@ -42,31 +41,31 @@ public class CadastroServlet extends HttpServlet {
                 // Agora você pode usar o objeto conta como quiser
 
                 try {
-                    contaModel.cadastrarConta();
+                    contaModel.cadastrarConta(contaModel);
                 } catch (Exception e) {
                     e.getMessage();
                 }
             case "buscaPorId":
                 String idBusca = req.getParameter("id");
-                contaModel = new ContaModel();
+                contaModel = new Conta();
                 try {
-                    ContaModel contaAchada = contaModel.buscaPorId(Integer.parseInt(idBusca));
+                    Conta contaAchada = contaModel.buscaPorId(Integer.parseInt(idBusca));
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             case "excluirPorId":
                 String idExcluir = req.getParameter("id");
-                contaModel = new ContaModel();
+                contaModel = new Conta();
                 try {
                     contaModel.excluirPorId(Integer.parseInt(idExcluir));
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             case "alterar":
-                contaModel = new ContaModel();
+                contaModel = new Conta();
                 try {
-                    ContaModel contaParaAlterar = contaModel.buscaPorId(50);
-                    System.out.println(contaParaAlterar.getNm_usuario());
+                    Conta contaParaAlterar = contaModel.buscaPorId(50);
+                    System.out.println(contaParaAlterar.getNomeUsuario());
                     System.out.println("chegou");
                     contaParaAlterar.setSenha("EssaSenha");
                     contaParaAlterar.alterar();
@@ -82,18 +81,18 @@ public class CadastroServlet extends HttpServlet {
         String acao = req.getParameter("acao");
         switch(acao) {
             case "listar":
-                ContaModel contaModel = new ContaModel();
+                Conta contaModel = new Conta();
                 try {
-                    for (ContaModel conta : contaModel.getAll()) {
-                        System.out.println(conta.getId_email());
+                    for (Conta conta : contaModel.getAll()) {
+                        System.out.println(conta.getEmail());
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             case "alterar":
-                contaModel = new ContaModel();
+                contaModel = new Conta();
                 try {
-                    ContaModel contaParaAlterar = contaModel.buscaPorId(50);
+                    Conta contaParaAlterar = contaModel.buscaPorId(50);
                     contaParaAlterar.setSenha("EssaSenha");
                     contaParaAlterar.alterar();
                 } catch (SQLException e) {
