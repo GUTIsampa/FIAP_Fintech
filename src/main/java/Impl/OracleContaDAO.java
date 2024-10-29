@@ -55,7 +55,7 @@ public class OracleContaDAO implements ContaDAO {
     }
 
     public void cadastrar(Conta conta) throws SQLException {
-        Connection conectar = this.abrirConexao();
+        Connection conectar = abrirConexao();
         String sql = "INSERT INTO t_conta (nr_saldo, id_email, st_conta, senha, nm_usuario, dt_abertura, dt_nasc) VALUES (0,?, ?, ?, ?,?,?)";
 
 
@@ -64,22 +64,15 @@ public class OracleContaDAO implements ContaDAO {
             PreparedStatement stm = conectar.prepareStatement(sql);
 
             stm.setString(1, conta.getEmail());
-            stm.setString(2, "Ativo");
+            stm.setString(2, conta.getStatus_conta());
             stm.setString(3, conta.getSenha());
             stm.setString(4, conta.getNomeUsuario());
-
-            System.out.println("aquip");
             Date dt_abertura = new Date(conta.getDt_abertura().getTime());
-
-            System.out.println("Chegou aqui");
-
             //Convertendo para java.sql.Date
             stm.setDate(5, dt_abertura);
-
            // Para a data de nascimento
             Date dt_nasc = new Date(conta.getDt_nascimento().getTime());
             stm.setDate(6, dt_nasc);
-
             stm.executeUpdate();
 
             conectar.close();
@@ -117,8 +110,64 @@ public class OracleContaDAO implements ContaDAO {
         return conta;
     }
 
+    public List<Conta> getAll() {
+        List<Conta> contas = new ArrayList<Conta>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-    public List<Conta> getAll() throws SQLException {
+        try {
+            Connection conectar = this.abrirConexao();
+            String sql = "SELECT * FROM t_conta";
+            ps = conectar.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Integer id = rs.getInt("cd_conta");
+                String email = rs.getString("id_email");
+                String senha = rs.getString("senha");
+                String nomeUsuario = rs.getString("nm_usuario");
+                Date dt_abertura = rs.getDate("dt_abertura");
+                Date dt_nasc = rs.getDate("dt_nasc");
+
+                Conta novaConta = new ContaBuilder()
+                        .CdConta(id)
+                        .IdEmail(email)
+                        .Senha(senha)
+                        .NmUsuario(nomeUsuario)
+                        .DtAbertura(dt_abertura)
+                        .DtNasc(dt_nasc)
+                        .build();
+
+                contas.add(novaConta);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return contas;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* public List<Conta> getAll() throws SQLException {
         Connection conectar = this.abrirConexao();
         PreparedStatement stm = conectar.prepareStatement("SELECT * FROM t_conta");
         ResultSet resultado = stm.executeQuery();
@@ -148,7 +197,7 @@ public class OracleContaDAO implements ContaDAO {
         }
 
         return lista;
-    }
+    }*/
 
     public void exluirPorId(int id) throws SQLException {
         String sql = "delete FROM T_conta WHERE cd_conta = ?";
@@ -168,9 +217,9 @@ public class OracleContaDAO implements ContaDAO {
         String sql = "update T_conta set nr_saldo = , id_email = , st_conta = , senha = , nm_usuario = , dt_abertura = , dt_nasc =  where cd_conta = ";
 
 
+        try {
 
-        try (PreparedStatement stm = conectar.prepareStatement(sql)) {
-
+            PreparedStatement stm = conectar.prepareStatement(sql);
             stm.setDouble(1, conta.getSaldo());
             stm.setString(2, conta.getEmail());
             stm.setString(3, conta.getStatus_conta());
@@ -189,6 +238,8 @@ public class OracleContaDAO implements ContaDAO {
 
             conectar.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

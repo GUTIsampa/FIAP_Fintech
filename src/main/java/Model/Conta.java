@@ -123,9 +123,9 @@ public class Conta {
     public void cadastrarConta(Conta builder) throws SQLException {
         try{
             OracleContaDAO contaDao = new OracleContaDAO();
-            contaDao.cadastrar(this);
-        }catch(Exception e){
-            e.getMessage();
+            contaDao.cadastrar(builder);
+        }catch(SQLException e){
+            e.printStackTrace();
         }
     }
 
@@ -145,15 +145,17 @@ public class Conta {
 
     public List<Conta> getAll() throws SQLException {
         OracleContaDAO contaDAO = new OracleContaDAO();
-
-        return new ArrayList<Conta>(contaDAO.getAll());
+        return contaDAO.getAll();
     }
 
     public static void main(String[] args) throws SQLException, ParseException {
         Conta conta = new Conta();
-        Conta builder = new ContaBuilder().IdEmail("asdas@gmail.com").DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29")).Senha("EstaSenha").NmUsuario("OutroTeste").build();
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29").getTime());
-        conta.cadastrarConta(builder);
+        //Conta builder = new ContaBuilder().IdEmail("asdas@gmail.com").StConta("Ativo").DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29")).Senha("1234587").NmUsuario("OutroTeste").build();
+        List<Conta> contas = conta.getAll();
+        for (Conta conta1 : contas) {
+            System.out.println(conta1.getNomeUsuario());
+        }
+
       /*  Conta cuenta = conta.buscaPorId(47);
         System.out.println(cuenta.getEmail());*/
 
