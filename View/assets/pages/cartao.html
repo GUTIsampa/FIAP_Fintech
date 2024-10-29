@@ -131,39 +131,47 @@
             </ul>
         </div>
     </div>
+    
+    <div class="container mt-5 fatura">
+        <h2 class="titulofatura">Controle de Fatura</h2>
+        <h3 class="titulofaturaMobile">Controle de Fatura</h3>
+        <canvas id="faturaChart"></canvas>
+        
+        <button class="btn btn-center botaoPadrao" data-bs-toggle="modal" data-bs-target="#addFaturaModal">+ Fatura Atual</button>
+
+        <!-- Modal para adicionar fatura -->
+        <div class="modal fade" id="addFaturaModal" tabindex="-1" aria-labelledby="addFaturaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addFaturaModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="faturaForm">
+                            <div class="mb-3">
+                                <label for="faturaValue" class="form-label textoModal">Acrescentar à Fatura Atual</label>
+                                <input type="number" class="form-control" id="faturaValue" placeholder="R$" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn botaoFechar" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" form="faturaForm" class="btn botaoCadastrar">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+
 </div>
 
 
-    
-    <div class="container mt-5 fatura">
-        <h5 class="text-center titulofatura">Fatura do Cartão</h5>
-        <section class="transactions">
-            <div class="transaction">
-                <div class="details">
-                    <p>Shopping</p>
-                    <small>16/05</small>
-                </div>
-                <div class="amount">R$16,89</div>
-            </div>
-            <div class="transaction">
-                <div class="details">
-                    <p>Ayrton Nunes</p>
-                    <small>14/05</small>
-                </div>
-                <div class="amount">R$5,00</div>
-            </div>
-            <div class="transaction">
-                <div class="details">
-                    <p>Uber</p>
-                    <small>12/05</small>
-                </div>
-                <div class="amount">R$12,99</div>
-            </div>
-        </section>
-</div>   
 
 <script src="/View/assets/js/navegacao.js" defer></script>
 <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/View/assets/js/cartao.js" defer></script>
 </body>
 </html>

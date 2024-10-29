@@ -10,6 +10,7 @@ body{
 
 .welcome-message {
     text-align: center; /* Centraliza o texto */
+    margin-bottom: 3em;
 }
 .bemvindo{
     color: #BE6513;
@@ -91,42 +92,7 @@ body{
 }
 
 
-.transactions {
-    border: 3px solid var(--orangef);
-    background-color: var(--bluef);
-    box-shadow: 5px 5px 5px 5px #000;
-    color: var(--orangef);
-    border-radius: 15px;
-    margin: 20px auto;
-    padding: 20px;
-    width: 100%;
-    max-width: 350px;
-}
 
-.transaction {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.transaction:last-child {
-    border-bottom: none;
-}
-
-.transaction .icon img {
-    width: 50px; /* Aumenta a largura do ícone */
-    height: 50px; /* Aumenta a altura do ícone */
-    border-radius: 50%; /* Torna o ícone circular */
-    border: 2px solid var(--orangef); /* Adiciona uma borda ao redor do ícone */
-    padding: 5px; /* Adiciona um pouco de espaço entre o ícone e a borda */
-
-}
-
-.transaction .details small {
-    color: #777;
-}
 
 /* Media Queries para responsividade */
 @media (max-width: 650px) {
@@ -146,7 +112,9 @@ body{
     .card-holder-name{
         font-size: 2vmax;
     }
-    
+    .titulofatura{
+        display: none;
+    }
 }
 
 @media (min-width: 651px) {
@@ -157,6 +125,9 @@ body{
         margin-right: 10vmax;
         margin-left: 10vmax;
     }
+    .titulofaturaMobile{
+        display: none;
+    }
 }
 @media (min-height:1024px) {
     .bemvindoMobile{
@@ -166,6 +137,9 @@ body{
         margin-right: 5vmax;
         margin-left: 5vmax;
     }
+    #faturaChart{
+        max-width: 30vmax !important;
+    }
 }
 
 @media (min-width: 1000px){
@@ -174,6 +148,12 @@ body{
     }
     .card-holder-name{
         margin-top: 2vmax;
+    }
+}
+
+@media (max-height:668px){
+    #faturaChart{
+        min-height: 45vmax !important ;
     }
 }
 .custom-table {
@@ -211,6 +191,11 @@ body{
 
 .titulofatura{
     color: #BE6513;
+    margin-top: 5px;
+}
+.titulofaturaMobile{
+    color: #BE6513;
+    margin-top: 5px;
 }
 
 .botaoPadrao:hover{
@@ -267,3 +252,18 @@ body{
  .textoModal{
     color: #11405A;
  }
+
+ .fatura {
+    text-align: center; /* Centraliza o título e o gráfico */
+    border: 3px solid var(--orangef);
+    border-radius: 15px;
+    background-color: #11405A;
+    box-shadow: 5px 5px 5px 5px #000;
+    margin-bottom: 1em;
+}
+
+#faturaChart {
+    max-width: 45vmax; /* Limita a largura do gráfico */
+    margin: 0 auto; /* Centraliza o gráfico */
+    max-height: 30vmax;
+}

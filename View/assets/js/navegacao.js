@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("content").innerHTML = html;
                 updateActiveNav(page);
                 setupCardDeletion();
+                setupChartFatura();
+                setupValorFatura();
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
