@@ -7,13 +7,11 @@
 }
 
 body {
-    background-image: url(/View/assets/images/Background.png);
+    background-image: url('../images/Background.png');
     background-attachment: fixed;
     font-family: "Bruno Ace", sans-serif;
-    font-weight: 400;
+    font-weight: 800;
     font-style: normal;
-
-
 }
 
 .titulo {
@@ -22,7 +20,7 @@ body {
 }
 
 .logofin {
-width: 10em;    
+width: 10em;
 border-radius: 10px;
 box-shadow: 10px 10px 10px;
 
@@ -47,6 +45,7 @@ box-shadow: 10px 10px 10px;
     border-width: 1px;
     border-color: #11405A;
     color:#11405A;
+    margin-top: 2em;
     
 
 }

@@ -1,103 +1,71 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html lang="pt-BR">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <title>Página de Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        .login-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        .cadastro-message {
-            margin-top: 10px;
-
-        }
-
-        h2 {
-            text-align: center;
-        }
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech</title>
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/css/styleFintech.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-<div class="login-container">
-    <h2>Login</h2>
-
-    <% if (request.getAttribute("Erro") != null) { %>
-    <div class="error-message">
-        <%= request.getAttribute("Erro") %>
+<body class="corpo">
+<div>
+    <div class="d-flex justify-content-end ajuda">
+        <a href="tel:XXXX-XXXX-XXXX" class="titulo sac1">
+            <i class="fa-solid fa-headphones"></i> SAC
+        </a>
     </div>
-    <% } %>
+</div>
 
+<div class="container text-center bv">
+    <h2 class="titulo bemvindo">Bem Vindo ao</h2>
+    <img class="logofin img-fluid" src="./resources/images/Logo.png" alt="Logo Fintech">
+    <h2 class="titulo bemvindo">Fintech</h2>
+</div>
 
-<<<<<<< HEAD
-    <form action="loginServlet" method="post">
-        <input type="email" placeholder="Email" name="email" id="email" required>
-        <input type="password" placeholder="Senha" name="senha" id="senha" required>
-        <button type="submit">Entrar</button>
-=======
-    <label for="dataNascimento">Data de Nascimento:</label>
-    <input type="date" id="dataNascimento" name="dataNascimento" required><br><br>
-
-    <input type="submit" value="Cadastrar">
-</form>
-<br/><br/>
-<a href="cadastros?acao=listar"> listar</a>
-<br/><br/>
-<h1>Formulário de busca</h1>
-<form action="cadastros?acao=buscaPorId" method="post">
-    <label for="id">ID:</label>
-    <input type="text" id="idBusca" name="id" required>
-    <br><br>
-    <input type="submit" value="Enviar">
-</form>
-<br/><br/>
-<h1>Formulário de excluir</h1>
-<form action="cadastros?acao=excluirPorId" method="post">
-    <label for="id">ID:</label>
-    <input type="text" id="idExcluir" name="id" required>
-    <br><br>
-    <input type="submit" value="Enviar">
-</form>
-<a href="cadastros?acao=alterar">Alterar</a>
->>>>>>> parent of ad8fc6d (Update index.jsp)
-
-        <% if (request.getAttribute("Cadastrar") != null) { %>
-        <div class="cadastro-message">
-            <%= request.getAttribute("Cadastrar") %>
+<div class="container mt-1">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card login">
+                <div class="card-body">
+                    <h5 class="card-title text-center titulo">Login</h5>
+                    <form action="<c:url value='/loginServlet'/>" method="post">
+                        <div class="form-group">
+                            <label for="email" class="inserir titulo"> <i class="fa-solid fa-user"></i> Email</label>
+                            <input type="text" class="form-control caixa" id="email" name="email" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha" class="inserir titulo"> <i class="fa-solid fa-lock icones2"></i> Senha</label>
+                            <input type="password" class="form-control caixa2" id="senha" name="senha" placeholder="Digite sua senha" required>
+                        </div>
+                        <div class="text-center divbotao1">
+                            <button type="submit" class="btn btn-block botao"> <i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
+                        </div>
+                        <div class="text-center divbotao">
+                            <h6 class="ainda">Ainda não tem conta?</h6>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <% } %>
-    </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end redes">
+    <a href="<c:url value='https://instagram.com'/>" class="titulo sac1 icones3">
+        <i class="fa-brands fa-square-instagram fa-lg"></i>
+    </a>
+    <a href="<c:url value='https://facebook.com'/>" class="titulo sac1 icones3">
+        <i class="fa-brands fa-square-facebook fa-lg"></i>
+    </a>
+    <a href="<c:url value='https://twitter.com'/>" class="titulo sac1 icones3">
+        <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+    </a>
 </div>
 </body>
 </html>
