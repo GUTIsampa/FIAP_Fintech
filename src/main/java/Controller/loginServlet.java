@@ -27,18 +27,21 @@ public class loginServlet extends HttpServlet {
         //Obtendo os parâmetros dos formulários
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
-
         Conta conta = new Conta(email, senha);
-        System.out.println(email);
+        String resultadoValidacao = dao.validarUsuario(conta);
+        System.out.println(resultadoValidacao);
 
         // se houver um usuário no banco de dados, redireciona para a página seguinte, senao, volta a tela de login
-        if (dao.validarUsuario(conta)) {
+        if ("Autenticação bem sucedida".equals(resultadoValidacao)) {
             HttpSession session = req.getSession();
             session.setAttribute("usuario", email);
             req.getRequestDispatcher("Success.jsp").forward(req, res);
-        } else {
-            req.setAttribute("Erro", "E-mail/senha incorretos");
-            req.setAttribute("Cadastrar", "Ainda não possui uma conta? Cadastre-se agora mesmo!");
+        } else if ("Conta inexistente".equals(resultadoValidacao)) {
+            req.setAttribute("erro", resultadoValidacao);
+            req.setAttribute("cadastrar", "Ainda não possui uma conta? Cadastre-se agora mesmo!");
+            req.getRequestDispatcher("index.jsp").forward(req, res);
+        } else if ("Senha incorreta".equals(resultadoValidacao)) {
+            req.setAttribute("erro", resultadoValidacao);
             req.getRequestDispatcher("index.jsp").forward(req, res);
         }
     }

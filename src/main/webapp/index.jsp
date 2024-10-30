@@ -34,6 +34,14 @@
             <div class="card login">
                 <div class="card-body">
                     <h5 class="card-title text-center titulo">Login</h5>
+
+                    <!-- Exibir mensagem de erro, se houver -->
+                    <c:if test="${not empty erro}">
+                        <div class="alert alert-danger text-center" role="alert">
+                                ${erro}
+                        </div>
+                    </c:if>
+
                     <form action="<c:url value='/loginServlet'/>" method="post">
                         <div class="form-group">
                             <label for="email" class="inserir titulo"> <i class="fa-solid fa-user"></i> Email</label>
@@ -49,7 +57,14 @@
                         <div class="text-center divbotao">
                             <h6 class="ainda">Ainda não tem conta?</h6>
                         </div>
+                        <!--Exibir mensagem de cadastro, se houver-->
+                        <c:if test="${not empty cadastrar}">
+                            <div class="alert alert-info text-center" role="alert">
+                                    ${cadastrar}
+                            </div>
+                        </c:if>
                     </form>
+
                 </div>
             </div>
         </div>

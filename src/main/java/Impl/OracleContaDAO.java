@@ -21,8 +21,69 @@ public class OracleContaDAO implements ContaDAO {
         return connectionManager.getConnection();
 
     }
-    
-    public boolean validarUsuario(Conta conta) {
+
+    public String validarUsuario(Conta conta) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionManager
+                    .getInstance()
+                    .getConnection();
+
+            String sql = "select * from t_conta where id_email = ?";
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, conta.getEmail());
+            rs = ps.executeQuery();
+            System.out.println(conta.getEmail());
+            System.out.println(conta.getSenha());
+            if (!rs.next()) {
+                return "Conta inexistente";
+            }
+
+            rs.close();
+            ps.close();
+
+            String sqlSenha = "select * from t_conta where id_email = ? and senha = ? ";
+            ps = con.prepareStatement(sqlSenha);
+            ps.setString(1, conta.getEmail());
+            ps.setString(2, conta.getSenha());
+            rs = ps.executeQuery();
+
+            if (!rs.next()) {
+                return "Senha incorreta";
+            }
+
+            return "Autenticação bem sucedida";
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return "Erro ao autenticar";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*public boolean validarUsuario(Conta conta) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -52,7 +113,7 @@ public class OracleContaDAO implements ContaDAO {
             }
         }
         return false;
-    }
+    }*/
 
     public void cadastrar(Conta conta) throws SQLException {
         Connection conectar = abrirConexao();

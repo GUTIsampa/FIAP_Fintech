@@ -2,9 +2,11 @@ package Model;
 
 import Impl.OracleFaturaDAO;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import Exception.DBException;
 
@@ -88,6 +90,11 @@ public class Fatura {
         oracleFaturaDAO.buscar(codigoFatura);
     }
 
+    public List<Fatura> listarFaturas() throws DBException {
+        OracleFaturaDAO oracleFaturaDAO = new OracleFaturaDAO();
+        return new ArrayList<Fatura>(oracleFaturaDAO.listar());
+    }
+
     public static void main(String[] args) throws ParseException, DBException {
        /*Fatura fatura = new Fatura();
        fatura.removerFatura(1);*/
@@ -95,9 +102,13 @@ public class Fatura {
        /* Fatura fatura = new Fatura(2, 2, 2500.50, new SimpleDateFormat("yyyy-MM-dd").parse("2024-05-24"), "Pagamento atualizado do cartão de crédito");
         fatura.atualizarFatura();*/
 
+        /*Fatura fatura = new Fatura();
+        fatura.buscarFatura(2);*/
+
         Fatura fatura = new Fatura();
-        fatura.buscarFatura(2);
-
+        List<Fatura> faturaList = fatura.listarFaturas();
+        for (Fatura f : faturaList) {
+            System.out.println(f.getNm_fatura());
+        }
     }
-
 }

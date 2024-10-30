@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -154,7 +155,39 @@ public class OracleFaturaDAO {
         return fatura;
     }
 
-    public List<Cartao> listar() {
-        return List.of();
+    public List<Fatura> listar() {
+        List<Fatura> faturas = new ArrayList<Fatura>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT * FROM t_fatura";
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Integer id_fatura = rs.getInt("ID_FATURA");
+                Integer id_cartao = rs.getInt("ID_CARTAO");
+                Double val_fatura = rs.getDouble("VAL_FATURA");
+                Date data_vencimento_fatura = rs.getDate("DT_VENCIMENTO_FATURA");
+                String nm_fatura = rs.getString("NM_FATURA");
+
+                Fatura fatura = new Fatura(id_fatura, id_cartao, val_fatura, data_vencimento_fatura, nm_fatura);
+                faturas.add(fatura);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                rs.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return faturas;
     }
 }
