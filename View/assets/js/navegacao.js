@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 setupCardDeletion();
                 setupChartFatura();
                 setupValorFatura();
+                setupFotoPerfil();
+                setupContaDelete();
             })
+            
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
@@ -52,5 +55,22 @@ document.getElementById('btnAdicionarCartao').addEventListener('click', function
     document.getElementById('listaCartoes').style.display = 'none';
     document.getElementById('formAdicionarCartao').style.display = 'block';
 });
+
+
+function initializePageContent() {
+    setupFotoPerfil();
+    setupContaDelete();
+}
+
+// Usar MutationObserver para monitorar mudanças na div "content"
+const contentDiv = document.getElementById("content");
+const observer = new MutationObserver(() => {
+    initializePageContent();
+});
+
+observer.observe(contentDiv, { childList: true, subtree: true });
+
+// Inicializar o conteúdo inicial
+initializePageContent();
 
 
