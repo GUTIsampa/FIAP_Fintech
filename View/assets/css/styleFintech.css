@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url(/resources/images/Background.png);
+    background-image: url(/View/assets/images/Background.png);
     background-attachment: fixed;
     font-family: "Bruno Ace", sans-serif;
     font-weight: 400;
