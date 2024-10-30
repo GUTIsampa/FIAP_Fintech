@@ -55,7 +55,9 @@
                             <button type="submit" class="btn btn-block botao"> <i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
                         </div>
                         <div class="text-center divbotao">
-                            <h6 class="ainda">Ainda não tem conta?</h6>
+                            <h6 class="ainda">
+                                <a href="#">Ainda não tem conta?</a>
+                            </h6>
                         </div>
                         <!--Exibir mensagem de cadastro, se houver-->
                         <c:if test="${not empty cadastrar}">

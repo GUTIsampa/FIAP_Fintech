@@ -70,51 +70,6 @@ public class OracleContaDAO implements ContaDAO {
         return "Erro ao autenticar";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*public boolean validarUsuario(Conta conta) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            con = ConnectionManager
-                    .getInstance()
-                    .getConnection();
-
-            String sql = "select * from t_conta where id_email = ? and senha = ? ";
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, conta.getEmail());
-            ps.setString(2, conta.getSenha());
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                ps.close();
-                rs.close();
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-    }*/
-
     public void cadastrar(Conta conta) throws SQLException {
         Connection conectar = abrirConexao();
         String sql = "INSERT INTO t_conta (nr_saldo, id_email, st_conta, senha, nm_usuario, dt_abertura, dt_nasc) VALUES (0,?, ?, ?, ?,?,?)";

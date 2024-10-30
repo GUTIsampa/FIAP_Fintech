@@ -72,7 +72,7 @@ public class Meta {
 
     public void atualizarMeta() {
         OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
-        oracleMetaDAO.a
+        /*oracleMetaDAO*/
     }
 
     public static void main(String[] args) throws ParseException {

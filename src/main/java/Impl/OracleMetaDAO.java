@@ -42,32 +42,28 @@ public class OracleMetaDAO {
         }
     }
 
-    public void atualizar(Meta meta) {
-      /*  PreparedStatement stmt = null;
+    /*public void atualizar(Meta meta) throws DBException {
+       PreparedStatement stmt = null;
 
         try {
             conn = ConnectionManager.getInstance().getConnection();
 
             String sql = "UPDATE t_meta SET " +
-                    "VAL_FATURA = ? ," +
-                    "DT_VENCIMENTO_FATURA = ? ," +
-                    "NM_FATURA = ? " +
-                    "where ID_FATURA = ?";
+                    "VALOR_META = ? ," +
+                    "DATA_LIMITE = ? ," +
+                    "NOME_META = ? " +
+                    "where ID_META = ?";
 
 
             stmt = conn.prepareStatement(sql);
-            stmt.setDouble(1, fatura.getVl_fatura());
-            java.sql.Date dt_vencimento = new java.sql.Date(fatura.getVencimento_fatura().getTime());
-            stmt.setDate(2, dt_vencimento);
-            stmt.setString(3, fatura.getNm_fatura());
-            stmt.setInt(4, fatura.getId_fatura());
+            stmt.setDouble(1, );
+            java.sql.Date dt_vencimento = new java.sql.Date();
+            stmt.setDate(2, );
+            stmt.setString(3, );
+            stmt.setInt(4, );
             stmt.executeUpdate();
             stmt.close();
 
-            System.out.println(fatura.getId_cartao());
-            System.out.println(fatura.getVl_fatura());
-            System.out.println(fatura.getNm_fatura());
-            System.out.println(fatura.getVencimento_fatura());
 
 
         } catch (SQLException e) {
@@ -80,6 +76,6 @@ public class OracleMetaDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }*/
-    }
+        }
+    }*/
 }
