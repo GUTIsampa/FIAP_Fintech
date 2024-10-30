@@ -1,7 +1,14 @@
 package Utils;
 
+import DAO.ConnectionManager;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class CriptografiaUtils {
 

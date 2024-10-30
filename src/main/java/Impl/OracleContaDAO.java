@@ -4,6 +4,7 @@ import DAO.ConnectionManager;
 import DAO.ContaDAO;
 import Model.Conta;
 import Model.ContaBuilder;
+import Utils.CriptografiaUtils;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -20,8 +21,7 @@ public class OracleContaDAO implements ContaDAO {
         return connectionManager.getConnection();
 
     }
-
-
+    
     public boolean validarUsuario(Conta conta) {
         PreparedStatement ps = null;
         ResultSet rs = null;

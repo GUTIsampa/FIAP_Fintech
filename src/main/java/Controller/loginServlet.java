@@ -29,6 +29,7 @@ public class loginServlet extends HttpServlet {
         String senha = req.getParameter("senha");
 
         Conta conta = new Conta(email, senha);
+        System.out.println(email);
 
         // se houver um usuário no banco de dados, redireciona para a página seguinte, senao, volta a tela de login
         if (dao.validarUsuario(conta)) {
@@ -42,3 +43,4 @@ public class loginServlet extends HttpServlet {
         }
     }
 }
+
