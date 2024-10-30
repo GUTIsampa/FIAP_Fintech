@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-@WebServlet("/cadastros")
+@WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
 
     @Override

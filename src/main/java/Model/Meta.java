@@ -70,6 +70,11 @@ public class Meta {
         oracleMetaDAO.cadastrar(this);
     }
 
+    public void atualizarMeta() {
+        OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
+        oracleMetaDAO.a
+    }
+
     public static void main(String[] args) throws ParseException {
         Meta meta = new Meta(1, 61, 10000.00, new SimpleDateFormat("yyyy-MM-dd").parse("2014-03-23"), "Viagens fim de ano");
         meta.adicionarMeta();
