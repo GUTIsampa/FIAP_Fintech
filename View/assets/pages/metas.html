@@ -77,13 +77,82 @@
     </header>
 
     <div class="conteudo">
-        <h1>Meta</h1>
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="goal-container text-center container-fluid">
+                <!-- Título -->
+                <h1 class="mb-3 titulo">Metas Fintech</h1>
+        
+                <!-- Dropdown de Metas -->
+                <div class="dropdown mb-3">
+                    <button class="btn botaoPadrao dropdown-toggle" type="button" id="metaDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Selecione a Meta
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="metaDropdown" id="metaList">
+                        <!-- Itens de meta adicionados dinamicamente -->
+                    </ul>
+                </div>
+        
+                <!-- Espaço para a Imagem -->
+                <div class="goal-image" id="goalImageContainer"></div>
+        
+                <!-- Meta Atual -->
+                <div class="metaNum">
+                    <p id="goalStatus">Nome da Meta: X/Y</p>
+                </div>
+        
+                <!-- Botão Guardar $ (abre o modal) -->
+                <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#addMoneyModal">Guardar $</button>
+        
+                <!-- Botão Criar Meta (abre o modal) -->
+                <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#createGoalModal">Criar Meta</button>
+            </div>
+        </div>
+        
+        <!-- Modal para Adicionar Dinheiro -->
+        <div class="modal fade" id="addMoneyModal" tabindex="-1" aria-labelledby="addMoneyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addMoneyModalLabel">Adicionar Valor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="number" class="form-control" id="addAmount" placeholder="Digite o valor" min="0">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn botaoPadrao" onclick="addMoney()">Adicionar</button>
+                        <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal para Criar Meta -->
+        <div class="modal fade" id="createGoalModal" tabindex="-1" aria-labelledby="createGoalModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createGoalModalLabel">Criar Meta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control mb-3" id="goalName" placeholder="Nome da Meta">
+                        <input type="number" class="form-control" id="goalValue" placeholder="Valor da Meta" min="1">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn botaoPadrao" onclick="createGoal()">Criar</button>
+                        <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
 
 
 <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="/View/assets/js/meta.js"></script>
 </body>
 
 </html>

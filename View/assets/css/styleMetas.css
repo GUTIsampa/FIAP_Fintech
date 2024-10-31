@@ -1,3 +1,9 @@
+:root {
+    --bluef: #11405A;
+    --orangef: #be6613;
+    --bluefd: #152e3b
+}
+
 body{
     background-image: url(/View/assets/images/Background.png);
 }
@@ -8,7 +14,10 @@ body{
 
 @media (max-width: 650px) {
     .conteudo{
-        padding-top: 100px;
+        padding-top: 150px;
+    }
+    .porquinhos{
+        min-height: 30vmax;
     }
 }
 
@@ -18,4 +27,65 @@ body{
         margin-left: 10vmax;
         padding-left: 300px;
     }
+}
+
+@media (min-height: 1000px){
+    .goal-container{
+        min-width: 40vmax;
+        margin-top: 150px;
+        min-height: 60vmax;
+    }
+    .porquinhos{
+        min-height: 42vmax;
+    }
+    .metaNum{
+        margin-top: 15vmax;
+    }
+}
+
+.goal-container {
+    border: 3px solid var(--orangef);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
+    background-color: #11405A;
+}
+
+.goal-image {
+    max-height: 30vmax;
+    margin: 20px 0;
+}
+
+.porquinhos{
+    height: 25vmax;
+    background-color: var(--bluefd);
+    border: solid 2px var(--orangef);
+    border-radius: 15px;
+}
+
+.botaoPadrao:hover{
+    background-color: #11405A;
+    border-style: solid;
+    border-color: #BE6513;
+    color: #BE6513;
+    text-decoration: underline;
+}
+
+.botaoPadrao{
+    background-color: #BE6513;
+    color: #11405A;
+}
+
+.botaoInf{
+    margin-bottom: 1em;
+    margin-right: 10px;
+}
+
+.titulo{
+    color: #BE6513;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.lixinho:hover{
+    color: red;
 }
