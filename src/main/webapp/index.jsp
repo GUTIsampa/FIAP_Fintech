@@ -55,9 +55,7 @@
                             <button type="submit" class="btn btn-block botao"> <i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
                         </div>
                         <div class="text-center divbotao">
-                            <h6 class="ainda">
-                                <a href="#">Ainda não tem conta?</a>
-                            </h6>
+                            <button type="button" class="btn btn-block botao"> <i class="fa-solid fa-clipboard"></i> Criar Conta</button>
                         </div>
                         <!--Exibir mensagem de cadastro, se houver-->
                         <c:if test="${not empty cadastrar}">
@@ -66,7 +64,6 @@
                             </div>
                         </c:if>
                     </form>
-
                 </div>
             </div>
         </div>
