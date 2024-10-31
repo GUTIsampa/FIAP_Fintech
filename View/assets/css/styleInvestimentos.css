@@ -11,7 +11,7 @@ body{
 }
 
 .conteudo{
-    padding-top: 25px;
+    padding-top:25px;
     margin-left: 5vmax;
     margin-right: 5vmax;
 }
@@ -75,5 +75,8 @@ body{
 @media (max-width: 650px) {
     .simulador-container {
         padding: 1em;
+    }
+    .conteudo{
+        padding-top: 100px;
     }
 }

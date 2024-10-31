@@ -115,6 +115,9 @@ body{
     .titulofatura{
         display: none;
     }
+    .conteudo{
+        padding-top: 100px;
+    }
 }
 
 @media (min-width: 651px) {
@@ -124,9 +127,13 @@ body{
     .conteudo{
         margin-right: 10vmax;
         margin-left: 10vmax;
+        padding-left: 300px;
     }
     .titulofaturaMobile{
         display: none;
+    }
+    #faturaChart{
+        max-width: 55vmax;
     }
 }
 @media (min-height:1024px) {

@@ -103,4 +103,7 @@ body {
         flex-direction: column;
         gap: 15px;
     }
+    .conteudo{
+        padding-top: 100px;
+    }
 }

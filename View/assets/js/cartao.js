@@ -13,7 +13,6 @@ document.addEventListener('click', function (event) {
 
 
 // Função para excluir cartão
-function setupCardDeletion() {
     document.querySelectorAll('.excluir-cartao').forEach(button => {
         button.addEventListener('click', function () {
             const cartao = this.getAttribute('data-cartao');
@@ -24,9 +23,9 @@ function setupCardDeletion() {
             }
         });
     });
-}
 
-function setupChartFatura(){const ctx = document.getElementById('faturaChart').getContext('2d');
+
+{const ctx = document.getElementById('faturaChart').getContext('2d');
 
     // Dados fictícios para os últimos 5 meses
     const labels = [
@@ -91,7 +90,6 @@ function setupChartFatura(){const ctx = document.getElementById('faturaChart').g
     const faturaChart = new Chart(ctx, config);}
 
 
-    function setupValorFatura(){
         document.getElementById('faturaForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Evita o envio padrão do formulário
         
@@ -105,4 +103,3 @@ function setupChartFatura(){const ctx = document.getElementById('faturaChart').g
             modal.hide();
             document.getElementById('faturaForm').reset(); // Reseta o formulário
         });
-    }

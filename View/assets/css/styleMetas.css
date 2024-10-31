@@ -1,0 +1,21 @@
+body{
+    background-image: url(/View/assets/images/Background.png);
+}
+
+.conteudo{
+    padding-top: 25px;
+}
+
+@media (max-width: 650px) {
+    .conteudo{
+        padding-top: 100px;
+    }
+}
+
+@media (min-width: 651px) {
+    .conteudo{
+        margin-right: 10vmax;
+        margin-left: 10vmax;
+        padding-left: 300px;
+    }
+}

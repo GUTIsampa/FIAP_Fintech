@@ -1,4 +1,4 @@
-function setupFotoPerfil(){
+
     console.log("Script perfil.js carregado");
 
     // Seleciona os elementos HTML
@@ -24,10 +24,10 @@ function setupFotoPerfil(){
             reader.readAsDataURL(file);
         }
     }); 
-}
 
 
-function setupContaDelete(){
+
+
     document.getElementById('delete-account').addEventListener('click', function() {
         if (confirm("Tem certeza de que deseja excluir a conta? Esta ação não pode ser desfeita.")) {
             // Lógica para excluir a conta
@@ -35,7 +35,7 @@ function setupContaDelete(){
         }
     });
 
-function setupTrocaSenha(){
+
     document.getElementById('change-password').addEventListener('click', function() {
         const newPassword = prompt("Digite sua nova senha:");
         if (newPassword) {
@@ -44,6 +44,6 @@ function setupTrocaSenha(){
         }
     });
     
-}
+
     
-}
+
