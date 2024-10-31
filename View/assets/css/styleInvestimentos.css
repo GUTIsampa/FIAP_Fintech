@@ -51,17 +51,21 @@ body{
 }
 
 #simulador-form button {
-    background-color: var(--orangef);
-    color: #fff;
     padding: 0.7em 1.5em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    background-color: #BE6513;
+    color: #11405A;
 }
 
 #simulador-form button:hover {
-    background-color: var(--orangef);
+    background-color: #11405A;
+    border-style: solid;
+    border-color: #BE6513;
+    color: #BE6513;
+    text-decoration: underline;
 }
 
 .resultado p {
@@ -69,6 +73,7 @@ body{
     color: var(--orangef);
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 2em;
 }
 
 
@@ -78,5 +83,17 @@ body{
     }
     .conteudo{
         padding-top: 100px;
+    }
+}
+
+@media(min-width:750px){
+    .simulador-container{
+        margin-top: 5vmax !important;
+    }
+}
+
+@media(min-height:1024px){
+    .simulador-container{
+        margin-top: 10vmax !important;
     }
 }
