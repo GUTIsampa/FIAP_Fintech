@@ -12,6 +12,7 @@ import Model.Conta;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 @WebServlet("/loginServlet")
@@ -34,7 +35,14 @@ public class loginServlet extends HttpServlet {
         // se houver um usuário no banco de dados, redireciona para a página seguinte, senao, volta a tela de login
         if ("Autenticação bem sucedida".equals(resultadoValidacao)) {
             HttpSession session = req.getSession();
-            session.setAttribute("usuario", email);
+            try {
+                conta =  conta.buscarPorEmail(email);
+                System.out.println(conta.getCd_conta());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            session.setAttribute("id", conta.getCd_conta());
             req.getRequestDispatcher("Success.jsp").forward(req, res);
         } else if ("Conta inexistente".equals(resultadoValidacao)) {
             req.setAttribute("erro", resultadoValidacao);
@@ -46,4 +54,3 @@ public class loginServlet extends HttpServlet {
         }
     }
 }
-

@@ -44,6 +44,7 @@ public class Conta {
 
     public Conta(ContaBuilder contaBuilder) {
         this.saldo = contaBuilder.nr_saldo;
+        this.cd_conta = contaBuilder.cd_conta;
         this.email = contaBuilder.id_email;
         setSenha(contaBuilder.senha);
         this.dt_abertura = contaBuilder.dt_abertura;
@@ -134,6 +135,13 @@ public class Conta {
         return contaDao.buscarPorId(id);
 
     }
+
+    public Conta buscarPorEmail(String email) throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        return contaDao.buscarPorEmail(email);
+
+    }
+
     public void excluirPorId(int id) throws SQLException {
         OracleContaDAO contaDao = new OracleContaDAO();
         contaDao.exluirPorId(id);

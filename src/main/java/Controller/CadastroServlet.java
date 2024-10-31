@@ -27,6 +27,11 @@ public class CadastroServlet extends HttpServlet {
                 String email = req.getParameter("email");
                 String senha = req.getParameter("senha");
                 String dataNascimento = req.getParameter("dataNascimento");
+                System.out.println(nome);
+                System.out.println(email);
+                System.out.println(senha);
+                System.out.println(dataNascimento);
+
                 Conta contaModel;
                 try {
                     contaModel = new ContaBuilder()
@@ -45,6 +50,9 @@ public class CadastroServlet extends HttpServlet {
                 } catch (Exception e) {
                     e.getMessage();
                 }
+
+                break;
+
             case "buscaPorId":
                 String idBusca = req.getParameter("id");
                 contaModel = new Conta();
@@ -53,6 +61,9 @@ public class CadastroServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                break;
+
             case "excluirPorId":
                 String idExcluir = req.getParameter("id");
                 contaModel = new Conta();
@@ -61,6 +72,9 @@ public class CadastroServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                break;
+
             case "alterar":
                 contaModel = new Conta();
                 try {
@@ -72,6 +86,8 @@ public class CadastroServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                break;
 
         }
     }
@@ -89,6 +105,9 @@ public class CadastroServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                break;
+
             case "alterar":
                 contaModel = new Conta();
                 try {
@@ -98,6 +117,11 @@ public class CadastroServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+
+                break;
+
+            case "voltar":
+                resp.sendRedirect("index.jsp");
         }
     }
 }

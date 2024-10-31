@@ -80,7 +80,7 @@ public class OracleContaDAO implements ContaDAO {
             PreparedStatement stm = conectar.prepareStatement(sql);
 
             stm.setString(1, conta.getEmail());
-            stm.setString(2, conta.getStatus_conta());
+            stm.setString(2, "ativo");
             stm.setString(3, conta.getSenha());
             stm.setString(4, conta.getNomeUsuario());
             Date dt_abertura = new Date(conta.getDt_abertura().getTime());
@@ -123,6 +123,32 @@ public class OracleContaDAO implements ContaDAO {
             }
         }
 
+        return conta;
+    }
+
+    public Conta buscarPorEmail(String email) throws SQLException {
+        String sql = "SELECT * FROM T_conta WHERE id_email = ?";
+        Conta conta = null;
+
+        Connection conectar = this.abrirConexao();
+        PreparedStatement stm = conectar.prepareStatement(sql);
+
+        stm.setString(1, email);
+        try (ResultSet resultado = stm.executeQuery()) {
+            if (resultado.next()) {
+                ContaBuilder contaBuilder = new ContaBuilder();
+                conta = new ContaBuilder()
+                        .CdConta(resultado.getInt("cd_conta"))
+                        .NrSaldo(resultado.getDouble("nr_saldo"))
+                        .IdEmail(resultado.getString("id_email"))
+                        .DtAbertura(resultado.getDate("dt_abertura"))
+                        .StConta(resultado.getString("st_conta"))
+                        .Senha(resultado.getString("senha"))
+                        .NmUsuario(resultado.getString("nm_usuario"))
+                        .DtNasc(resultado.getDate("dt_nasc"))
+                        .build();
+            }
+        }
         return conta;
     }
 
