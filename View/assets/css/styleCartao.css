@@ -1,8 +1,4 @@
-:root {
-    --bluef: #11405A;
-    --orangef: #BE6513;
-    --bluefd: #152e3b
-}
+
 
 body{
     background-image: url(/View/assets/images/Background.png);
@@ -60,6 +56,10 @@ body{
 .card-icon {
     width: 5vmax; /* Ajuste o tamanho do ícone conforme necessário */
     height: 4vmax; /* Ajuste o tamanho do ícone conforme necessário */
+}:root {
+    --bluef: #11405A;
+    --orangef: #BE6513;
+    --bluefd: #152e3b
 }
 
 .card-holder {
@@ -120,6 +120,12 @@ body{
     }
 }
 
+@media(min-width:1200px){
+    #faturaChart{
+        min-width: 55vmax;
+    }
+}
+
 @media (min-width: 651px) {
     .bemvindoMobile{
         display: none;
@@ -131,9 +137,6 @@ body{
     }
     .titulofaturaMobile{
         display: none;
-    }
-    #faturaChart{
-        max-width: 55vmax;
     }
 }
 @media (min-height:1024px) {
@@ -158,7 +161,7 @@ body{
     }
 }
 
-@media (max-height:668px){
+@media (max-height:721px){
     #faturaChart{
         min-height: 45vmax !important ;
     }
