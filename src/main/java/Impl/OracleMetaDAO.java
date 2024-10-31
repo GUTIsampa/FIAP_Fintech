@@ -1,12 +1,14 @@
 package Impl;
 
 import DAO.ConnectionManager;
+import Model.Cartao;
 import Model.Meta;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import Exception.DBException;
 
 public class OracleMetaDAO {
@@ -79,7 +81,96 @@ public class OracleMetaDAO {
         }
     }
 
-    public void excluir(Meta meta) throws DBException {
-        
+    public void excluir(int meta) throws DBException {
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getInstance().getConnection();
+            String sql = "DELETE FROM t_meta WHERE ID_META = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, meta);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DBException("Erro remover a meta do cartao");
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public Meta buscarMeta(int id) throws DBException {
+        Meta meta = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT * FROM t_meta WHERE ID_META = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Integer id_meta = rs.getInt("ID_META");
+                Integer cd_conta = rs.getInt("CD_CONTA");
+                Double vl_meta = rs.getDouble("VALOR_META");
+                java.util.Date date_limite = rs.getDate("DATA_LIMITE");
+                String nm_meta = rs.getString("NOME_META");
+
+                meta = new Meta(id_meta, cd_conta, vl_meta, date_limite, nm_meta);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                rs.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return meta;
+    }
+
+    public List<Meta> listar() {
+        List<Meta> lista = new ArrayList<Meta>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT * FROM t_meta";
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            //Percorre todos os registros encontrados
+            while (rs.next()) {
+                Integer id_meta = rs.getInt("ID_META");
+                Integer cd_conta = rs.getInt("CD_CONTA");
+                Double vl_meta = rs.getDouble("VALOR_META");
+                java.util.Date date_limite = rs.getDate("DATA_LIMITE");
+                String nm_meta = rs.getString("NOME_META");
+
+                Meta meta = new Meta(id_meta, cd_conta, vl_meta, date_limite, nm_meta);;
+                lista.add(meta);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                rs.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return lista;
     }
 }

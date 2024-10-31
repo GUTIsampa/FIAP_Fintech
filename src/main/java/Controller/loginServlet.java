@@ -43,7 +43,7 @@ public class loginServlet extends HttpServlet {
             }
 
             session.setAttribute("id", conta.getCd_conta());
-            req.getRequestDispatcher("Success.jsp").forward(req, res);
+            req.getRequestDispatcher("cartao.jsp").forward(req, res);
         } else if ("Conta inexistente".equals(resultadoValidacao)) {
             req.setAttribute("erro", resultadoValidacao);
             req.setAttribute("cadastrar", "Ainda não possui uma conta? Cadastre-se agora mesmo!");

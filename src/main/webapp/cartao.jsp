@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,7 +20,7 @@
             <nav class="navbar">
                 <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
                 <div class="active">
-                    <a class="nav-link" aria-current="" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
+                    <a class="nav-link" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
