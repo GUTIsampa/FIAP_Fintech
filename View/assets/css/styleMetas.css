@@ -86,6 +86,9 @@ body{
     margin-bottom: 50px;
 }
 
+.lixinho{
+    color: #BE6513;
+}
 .lixinho:hover{
     color: red;
 }
@@ -97,3 +100,18 @@ body{
 .sucesso{
     color: green;
 }
+.menuMeta{
+    background-color: #152e3b;
+    border-style:solid 3px ;
+    border-color: #BE6513;
+    }
+
+    .itemMeta{
+        color: #BE6513;
+    }
+    
+    .itemMeta:hover{
+        background-color: #152e3b;
+        color: white;
+        text-decoration: underline;
+    }

@@ -124,7 +124,7 @@ function updateDropdown() {
 
     goals.forEach((goal, index) => {
         const listItem = document.createElement('li');
-        listItem.classList.add('dropdown-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        listItem.classList.add('dropdown-item', 'd-flex', 'justify-content-between', 'align-items-center','itemMeta');
         
         const goalButton = document.createElement('span');
         goalButton.textContent = goal.name;
