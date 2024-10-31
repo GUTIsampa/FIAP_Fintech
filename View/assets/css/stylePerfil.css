@@ -106,4 +106,106 @@ body {
     .conteudo{
         padding-top: 100px;
     }
+    .profile-container{
+        margin-top: 10vmax;
+    }
+}
+
+.profile-title{
+    color: #BE6513;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+@media(min-width:700px){
+    .conteudo {
+        padding-top: 25px;
+        margin-left: 5vmax;
+        margin-right: 5vmax;
+        display: flex; /* Adicionando flex */
+        justify-content: center; /* Centralizando o conteúdo */
+    }
+    
+    .profile-container {
+        flex: 1;
+        border: 3px solid var(--orangef);
+        border-radius: 15px;
+        background-color: var(--bluef);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        margin-top: 8vw;
+        padding: 1.5em;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+        max-width: 600px; /* Limitar a largura máxima do perfil */
+    }
+    
+    .profile-title {
+        text-align: center; /* Centralizar o título */
+        font-size: 2vw; /* Tamanho dinâmico para o título */
+        color: var(--orangef);
+        margin-bottom: 1em;
+    }
+    
+    .profile-info label {
+        font-weight: bold;
+        color: var(--orangef);
+        font-size: 1.5vw; /* Tamanho dinâmico para rótulos */
+    }
+    
+    .profile-info p {
+        margin: 0 0 1em 0;
+        color: var(--orangef);
+        font-size: 1.5vw; /* Tamanho dinâmico para parágrafos */
+    }
+    
+    .profile-actions button {
+        background-color: var(--orangef);
+        color: var(--bluef);
+        border: none;
+        padding: 0.7em 1.5em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1.5vw; /* Tamanho dinâmico para o botão */
+    }
+}
+
+@media(min-height:1023px){
+    .profile-container {
+        flex: 1;
+        border: 3px solid var(--orangef);
+        border-radius: 15px;
+        background-color: var(--bluef);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        margin-top: 20vw;
+        padding: 1.5em;
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+        max-width: 600px; /* Limitar a largura máxima do perfil */
+    }
+    .profile-info label {
+        font-weight: bold;
+        color: var(--orangef);
+        font-size: 2.5vw; /* Tamanho dinâmico para rótulos */
+    }
+    
+    .profile-info p {
+        margin: 0 0 1em 0;
+        color: var(--orangef);
+        font-size: 2.5vw; /* Tamanho dinâmico para parágrafos */
+    }
+    
+    .profile-actions button {
+        background-color: var(--orangef);
+        color: var(--bluef);
+        border: none;
+        padding: 0.7em 1.5em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 2.5vw; /* Tamanho dinâmico para o botão */
+    }
+
+    .profile-title{
+        font-size: 4vw;
+    }
+    
 }
