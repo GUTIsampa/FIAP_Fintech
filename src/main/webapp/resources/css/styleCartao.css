@@ -1,0 +1,279 @@
+
+
+body{
+    background-image: url(../images/Background.png);
+}
+
+.welcome-message {
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 3em;
+}
+.bemvindo{
+    color: #BE6513;
+}
+
+.bemvindoMobile{
+    color: #BE6513;
+}
+.conteudo{
+    padding-top: 25px;
+}
+
+
+.areaCartao{
+    border: 3px solid var(--orangef);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
+    background-color: #11405A;
+}
+
+.cartao{
+    border: 3.8px solid var(--bluefd);
+    border-radius: 40px;
+    background-color: #BE6513;
+    max-height: 40vmax;
+    max-width: 45vmax;
+    min-width: 30vmax;
+    min-height: 20vmax;
+    
+
+}
+.cartao-content {
+    position: relative;
+    padding: 20px 10px;
+    height: 100%; /* Para que o conteúdo ocupe a altura total do cartão */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #BE6513;
+}
+
+.icon-container {
+    position: absolute;
+    top: 10px;
+}
+
+.card-icon {
+    width: 5vmax; /* Ajuste o tamanho do ícone conforme necessário */
+    height: 4vmax; /* Ajuste o tamanho do ícone conforme necessário */
+}:root {
+    --bluef: #11405A;
+    --orangef: #BE6513;
+    --bluefd: #152e3b
+}
+
+.card-holder {
+    margin-top: 50px; /* Espaço abaixo do ícone */
+}
+
+.card-holder-name {
+    font-size: 1.5vmax; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #11405A;
+}
+
+.card-number {
+    text-align: center;
+    font-size: 2.3vmax; /* Tamanho maior para o número do cartão */
+    margin: 10px 0; /* Espaçamento em cima e embaixo */
+    color: #152e3b;
+}
+
+.numeroCartao{
+    white-space: nowrap;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2vmax; /* Tamanho da fonte para validade e bandeira */
+    margin-top: 3em;
+
+    color: #152e3b;
+}
+
+
+
+
+/* Media Queries para responsividade */
+@media (max-width: 650px) {
+    .card-section {
+        padding: 4em 1em; /* Diminui o padding para telas menores */
+    }
+    .bemvindo{
+        display: none;
+    }
+    .cartao{
+        max-height: 35vmax;
+    }
+
+    .card-footer{
+        font-size: 2vmax;
+    }
+    .card-holder-name{
+        font-size: 2vmax;
+    }
+    .titulofatura{
+        display: none;
+    }
+    .conteudo{
+        padding-top: 100px;
+    }
+}
+
+@media(min-width:1200px){
+    #faturaChart{
+        min-width: 55vmax;
+    }
+}
+
+@media (min-width: 651px) {
+    .bemvindoMobile{
+        display: none;
+    }
+    .conteudo{
+        margin-right: 10vmax;
+        margin-left: 10vmax;
+        padding-left: 300px;
+    }
+    .titulofaturaMobile{
+        display: none;
+    }
+}
+@media (min-height:1024px) {
+    .bemvindoMobile{
+        display: none;
+    }
+    .conteudo{
+        margin-right: 5vmax;
+        margin-left: 5vmax;
+    }
+    #faturaChart{
+        max-width: 30vmax !important;
+    }
+}
+
+@media (min-width: 1000px){
+    .card-number{
+        font-size: 3vmax;
+    }
+    .card-holder-name{
+        margin-top: 2vmax;
+    }
+}
+
+@media (max-height:721px){
+    #faturaChart{
+        min-height: 45vmax !important ;
+    }
+}
+.custom-table {
+    max-width: 600px; /* Ajuste a largura máxima da tabela */
+    margin: 0 auto; /* Centraliza a tabela na página */
+}
+.btn-center {
+    display: block;
+    margin: 20px auto; /* Centraliza o botão */
+    background-color: #BE6513;
+    color: #11405A;
+}
+
+
+
+.custom-table {
+    background-color: #152e3b; /* Cor de fundo da tabela */
+    color: #BE6513; /* Cor do texto da tabela */
+    border-color: #BE6513; /* Cor da borda da tabela */;
+}
+
+.custom-table th, .custom-table td {
+    border: 1px solid #BE6513; /* Borda das células */
+}
+
+.custom-table th {
+    background-color: var(--bluefd); /* Cor de fundo para o cabeçalho da tabela */
+    color: #BE6513; /* Cor do texto do cabeçalho */
+}
+
+.custom-table td {
+    color: #BE6513; /* Cor do texto das células */
+    background-color: var(--bluef);
+}
+
+.titulofatura{
+    color: #BE6513;
+    margin-top: 5px;
+}
+.titulofaturaMobile{
+    color: #BE6513;
+    margin-top: 5px;
+}
+
+.botaoPadrao:hover{
+    background-color: #11405A;
+    border-style: solid;
+    border-color: #BE6513;
+    color: #BE6513;
+    text-decoration: underline;
+}
+
+.excluir-cartao {
+    margin-left: 10px;
+    margin-right: 5px; /* Espaçamento entre o link e o botão */
+    color: #BE6513;
+}
+
+.menuCard {
+    background-color: #152e3b;
+    border-style:solid 3px ;
+    border-color: #BE6513;
+}
+
+.itemCartao{
+    color: #BE6513;
+}
+
+.itemCartao:hover{
+    background-color: #152e3b;
+    color: white;
+    text-decoration: underline;
+}
+
+.excluir-cartao:hover{
+    color: red;
+}
+
+.botaoFechar{
+    color: #BE6513;
+}
+ .botaoFechar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .botaoCadastrar{
+    color: #BE6513;
+ }
+
+ .botaoCadastrar:hover{
+    color: #11405A;
+    text-decoration: underline;
+ }
+
+ .textoModal{
+    color: #11405A;
+ }
+
+ .fatura {
+    text-align: center; /* Centraliza o título e o gráfico */
+    border: 3px solid var(--orangef);
+    border-radius: 15px;
+    background-color: #11405A;
+    box-shadow: 5px 5px 5px 5px #000;
+    margin-bottom: 1em;
+}
+
+#faturaChart {
+    max-width: 45vmax; /* Limita a largura do gráfico */
+    margin: 0 auto; /* Centraliza o gráfico */
+    max-height: 30vmax;
+}

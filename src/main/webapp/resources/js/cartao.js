@@ -82,9 +82,6 @@ function adicionarListenersExclusao() {
 // Inicializa o dropdown com os cartões (caso haja algum)
 atualizarDropdown();
 
-
-
-// FUNÇÃO DO GRÁFICO
 // Gráfico da fatura
 const ctx = document.getElementById('faturaChart').getContext('2d');
 
