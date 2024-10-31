@@ -31,6 +31,10 @@ function updateGoalDisplay() {
         imageUrl = '/View/assets/images/porquinho75.png';
     } else if (progress >= 100) {
         imageUrl = '/View/assets/images/porquinho100.png';
+        
+        // Exibir modal de conclusão da meta
+        const goalCompletedModal = new bootstrap.Modal(document.getElementById('goalCompletedModal'));
+        goalCompletedModal.show();
     }
 
     // Carregar a imagem
@@ -44,6 +48,20 @@ function addMoney() {
     
     currentGoal.current += amount;
     updateGoalDisplay();
+    
+    // Fecha a modal de adicionar dinheiro
+    const addMoneyModal = bootstrap.Modal.getInstance(document.getElementById('addMoneyModal'));
+    addMoneyModal.hide();
+    
+    // Abre a modal de notificação
+    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+    document.getElementById('notificationMessage').textContent = 'Valor Adicionado na Meta'; // Atualiza a mensagem
+    notificationModal.show();
+
+    // Fecha a modal de notificação após 2 segundos
+    setTimeout(() => {
+        notificationModal.hide();
+    }, 2000);
 }
 
 // Função para criar uma nova meta
@@ -57,6 +75,32 @@ function createGoal() {
     currentGoal = newGoal;
     updateDropdown();
     updateGoalDisplay();
+    
+    // Fecha a modal de criação de meta
+    const createGoalModal = bootstrap.Modal.getInstance(document.getElementById('createGoalModal'));
+    createGoalModal.hide();
+    
+    // Abre a modal de notificação
+    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+    notificationModal.show();
+
+    // Fecha a modal de notificação após 2 segundos
+    setTimeout(() => {
+        notificationModal.hide();
+    }, 2000);
+}
+
+// Função para concluir a meta
+function concludeGoal() {
+    // Remove a meta concluída da lista de metas
+    goals = goals.filter(goal => goal !== currentGoal);
+    currentGoal = null; // Reseta a meta atual
+    updateDropdown();
+    updateGoalDisplay();
+    
+    // Fecha o modal de meta concluída
+    const goalCompletedModal = bootstrap.Modal.getInstance(document.getElementById('goalCompletedModal'));
+    goalCompletedModal.hide();
 }
 
 // Função para atualizar o dropdown com as metas
