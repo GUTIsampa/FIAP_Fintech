@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(html => {
                 document.getElementById("content").innerHTML = html;
                 updateActiveNav(page);
-                setupCardDeletion();
                 setupChartFatura();
+                setupCardDeletion();
                 setupValorFatura();
-                setupFotoPerfil();
                 setupContaDelete();
             })
             
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
      // Função para atualizar o item de navegação ativo
-     function updateActiveNav(activePage) {
+    function updateActiveNav(activePage) {
         const navLinks = document.querySelectorAll('.nav-item');
         navLinks.forEach(link => {
             const page = link.querySelector('a').getAttribute('href');
