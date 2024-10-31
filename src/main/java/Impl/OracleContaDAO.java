@@ -72,31 +72,33 @@ public class OracleContaDAO implements ContaDAO {
 
     public void cadastrar(Conta conta) throws SQLException {
         Connection conectar = abrirConexao();
-        String sql = "INSERT INTO t_conta (nr_saldo, id_email, st_conta, senha, nm_usuario, dt_abertura, dt_nasc) VALUES (0,?, ?, ?, ?,?,?)";
+        Conta email = buscarPorEmail(conta.getEmail());
+        if (email == null) {
+            String sql = "INSERT INTO t_conta (nr_saldo, id_email, st_conta, senha, nm_usuario, dt_abertura, dt_nasc) VALUES (0,?, ?, ?, ?,?,?)";
 
 
 
-        try{
-            PreparedStatement stm = conectar.prepareStatement(sql);
+            try{
+                PreparedStatement stm = conectar.prepareStatement(sql);
 
-            stm.setString(1, conta.getEmail());
-            stm.setString(2, "ativo");
-            stm.setString(3, conta.getSenha());
-            stm.setString(4, conta.getNomeUsuario());
-            Date dt_abertura = new Date(conta.getDt_abertura().getTime());
-            //Convertendo para java.sql.Date
-            stm.setDate(5, dt_abertura);
-           // Para a data de nascimento
-            Date dt_nasc = new Date(conta.getDt_nascimento().getTime());
-            stm.setDate(6, dt_nasc);
-            stm.executeUpdate();
+                stm.setString(1, conta.getEmail());
+                stm.setString(2, "ativo");
+                stm.setString(3, conta.getSenha());
+                stm.setString(4, conta.getNomeUsuario());
+                Date dt_abertura = new Date(conta.getDt_abertura().getTime());
+                //Convertendo para java.sql.Date
+                stm.setDate(5, dt_abertura);
+                // Para a data de nascimento
+                Date dt_nasc = new Date(conta.getDt_nascimento().getTime());
+                stm.setDate(6, dt_nasc);
+                stm.executeUpdate();
+                conectar.close();
 
-            conectar.close();
+            } catch (SQLException e) {
 
-        } catch (SQLException e) {
-
-            e.getMessage();
-            throw new RuntimeException(e);
+                e.getMessage();
+                throw new RuntimeException(e);
+            }
         }
     }
     public Conta buscarPorId(int id) throws SQLException {

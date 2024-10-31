@@ -42,7 +42,7 @@ public class OracleMetaDAO {
         }
     }
 
-    /*public void atualizar(Meta meta) throws DBException {
+    public void atualizar(Meta meta) throws DBException {
        PreparedStatement stmt = null;
 
         try {
@@ -56,11 +56,11 @@ public class OracleMetaDAO {
 
 
             stmt = conn.prepareStatement(sql);
-            stmt.setDouble(1, );
-            java.sql.Date dt_vencimento = new java.sql.Date();
-            stmt.setDate(2, );
-            stmt.setString(3, );
-            stmt.setInt(4, );
+            stmt.setDouble(1, meta.getValor_meta() );
+            java.sql.Date dt_limite = new java.sql.Date(meta.getData_limite().getTime());
+            stmt.setDate(2, dt_limite );
+            stmt.setString(3, meta.getNome_meta());
+            stmt.setInt(4, meta.getId_meta());
             stmt.executeUpdate();
             stmt.close();
 
@@ -77,5 +77,9 @@ public class OracleMetaDAO {
                 e.printStackTrace();
             }
         }
-    }*/
+    }
+
+    public void excluir(Meta meta) throws DBException {
+        
+    }
 }

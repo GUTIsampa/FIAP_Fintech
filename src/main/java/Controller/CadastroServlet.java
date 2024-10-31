@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Conta;
 import Model.ContaBuilder;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -40,15 +41,30 @@ public class CadastroServlet extends HttpServlet {
                             .NmUsuario(nome)
                             .DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse(dataNascimento))
                             .build();
+
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
                 // Agora você pode usar o objeto conta como quiser
-
                 try {
-                    contaModel.cadastrarConta(contaModel);
-                } catch (Exception e) {
-                    e.getMessage();
+                    if(contaModel.buscarPorEmail(email) != null) {
+                        req.setAttribute("mensagemErro", "O e-mail já está cadastrado!");
+                        RequestDispatcher dispatcher = req.getRequestDispatcher("Cadastro.jsp");
+                        dispatcher.forward(req, resp);
+                        return;
+                    } else {
+                        try {
+                            contaModel.cadastrarConta(contaModel);
+                            req.setAttribute("mensagemSucesso", "Cadastro concluído com sucesso!");
+                            RequestDispatcher dispatcher = req.getRequestDispatcher("Cadastro.jsp");
+                            dispatcher.forward(req, resp);
+                        } catch (Exception e) {
+                            e.getMessage();
+                            req.setAttribute("mensagemErro", "Erro ao cadastrar conta!");
+                        }
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
 
                 break;

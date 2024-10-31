@@ -122,6 +122,8 @@ public class Conta {
     }
 
     public void cadastrarConta(Conta builder) throws SQLException {
+        String res;
+
         try{
             OracleContaDAO contaDao = new OracleContaDAO();
             contaDao.cadastrar(builder);

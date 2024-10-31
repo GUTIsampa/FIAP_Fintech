@@ -19,6 +19,21 @@
     <div class="col-md-8">
       <h2 class="text-center tituloMobile">Cadastro de Conta Fintech</h2>
       <h1 class="text-center tituloDesk">Cadastro de Conta Fintech</h1>
+
+      <!-- Mensagem de sucesso -->
+      <c:if test="${not empty mensagemSucesso}">
+        <div class="alert alert-success">
+            ${mensagemSucesso}
+        </div>
+      </c:if>
+
+      <!--acionada caso o e-mail já exista-->
+      <c:if test="${not empty mensagemErro}">
+        <div class="alert alert-danger">
+            ${mensagemErro}
+        </div>
+      </c:if>
+
       <form action="<c:url value='/cadastro?acao=cadastrar'/>" method="post">
         <div class="form-row">
           <div class="form-group col-md-6">
