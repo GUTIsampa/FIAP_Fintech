@@ -6,8 +6,6 @@ import Utils.CriptografiaUtils;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -157,14 +155,19 @@ public class Conta {
         OracleContaDAO contaDAO = new OracleContaDAO();
         return contaDAO.getAll();
     }
+    public void alterarSaldo(double valor) throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        Double saldoAtual = this.getSaldo();
+        this.setSaldo(saldoAtual += valor);
+        contaDao.alterarSaldo(this);
+    }
 
     public static void main(String[] args) throws SQLException, ParseException {
         Conta conta = new Conta();
         //Conta builder = new ContaBuilder().IdEmail("asdas@gmail.com").StConta("Ativo").DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29")).Senha("1234587").NmUsuario("OutroTeste").build();
-        List<Conta> contas = conta.getAll();
-        for (Conta conta1 : contas) {
-            System.out.println(conta1.getNomeUsuario());
-        }
+        Conta contaAtiva = conta.buscarPorEmail("teste@gmail.com");
+        contaAtiva.alterarSaldo(100.0);
+
 
       /*  Conta cuenta = conta.buscaPorId(47);
         System.out.println(cuenta.getEmail());*/

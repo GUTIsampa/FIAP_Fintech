@@ -287,5 +287,21 @@ public class OracleContaDAO implements ContaDAO {
         }
     }
 
+    public void alterarSaldo(Conta conta) throws SQLException {
+        String sql = "update T_conta set nr_saldo = ? where cd_conta = ?";
+        Connection conectar = this.abrirConexao();
+
+
+        try {
+            PreparedStatement stm = conectar.prepareStatement(sql);
+            stm.setDouble(1, conta.getSaldo());
+            stm.setDouble(2, conta.getCd_conta());
+            stm.executeQuery();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 
 }
