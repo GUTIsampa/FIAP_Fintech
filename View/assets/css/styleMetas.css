@@ -115,3 +115,12 @@ body{
         color: white;
         text-decoration: underline;
     }
+
+    .semMeta{
+        color: #BE6513;
+        background-color: var(--bluefd);
+    }
+
+    .metaAtual{
+        color: #BE6513;
+    }

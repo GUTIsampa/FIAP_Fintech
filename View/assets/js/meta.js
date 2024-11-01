@@ -103,28 +103,32 @@ function concludeGoal() {
     goalCompletedModal.hide();
 }
 
-// Função para atualizar o dropdown com as metas
 function updateDropdown() {
     const metaList = document.getElementById('metaList');
     const metaDropdown = document.getElementById('metaDropdown');
     metaList.innerHTML = '';
-    
+
     if (goals.length === 0) {
-        // Desativar o dropdown se não houver metas
-        metaDropdown.classList.add('disabled');
-        metaDropdown.removeAttribute('data-bs-toggle');
+        // Exibe uma opção padrão indicando que não há metas
+        const emptyItem = document.createElement('li');
+        emptyItem.classList.add('dropdown-item', 'text-center', 'semMeta');
+        emptyItem.textContent = 'Sem metas disponíveis';
+        metaList.appendChild(emptyItem);
+
+        // Redefine a meta atual e mantém o dropdown ativo
         currentGoal = null;
         updateGoalDisplay();
         return;
     } else {
-        // Ativar o dropdown se houver metas
+        // Ativa o dropdown se houver metas
         metaDropdown.classList.remove('disabled');
         metaDropdown.setAttribute('data-bs-toggle', 'dropdown');
     }
 
+    // Atualiza a lista de metas no dropdown
     goals.forEach((goal, index) => {
         const listItem = document.createElement('li');
-        listItem.classList.add('dropdown-item', 'd-flex', 'justify-content-between', 'align-items-center','itemMeta');
+        listItem.classList.add('dropdown-item', 'd-flex', 'justify-content-between', 'align-items-center', 'itemMeta');
         
         const goalButton = document.createElement('span');
         goalButton.textContent = goal.name;
@@ -134,8 +138,8 @@ function updateDropdown() {
         };
         
         const deleteButton = document.createElement('button');
-        deleteButton.classList.add('btn', 'btn-sm','ms-2');
-        deleteButton.innerHTML = '<i class="fa-solid fa-trash lixinho "></i>';
+        deleteButton.classList.add('btn', 'btn-sm', 'ms-2');
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash lixinho"></i>';
         deleteButton.onclick = () => {
             goals.splice(index, 1);
             if (currentGoal === goal) currentGoal = null;
