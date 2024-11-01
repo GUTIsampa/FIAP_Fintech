@@ -20,16 +20,16 @@
             <nav class="navbar">
                 <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
                 <div class="nav-item">
-                    <a class="nav-link" aria-current="page" href="" data-page="cartao"> <i class="fa-regular fa-credit-card icones"></i> Cartão</a>
+                    <a class="nav-link" href="cartao.jsp" data-page="cartao"> <i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                    <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                 </div>
                 <div class="active">
                     <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="" data-page="metas"> <i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
+                    <a class="nav-link" href="metas.jsp" data-page="metas"> <i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
@@ -53,19 +53,19 @@
                 <div class="offcanvas-body">
                     <div>
                         <div class="nav-item itemMobile">
-                            <a class="nav-link" aria-current="page" href="" data-page="cartao"> <i class="fa-regular fa-credit-card icones"></i> Cartão</a>
+                            <a class="nav-link" href="cartao.jsp" data-page="cartao"> <i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                         </div>
                         <div class="nav-item itemMobile">
-                            <a class="nav-link" href="" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                            <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                         </div>
                         <div class="active itemMobile">
-                            <a class="nav-link" href="" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
+                            <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
                         </div>
                         <div class="nav-item itemMobile">
-                            <a class="nav-link" href="" data-page="metas"> <i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
+                            <a class="nav-link" href="metas.jsp" data-page="metas"> <i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
                         </div>
                         <div class="nav-item itemMobile">
-                            <a class="nav-link" href="" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
+                            <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
                         </div>
                         <div class="nav-item">
                             <a class="nav-link" href="">Sair</a>
