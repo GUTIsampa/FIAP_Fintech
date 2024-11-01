@@ -19,25 +19,42 @@ public class Cartao {
     private String bandeira;
     private Date vencimento;
     private String cd_seguranca;
+    private String nomeTitular;
 
-    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca) {
+    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca,  String nomeTitular) {
         this.conta = conta;
         setNr_cartao(nr_cartao);
         this.bandeira = bandeira;
         this.vencimento = vencimento;
+        this.nomeTitular = nomeTitular;
         setCd_seguranca(cd_seguranca);
     }
 
-    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca, Integer cartao) {
+    public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca, Integer cartao, String nomeTitular) {
         this.conta = conta;
         setNr_cartao(nr_cartao);
         this.bandeira = bandeira;
         this.vencimento = vencimento;
         setCd_seguranca(cd_seguranca);
         this.cartao = cartao;
+        this.nomeTitular = nomeTitular;
     }
 
     public Cartao() {
+
+    }
+
+    public Cartao(CartaoBuilder cartaoBuilder) {
+        this.conta = cartaoBuilder.conta;
+        this.cartao = cartaoBuilder.cartao;
+        this.bandeira = cartaoBuilder.bandeira;
+        this.vencimento = cartaoBuilder.vencimento;
+        this.nomeTitular = cartaoBuilder.nome_cartao;
+        setCd_seguranca(cartaoBuilder.cd_seguranca);
+        setNr_cartao(cartaoBuilder.nr_cartao);
+
+
+
 
     }
 
@@ -67,6 +84,14 @@ public class Cartao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNomeTitular() {
+        return nomeTitular;
+    }
+
+    public void setNomeTitular(String nomeTitular) {
+        this.nomeTitular = nomeTitular;
     }
 
     public String getBandeira() {
@@ -112,7 +137,7 @@ public class Cartao {
         oracleCartaoDAO.excluir(codigo);
     }
 
-    public Cartao buscarCartao(int id) throws DBException {
+    public List<Cartao> buscarCartao(int id) throws DBException {
         OracleCartaoDAO oracleCartaoDAO = new OracleCartaoDAO();
         return oracleCartaoDAO.buscar(id);
     }

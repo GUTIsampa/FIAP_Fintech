@@ -75,13 +75,72 @@
             </div>
         </div>
     </header>
+
     
     <div class="conteudo">
         <div class="welcome-message">
             <h1 class="bemvindo">Bem vindo ${usuario}</h1>
             <h3 class="bemvindoMobile"> Bem vindo ${usuario}</h3>
         </div>
-        
+
+        <c:if test="${not empty cartao}">
+        <div class="alert alert-info text-center" role="alert">
+                ${cartao}
+        </div>
+        </c:if>
+
+        <div class="areaCartao container-fluid">
+            <div class="AddCard container-fluid">
+                <button class="btn btn-center botaoPadrao botaoAdd" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title textoModal" id="addCardModalLabel">Cadastrar Cartão</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form id="cardForm" action="<c:url value='/cartao?acao=cadastrarCartao'/>" method="post">
+                                    <div class="mb-3">
+                                        <label for="cardHolder" class="form-label textoModal">Nome do Titular</label>
+                                        <input type="text" class="form-control" id="cardHolder" name="nomeCartao" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cardNumber" class="form-label textoModal">Número do Cartão</label>
+                                        <input type="text" class="form-control" id="cardNumber" name="numeroCartao" maxlength="16" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cardCvv" class="form-label textoModal">CVV</label>
+                                        <input type="text" class="form-control" id="cardCvv" name="codCartao" maxlength="3" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="expiryDate" class="form-label textoModal">Data de Vencimento</label>
+                                        <input type="date" class="form-control" id="expiryDate" name="dataVencimento" placeholder="MM/AA" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cardBrand" class="form-label textoModal">Bandeira</label>
+                                        <select class="form-select" id="cardBrand" name="bandeiraCartao" required>
+                                            <option value="" disabled selected>Selecione a bandeira</option>
+                                            <option value="visa">Visa</option>
+                                            <option value="mastercard">MasterCard</option>
+                                            <option value="amex">American Express</option>
+                                            <option value="discover">Discover</option>
+                                            <option value="elo">Elo</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botaoFechar" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" form="cardForm" class="btn botaoCadastrar">Cadastrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <!-- Formulário de adicionar cartão e cartões salvos -->
         <c:forEach var="cartao" items="${cartoes}">
             <div class="container-fluid cartao">
@@ -108,29 +167,29 @@
 
         <!-- Dropdown de cartões -->
         <div class="dropdown mt-3">
-            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='/cartao?acao=listarCartao'">
                 Alterar Cartão
             </button>
             <ul class="dropdown-menu menuCard" aria-labelledby="dropdownMenuButton">
                 <c:forEach var="cartao" items="${cartoes}">
                     <li>
                         <div class="d-flex justify-content-between">
-                            <a class="dropdown-item itemCartao" href="#">Cartão Final: ${cartao.final}</a>
+                            <a class="dropdown-item itemCartao" href="#">Cartão Final: ${cartao.nr_cartao}</a>
                             <button class="btn btn-sm excluir-cartao" data-cartao="${cartao.id}"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </li>
                 </c:forEach>
             </ul>
         </div>
-        
+    </div>
         <!-- Controle de fatura -->
         <div class="container mt-5 fatura">
             <h2 class="titulofatura">Controle de Fatura</h2>
             <h3 class="titulofaturaMobile">Controle de Fatura</h3>
             <canvas id="faturaChart"></canvas>
-            
+
             <button class="btn btn-center botaoPadrao" data-bs-toggle="modal" data-bs-target="#addFaturaModal">+ Fatura Atual</button>
-            
+
             <!-- Modal para adicionar fatura -->
             <div class="modal fade" id="addFaturaModal" tabindex="-1" aria-labelledby="addFaturaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -155,7 +214,6 @@
                 </div>
             </div>
         </div>
-    </div>
     
     
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>

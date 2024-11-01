@@ -11,7 +11,7 @@ document.addEventListener('click', function (event) {
 });
 
 // Array para armazenar cartões criados
-let cartoes = [];
+/*let cartoes = [];
 
 // Função para atualizar o dropdown com os cartões
 function atualizarDropdown() {
@@ -23,10 +23,9 @@ function atualizarDropdown() {
         // Obtém os 4 últimos dígitos do número do cartão
         const ultimoNumero = cartao.numero.slice(-4); 
         li.innerHTML = `
-            <div class="d-flex justify-content-between">
-                <a class="dropdown-item itemCartao" href="#">Cartão Final: ${ultimoNumero}</a>
-                <button class="btn btn-sm excluir-cartao" data-cartao="Cartão" data-cartao-numero="${cartao.numero}"><i class="fa-solid fa-trash"></i></button>
-            </div>
+        aqui fica o código apagado
+
+
         `;
         dropdownMenu.appendChild(li);
     });
@@ -45,6 +44,7 @@ document.getElementById('cardForm').addEventListener('submit', function(event) {
     const expiryDate = document.getElementById('expiryDate').value;
     const cardBrand = document.getElementById('cardBrand').value;
 
+
     // Adiciona o novo cartão ao array
     cartoes.push({
         titular: cardHolder,
@@ -53,7 +53,7 @@ document.getElementById('cardForm').addEventListener('submit', function(event) {
         validade: expiryDate,
         bandeira: cardBrand
     });
-
+*/
     // Atualiza o dropdown
     atualizarDropdown();
 

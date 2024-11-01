@@ -56,7 +56,7 @@ public class OracleCartaoDAO {
             try {
                 connect = ConnectionManager.getInstance().getConnection();
 
-                String sql = "INSERT INTO t_cartao (ID_CARTAO, CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV) VALUES ( ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO t_cartao (ID_CARTAO, CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV, NOMETITULAR) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 
 
                 stmt = connect.prepareStatement(sql);
@@ -67,6 +67,7 @@ public class OracleCartaoDAO {
                 java.sql.Date dt_vencimento = new java.sql.Date(cartao.getVencimento().getTime());
                 stmt.setDate(5, dt_vencimento);
                 stmt.setString(6, cartao.getCd_seguranca());
+                stmt.setString(7, cartao.getNomeTitular());
                 stmt.executeUpdate();
                 String commit = "commit";
                 stmt.executeQuery(commit);
@@ -100,7 +101,8 @@ public class OracleCartaoDAO {
                     "NR_CARTAO = ?, " +
                     "NM_BANDEIRA = ?, " +
                     "DT_VENCIMENTO = ?," +
-                    "NR_CVV = ? " +
+                    "NR_CVV = ? ," +
+                    "NOMETITULAR = ? " +
                     "where ID_CARTAO = 1";
 
 
@@ -157,8 +159,8 @@ public class OracleCartaoDAO {
 
     }
 
-    public Cartao buscar(int id) {
-        Cartao cartao = null;
+    public List<Cartao> buscar(int id) {
+        List<Cartao> listaCartao = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -169,15 +171,17 @@ public class OracleCartaoDAO {
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Integer id_conta = rs.getInt("ID_CARTAO");
                 String nr_cartao = rs.getString("NR_CARTAO");
                 String bandeira = rs.getString("NM_BANDEIRA");
                 Date date_vencimento = rs.getDate("DT_VENCIMENTO");
                 String cvv = rs.getString("NR_CVV");
+                String nomeTitular = rs.getString("NOMETITULAR");
 
-                cartao = new Cartao(id_conta,nr_cartao, bandeira, date_vencimento, cvv);
+               Cartao cartao = new Cartao(id_conta,nr_cartao, bandeira, date_vencimento, cvv, nomeTitular);
 
+               listaCartao.add(cartao);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -190,7 +194,7 @@ public class OracleCartaoDAO {
                 e.printStackTrace();
             }
         }
-        return cartao;
+        return listaCartao;
     }
 
     public List<Cartao> listar() {
@@ -213,8 +217,9 @@ public class OracleCartaoDAO {
                         .toLocalDate();
                 String cvv = rs.getString("NR_CVV");
                 Integer id = rs.getInt("ID_CARTAO");
+                String nomeTitular = rs.getString("NOMETITULAR");
 
-                Cartao cartao = new Cartao(cd_conta, nr_cartao, bandeira, date_vencimento, cvv, id);
+                Cartao cartao = new Cartao(cd_conta, nr_cartao, bandeira, date_vencimento, cvv, id, nomeTitular);
                 lista.add(cartao);
             }
         } catch (SQLException e) {
