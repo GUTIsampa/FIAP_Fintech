@@ -1,3 +1,9 @@
+:root {
+    --bluef: #11405A;
+    --orangef: #be6613;
+    --bluefd: #152e3b
+}
+
 body{
     background-image: url(/View/assets/images/Background.png);
 }
@@ -10,12 +16,114 @@ body{
     .conteudo{
         padding-top: 100px;
     }
+    .table tbody tr.pagamento td {
+        color: red;
+        background-color: #11405A;
+        font-size: 10px;
+    }
+    .table tbody tr.recebimento td {
+        color: green;
+        background-color: #11405A;
+        font-size: 10px;
+    }
+    .modalTrans{
+        max-width: 300px;
+    }
+    .divTabela{
+        padding: 4px !important;
+    }
+    .coluna{
+        font-size: 11px;
+    }
+
 }
 
 @media (min-width: 651px) {
     .conteudo{
-        margin-right: 10vmax;
-        margin-left: 10vmax;
-        padding-left: 300px;
+        padding-top: 25px;
+        padding-left: 250px !important;
+        margin: 0 auto !important;
+        max-width: 80vmax; /* ou outro valor adequado */
     }
+}
+
+
+.saldo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    border: 3px solid var(--orangef);
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 1em;
+    background-color: #11405A;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
+    color: #be6613;
+}
+.table tbody tr.pagamento td {
+    color: red;
+    background-color: #11405A;
+}
+.table tbody tr.recebimento td {
+    color: green;
+    background-color: #11405A;
+}
+.mensagem-vazia {
+    text-align: center;
+}
+
+.botaoPadrao:hover{
+    background-color: #11405A;
+    border-style: solid;
+    border-color: #BE6513;
+    color: #BE6513;
+    text-decoration: underline;
+}
+
+.botaoPadrao{
+    background-color: #BE6513;
+    color: #11405A;
+}
+
+.textoForm{
+    color: #11405A;
+}
+
+.coluna{
+    background-color: #11405A !important;
+    color: #BE6513 !important;
+}
+.semVal{
+    color: #BE6513;
+    margin-top: 5vmax;
+}
+
+.divTabela{
+    border: 3px solid var(--orangef);
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 1em;
+    background-color: #11405A;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
+}
+
+.valorTabela{
+    background-color: #11405A !important;
+}
+
+@media (min-height: 1100px){
+    .saldo{
+        margin-bottom: 10vmax;
+    }
+}
+
+.cofrinhoQuebrado{
+    height: 10vmax;
+    margin-bottom: 2vmax;
 }

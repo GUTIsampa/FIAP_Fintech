@@ -77,13 +77,89 @@
     </header>
 
     <div class="conteudo">
-        <h1>Transferencias</h1>
+        <body class="text-center">
+
+            <div class="container-fluid mt-4">
+                <!-- Saldo Atual -->
+                <div class="saldo text-center p3">
+                    Seu Saldo Atual é: <span id="saldo">R$ 0,00</span>
+                </div>
+            
+                <!-- Botão Adicionar Valor e Tabela -->
+                <div class="mt-5">
+                    <button class="btn botaoPadrao" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
+                </div>
+            
+                <!-- Modal Formulário -->
+                <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+                    <div class="modal-dialog modalTrans">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title textoForm" id="modalFormularioLabel">Adicionar Transferência</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formularioTransferencia">
+                                    <div class="mb-3">
+                                        <label for="nome" class="form-label textoForm">Nome na Transferência</label>
+                                        <input type="text" class="form-control" id="nome" placeholder="Ex:Mercado, Salário, Pix...">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="valor" class="form-label textoForm">Valor</label>
+                                        <input type="number" class="form-control" id="valor" step="0.01" placeholder="R$" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="data" class="form-label textoForm">Data</label>
+                                        <input type="date" class="form-control" id="data" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tipo" class="form-label textoForm">Tipo</label>
+                                        <select class="form-select" id="tipo" required>
+                                            <option class="opcao" value="recebimento">Recebimento</option>
+                                            <option class="opcao" value="pagamento">Pagamento</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-success" id="mensagemSucesso" style="display: none;">Valor Adicionado com Sucesso!</div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botaoPadrao" onclick="adicionarTransferencia()">Adicionar</button>
+                                <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Tabela de Transferências -->
+                <div class="mt-4 divTabela text-center">
+                    <table class="table corpoTabela">
+                        <thead class="cabecalho">
+                            <tr>
+                                <th class="coluna">Nome na Transferência</th>
+                                <th class="coluna">Valor</th>
+                                <th class="coluna">Data</th>
+                                <th class="coluna">Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaTransferencias">
+                            <tr id="mensagemVazia">
+                                <td colspan="4" class="mensagem-vazia coluna">
+                                    <h2 class="semVal">Sem valores por enquanto...</h2>
+                                    <img src="/View/assets/images/porquinhoQuebrado.png" alt="Cofrinho Quebrado" class="cofrinhoQuebrado">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
     </div>
 
 
 
 
 <script src="/View/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="/View/assets/js/transferencias.js"></script>
 </body>
 
 </html>
