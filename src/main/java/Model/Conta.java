@@ -142,9 +142,16 @@ public class Conta {
 
     }
 
+
+
     public Double buscarPorSaldo(int id) throws SQLException {
         OracleContaDAO contaDao = new OracleContaDAO();
         return contaDao.GetSaldoConta(id);
+    }
+
+    public Conta buscarPorDtAbertura(String email) throws SQLException {
+        OracleContaDAO contaDao = new OracleContaDAO();
+        return contaDao.buscarPorDataAbertura(email);
     }
 
     public void excluirPorId(int id) throws SQLException {

@@ -24,7 +24,7 @@
                     <a class="nav-link" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                    <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
@@ -82,23 +82,51 @@
             <div class="goal-container text-center container-fluid">
                 <h1 class="mb-3 titulo">Metas Fintech</h1>
                 <div class="dropdown mb-3">
-                    <button class="btn botaoPadrao dropdown-toggle" type="button" id="metaDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Selecione a Meta
-                    </button>
-                    <ul class="dropdown-menu menuMeta" aria-labelledby="metaDropdown" id="metaList">
-                        <!-- Itens de meta adicionados dinamicamente -->
-                    </ul>
+                    <form action="<c:url value='/metas?mostrar=viewMetas'/>" method="get">
+                        <button class="btn botaoPadrao dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
+                            Selecione a Meta
+                        </button>
+                        <ul class="dropdown-menu menuMeta" aria-labelledby="metaDropdown" id="metaList">
+                            <c:if test="${not empty metas}">
+                                <c:forEach items="${metas}" var="metasUser">
+                                    <li>
+                                        <a class="dropdown-item" href="#" style="color: white" onclick="setMetaName('${metasUser.nome_meta}');">
+                                                ${metasUser.nome_meta} - ${metasUser.valor_meta}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty metas}">
+                                <li>
+                                    <span class="dropdown-item">Nenhuma meta encontrada.</span>
+                                </li>
+                            </c:if>
+
+                        </ul>
+                        <input type="hidden" id="metaInput" name="selectedMeta" value=""> <!-- Campo oculto para armazenar o valor da meta selecionada -->
+
+                    </form>
                 </div>
                 <!-- Imagem dinâmica do Porquinho -->
-                <div class="goal-image" id="goalImageContainer"></div>
+                <div class="goal-image" id="goalImageContainer">
+
+                </div>
 
                 <div class="metaNum metaAtual">
-                    <p id="goalStatus">Nome da Meta: X/Y</p>
+                    <p id="goalStatus">Nome da Meta: <span id="selectedMetaName" style="color: white"> </span></p>
                 </div>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#addMoneyModal">Guardar $</button>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#createGoalModal">Criar Meta</button>
             </div>
         </div>
+
+        <!-- JavaScript para definir o nome da meta -->
+        <script>
+            function setMetaName(metaName) {
+                // Atualiza o conteúdo da div com o nome da meta selecionada
+                document.getElementById('selectedMetaName').textContent = metaName;
+            }
+        </script>
 
         <!-- Modal para Adicionar Dinheiro -->
         <div class="modal fade" id="addMoneyModal" tabindex="-1" aria-labelledby="addMoneyModalLabel" aria-hidden="true">
@@ -108,16 +136,26 @@
                         <h5 class="modal-title" id="addMoneyModalLabel">Adicionar Valor na Meta</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form id="formGuardar" action="<c:url value='/metas?acao=guardar'/>" method="post">
                     <div class="modal-body">
-                        <input type="number" class="form-control" id="addAmount" placeholder="Digite o valor" min="0">
+                        <input type="number" class="form-control" id="addAmount" name="valGuardar" placeholder="Digite o valor" min="0">
                     </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="addAmoun" name="nomeGuardar" placeholder="A qual meta deseja adicionar o valor" required>
+                        </div>
+                    </form>
                     <div class="modal-footer">
-                        <button type="button" class="btn botaoPadrao" onclick="addMoney()">Adicionar</button>
+                        <button type="submit" form="formGuardar" class="btn botaoPadrao">Adicionar</button>
                         <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
         </div>
+        <c:if test="${not empty valor}">
+            <div class="alert alert-info text-center" role="alert">
+                    ${valor}
+            </div>
+        </c:if>
         
         <!-- Modal para Criar Meta -->
         <div class="modal fade" id="createGoalModal" tabindex="-1" aria-labelledby="createGoalModalLabel" aria-hidden="true">
@@ -128,16 +166,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control mb-3" id="goalName" placeholder="Nome da Meta">
-                        <input type="number" class="form-control" id="goalValue" placeholder="Valor da Meta" min="1">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn botaoPadrao" onclick="createGoal()">Criar</button>
-                        <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
+                        <form action="<c:url value='/metas?acao=add'/>" method="post">
+                            <input type="hidden" name="action" value="create">
+                            <input type="text" class="form-control mb-3" name="nomeMeta" placeholder="Nome da Meta" required>
+                            <input type="number" class="form-control" name="valMeta" placeholder="Valor da Meta" min="1" required>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn botaoPadrao">Criar</button>
+                                <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <c:if test="${not empty meta}">
+            <div class="alert alert-info text-center" role="alert">
+                    ${meta}
+            </div>
+        </c:if>
+
 
         <!-- Modal para Notificação -->
         <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">

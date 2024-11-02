@@ -128,6 +128,27 @@ public class OracleContaDAO implements ContaDAO {
         return conta;
     }
 
+    public Conta buscarPorDataAbertura(String email) throws SQLException {
+        Connection conectar = this.abrirConexao();
+        Conta conta = null;
+        String sql = "SELECT dt_abertura FROM T_conta WHERE id_email = ?";
+        PreparedStatement stm = conectar.prepareStatement(sql);
+        stm.setString(1, email);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            conta = new Conta();
+            Date dtAbertura = rs.getDate("dt_abertura");
+            conta.setDt_abertura(dtAbertura);
+        }
+        rs.close();
+        stm.close();
+        conectar.close();
+
+
+        return conta;
+    }
+
+
     public Conta buscarPorEmail(String email) throws SQLException {
         String sql = "SELECT * FROM T_conta WHERE id_email = ?";
         Conta conta = null;
@@ -139,6 +160,7 @@ public class OracleContaDAO implements ContaDAO {
         try (ResultSet resultado = stm.executeQuery()) {
             if (resultado.next()) {
                 ContaBuilder contaBuilder = new ContaBuilder();
+
                 conta = new ContaBuilder()
                         .CdConta(resultado.getInt("cd_conta"))
                         .NrSaldo(resultado.getDouble("nr_saldo"))

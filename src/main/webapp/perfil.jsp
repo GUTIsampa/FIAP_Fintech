@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -23,13 +24,13 @@
                     <a class="nav-link" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                    <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="metas.jsp" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
+                    <a class="nav-link" href="/FintechBackEnd_war_exploded/metas?mostrar=viewMetas" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
                 </div>
                 <div class="active">
                     <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
@@ -81,17 +82,20 @@
             <h2 class="profile-title">Perfil de Usuário</h2>
             <div class="profile-info">
                 <label>Email:</label>
-                <p>${usuario.email}</p>
-                
-                <label>CPF:</label>
-                <p>${usuario.cpf}</p>
+                <p>${sessionScope.email}</p>
                 
                 <label>Data de Abertura da Conta:</label>
-                <p>${usuario.dataAberturaConta}</p>
+                <p><fmt:formatDate value="${sessionScope.dataCriacao}" pattern="dd/MM/yyyy" /> </p>
             </div>
             <div class="profile-actions">
-                <button id="delete-account" class="delete-btn">Excluir Conta</button>
+                <form action="<c:url value='/perfil?acao=sairConta'/>" method="POST">
+                    <input type="hidden" name="excluir" />
+                    <button type="submit" class="delete-btn">
+                        LogOut
+                    </button>
+                </form>
             </div>
+
         </div>
     </div>
 

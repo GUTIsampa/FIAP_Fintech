@@ -43,6 +43,9 @@ public class TransferenciaServlet extends HttpServlet {
                 }
                 break;
 
+            case "vizualizar":
+
+
         }
     }
 

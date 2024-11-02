@@ -8,7 +8,7 @@ function updateGoalDisplay() {
 
     if (!currentGoal) {
         // Exibir imagem e mensagem padrão quando não há metas
-        goalImageContainer.innerHTML = `<img src="/View/assets/images/porquinho0.png" alt="Sem Metas" class="img-fluid porquinhos">`;
+        goalImageContainer.innerHTML = `<img src="../images/porquinho0.png" alt="Sem Metas" class="img-fluid porquinhos">`;
         goalStatus.textContent = 'Sem metas no momento...';
         return;
     }
@@ -20,17 +20,17 @@ function updateGoalDisplay() {
     goalStatus.textContent = `Nome da Meta: ${current}/${target}`;
 
     // Lógica de seleção da imagem baseada no progresso
-    let imageUrl = '/View/assets/images/porquinho0.png';
+    let imageUrl = '../images/porquinho0.png';
     if (progress < 25) {
-        imageUrl = '/View/assets/images/porquinho0.png';
+        imageUrl = '../images/porquinho0.png';
     } else if (progress < 50) {
-        imageUrl = '/View/assets/images/porquinho25.png';
+        imageUrl = '../images/porquinho25.png';
     } else if (progress < 75) {
-        imageUrl = '/View/assets/images/porquinho50.png';
+        imageUrl = '../images/porquinho50.png';
     } else if (progress < 100) {
-        imageUrl = '/View/assets/images/porquinho75.png';
+        imageUrl = '../images/porquinho75.png';
     } else if (progress >= 100) {
-        imageUrl = '/View/assets/images/porquinho100.png';
+        imageUrl = '../images/porquinho100.png';
         
         // Exibir modal de conclusão da meta
         const goalCompletedModal = new bootstrap.Modal(document.getElementById('goalCompletedModal'));

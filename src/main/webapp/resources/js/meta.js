@@ -8,7 +8,7 @@ function updateGoalDisplay() {
 
     if (!currentGoal) {
         // Exibir imagem e mensagem padrão quando não há metas
-        goalImageContainer.innerHTML = `<img src="../images/porquinho0.png" alt="Sem Metas" class="img-fluid porquinhos">`;
+        goalImageContainer.innerHTML = `<img src="../../resources/images/porquinho0.png" alt="Sem Metas" class="img-fluid porquinhos">`;
         goalStatus.textContent = 'Sem metas no momento...';
         return;
     }

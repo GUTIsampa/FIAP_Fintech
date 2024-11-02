@@ -20,15 +20,13 @@ public class OracleMetaDAO {
         try {
             conn = ConnectionManager.getInstance().getConnection();
 
-            String sql = "INSERT INTO t_meta (id_meta, cd_conta, valor_meta, data_limite, nome_meta) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO t_meta (id_meta, cd_conta, valor_meta, nome_meta) VALUES (?,?,?,?)";
 
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, meta.getId_meta());
             stmt.setInt(2, meta.getCd_conta());
             stmt.setDouble(3, meta.getValor_meta());
-            Date dt_limite = new Date(meta.getData_limite().getTime());
-            stmt.setDate(4, dt_limite);
-            stmt.setString(5, meta.getNome_meta());
+            stmt.setString(4, meta.getNome_meta());
             stmt.executeUpdate();
             conn.close();
 
@@ -44,25 +42,21 @@ public class OracleMetaDAO {
         }
     }
 
-    public void atualizar(Meta meta) throws DBException {
+    public void atualizar(String nome, Double valor) throws DBException {
        PreparedStatement stmt = null;
 
         try {
             conn = ConnectionManager.getInstance().getConnection();
+            Meta meta = new Meta();
 
             String sql = "UPDATE t_meta SET " +
-                    "VALOR_META = ? ," +
-                    "DATA_LIMITE = ? ," +
-                    "NOME_META = ? " +
-                    "where ID_META = ?";
+                    "VALOR_META = ? " +
+                    "where NOME_META = ?";
 
 
             stmt = conn.prepareStatement(sql);
-            stmt.setDouble(1, meta.getValor_meta() );
-            java.sql.Date dt_limite = new java.sql.Date(meta.getData_limite().getTime());
-            stmt.setDate(2, dt_limite );
-            stmt.setString(3, meta.getNome_meta());
-            stmt.setInt(4, meta.getId_meta());
+            stmt.setDouble(1, valor);
+            stmt.setString(2, nome);
             stmt.executeUpdate();
             stmt.close();
 
@@ -103,26 +97,29 @@ public class OracleMetaDAO {
             }
         }
     }
-    public Meta buscarMeta(int id) throws DBException {
-        Meta meta = null;
+    public List<Meta> buscarMeta(int cd_conta) throws DBException {
+        List<Meta> meta = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
             conn = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT * FROM t_meta WHERE ID_META = ?";
+            String sql = "SELECT valor_meta, nome_meta  FROM t_meta WHERE cd_conta = ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, cd_conta);
             rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                Integer id_meta = rs.getInt("ID_META");
-                Integer cd_conta = rs.getInt("CD_CONTA");
+            while (rs.next()) {
+                Meta m = new Meta();
                 Double vl_meta = rs.getDouble("VALOR_META");
-                java.util.Date date_limite = rs.getDate("DATA_LIMITE");
                 String nm_meta = rs.getString("NOME_META");
+                m.setValor_meta(vl_meta);
+                m.setNome_meta(nm_meta);
 
-                meta = new Meta(id_meta, cd_conta, vl_meta, date_limite, nm_meta);
+                meta.add(m);
+
+                System.out.println(vl_meta + "valor retornado");
+                System.out.println(nm_meta + "valor retornado");
 
             }
         } catch (SQLException e) {
@@ -154,10 +151,9 @@ public class OracleMetaDAO {
                 Integer id_meta = rs.getInt("ID_META");
                 Integer cd_conta = rs.getInt("CD_CONTA");
                 Double vl_meta = rs.getDouble("VALOR_META");
-                java.util.Date date_limite = rs.getDate("DATA_LIMITE");
                 String nm_meta = rs.getString("NOME_META");
 
-                Meta meta = new Meta(id_meta, cd_conta, vl_meta, date_limite, nm_meta);;
+                Meta meta = new Meta(id_meta, cd_conta, vl_meta, nm_meta);;
                 lista.add(meta);
             }
         } catch (SQLException e) {
@@ -172,5 +168,10 @@ public class OracleMetaDAO {
             }
         }
         return lista;
+    }
+
+    public static void main(String[] args) throws DBException {
+        OracleMetaDAO dao = new OracleMetaDAO();
+        dao.buscarMeta(61);
     }
 }

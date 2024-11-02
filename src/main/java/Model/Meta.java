@@ -5,24 +5,30 @@ import Impl.OracleMetaDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import Exception.DBException;
 
 public class Meta {
     private Integer id_meta;
     private Integer cd_conta;
     private Double valor_meta;
-    private Date data_limite;
     private String nome_meta;
 
-    public Meta(Integer id_meta, Integer cd_conta, Double valor_meta, Date data_limite, String nome_meta) {
+    public Meta(Integer id_meta, Integer cd_conta, Double valor_meta, String nome_meta) {
         this.id_meta = id_meta;
         this.cd_conta = cd_conta;
         this.valor_meta = valor_meta;
-        this.data_limite = data_limite;
+
         this.nome_meta = nome_meta;
     }
 
     public Meta() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "valor_meta - " + valor_meta +
+                "nome_meta - " + nome_meta;
     }
 
     public Integer getId_meta() {
@@ -49,14 +55,6 @@ public class Meta {
         this.valor_meta = valor_meta;
     }
 
-    public Date getData_limite() {
-        return data_limite;
-    }
-
-    public void setData_limite(Date data_limite) {
-        this.data_limite = data_limite;
-    }
-
     public String getNome_meta() {
         return nome_meta;
     }
@@ -70,13 +68,9 @@ public class Meta {
         oracleMetaDAO.cadastrar(this);
     }
 
-    public void atualizarMeta() {
+    public void atualizarMeta(String nome, Double valor) throws DBException {
         OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
-        /*oracleMetaDAO*/
+        oracleMetaDAO.atualizar(nome, valor);
     }
 
-    public static void main(String[] args) throws ParseException {
-        Meta meta = new Meta(1, 61, 10000.00, new SimpleDateFormat("yyyy-MM-dd").parse("2014-03-23"), "Viagens fim de ano");
-        meta.adicionarMeta();
-    }
 }
