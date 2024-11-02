@@ -53,7 +53,7 @@ document.getElementById('cardForm').addEventListener('submit', function(event) {
         validade: expiryDate,
         bandeira: cardBrand
     });
-*/
+
     // Atualiza o dropdown
     atualizarDropdown();
 
@@ -61,7 +61,7 @@ document.getElementById('cardForm').addEventListener('submit', function(event) {
     const modal = bootstrap.Modal.getInstance(document.getElementById('addCardModal'));
     modal.hide();
     document.getElementById('cardForm').reset(); // Reseta o formulário
-});
+});*/
 
 // Função para adicionar listeners aos botões de exclusão
 function adicionarListenersExclusao() {

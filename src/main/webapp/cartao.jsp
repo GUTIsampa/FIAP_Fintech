@@ -23,7 +23,7 @@
                     <a class="nav-link" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                    <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
@@ -56,7 +56,7 @@
                             <a class="nav-link" aria-current="page" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                         </div>
                         <div class="nav-item itemMobile">
-                            <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                            <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                         </div>
                         <div class="nav-item itemMobile">
                             <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
@@ -146,13 +146,13 @@
             <div class="container-fluid cartao">
                 <div class="cartao-content">
                     <div class="icon-container">
-                        <img src="./resources/images/Chip Card.png" alt="Chip" class="card-icon">
+                        <img src="./resources/images/Chip-Card.png" alt="Chip" class="card-icon">
                     </div>
                     <div class="card-holder">
-                        <p class="card-holder-name">${cartao.titular}</p>
+                        <p class="card-holder-name">${cartao.nomeTitular}</p>
                     </div>
                     <div class="card-number numeroCartao">
-                        <p>${cartao.numero}</p>
+                        <p style="font-size: 30px">${cartao.nr_cartao}</p>
                     </div>
                     <div class="card-footer">
                         <p class="expiry-date">${cartao.vencimento}</p>
@@ -161,13 +161,49 @@
                 </div>
             </div>
         </c:forEach>
+            <div class="navigation">
+                <button id="prevButton" disabled>Anterior</button>
+                <button id="nextButton">Próximo</button>
+            </div>
+
+            <script>
+                const cartoes = document.querySelectorAll('.cartao');
+                let currentIndex = 0;
+
+                function showCard(index) {
+                    cartoes.forEach((cartao, i) => {
+                        cartao.classList.toggle('d-none', i !== index);
+                    });
+
+                    document.getElementById('prevButton').disabled = index === 0;
+                    document.getElementById('nextButton').disabled = index === cartoes.length - 1;
+                }
+
+                document.getElementById('prevButton').addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        showCard(currentIndex);
+                    }
+                });
+
+                document.getElementById('nextButton').addEventListener('click', () => {
+                    if (currentIndex < cartoes.length - 1) {
+                        currentIndex++;
+                        showCard(currentIndex);
+                    }
+                });
+
+                showCard(currentIndex); // Inicializa mostrando o primeiro cartão
+            </script>
         <c:if test="${empty cartoes}">
-        <p class="no-card-message" style="display: block;">Nenhum Cartão Armazenado</p>
+        <p class="no-card-message" style="display: block;">
+            Nenhum Cartão Armazenado
+        </p>
         </c:if>
 
         <!-- Dropdown de cartões -->
         <div class="dropdown mt-3">
-            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='/cartao?acao=listarCartao'">
+            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='/FintechBackEnd_war_exploded/cartao?acao=listarCartao'">
                 Alterar Cartão
             </button>
             <ul class="dropdown-menu menuCard" aria-labelledby="dropdownMenuButton">
@@ -175,7 +211,7 @@
                     <li>
                         <div class="d-flex justify-content-between">
                             <a class="dropdown-item itemCartao" href="#">Cartão Final: ${cartao.nr_cartao}</a>
-                            <button class="btn btn-sm excluir-cartao" data-cartao="${cartao.id}"><i class="fa-solid fa-trash"></i></button>
+                            <button class="btn btn-sm excluir-cartao" data-cartao="${cartao.cartao}"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </li>
                 </c:forEach>

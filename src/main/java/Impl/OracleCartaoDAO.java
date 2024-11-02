@@ -166,7 +166,7 @@ public class OracleCartaoDAO {
 
         try {
             connect = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT * FROM t_cartao WHERE ID_CARTAO = ?";
+            String sql = "SELECT * FROM t_cartao WHERE CD_CONTA = ?";
             stmt = connect.prepareStatement(sql);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();

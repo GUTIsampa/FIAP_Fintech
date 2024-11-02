@@ -1,4 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -78,8 +79,13 @@
 
     <div class="conteudo">
         <div class="container-fluid mt-4">
-            <div class="saldo text-center p3">
-                Seu Saldo Atual é: <span id="saldo">R$ <c:out value="${saldoAtual}" /></span>
+            <div class="saldo text-center p3" >
+                <c:if test="${not empty saldoAtual}">
+                    Seu Saldo Atual é: <span id="saldo">R$ <c:out value="${saldoAtual}" /></span>
+                </c:if>
+                <c:if test="${empty saldoAtual}">
+                    Seu saldo não está disponível no momento.
+                </c:if>
             </div>
             <div class="mt-5">
                 <button class="btn botaoPadrao" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
@@ -93,22 +99,22 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="formularioTransferencia">
+                            <form id="formularioTransferencia" action="<c:url value='/transferencias?acao=cadastrarTrans'/>" method="post">
                                 <div class="mb-3">
                                     <label for="nome" class="form-label textoForm">Nome na Transferência</label>
-                                    <input type="text" class="form-control" id="nome" placeholder="Ex: Mercado, Salário, Pix...">
+                                    <input type="text" class="form-control" id="nome" name="nomeTrans" placeholder="Ex: Mercado, Salário, Pix...">
                                 </div>
                                 <div class="mb-3">
                                     <label for="valor" class="form-label textoForm">Valor</label>
-                                    <input type="number" class="form-control" id="valor" step="0.01" placeholder="R$" required>
+                                    <input type="text" class="form-control" id="valor" name="valTrans" step="0.01" placeholder="R$" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="data" class="form-label textoForm">Data</label>
-                                    <input type="date" class="form-control" id="data" required>
+                                    <input type="date" class="form-control" id="data" name="dataTrans" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="tipo" class="form-label textoForm">Tipo</label>
-                                    <select class="form-select" id="tipo" required>
+                                    <select class="form-select" id="tipo" name="tipoTrans" required>
                                         <option class="opcao" value="recebimento">Recebimento</option>
                                         <option class="opcao" value="pagamento">Pagamento</option>
                                     </select>
@@ -117,7 +123,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn botaoPadrao" onclick="adicionarTransferencia()">Adicionar</button>
+                            <button type="submit" form="formularioTransferencia" class="btn botaoPadrao">Adicionar</button>
                             <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
                         </div>
                     </div>
@@ -147,10 +153,10 @@
                             <c:otherwise>
                                 <c:forEach var="trans" items="${transferencias}">
                                     <tr>
-                                        <td class="coluna"><c:out value="${trans.nome}" /></td>
-                                        <td class="coluna"><c:out value="${trans.valor}" /></td>
-                                        <td class="coluna"><c:out value="${trans.data}" /></td>
-                                        <td class="coluna"><c:out value="${trans.tipo}" /></td>
+                                        <td class="coluna"><c:out value="${trans.nome_transferencia}" /></td>
+                                        <td class="coluna"><c:out value="${trans.valor_transferencia}" /></td>
+                                        <td class="coluna"><c:out value="${trans.data_transferencia}" /></td>
+                                        <td class="coluna"><c:out value="${trans.tipo_transferencia}" /></td>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
@@ -158,6 +164,11 @@
                     </tbody>
                 </table>
             </div>
+            <c:if test="${not empty transferencia}">
+                <div class="alert alert-info text-center" role="alert">
+                        ${transferencia}
+                </div>
+            </c:if>
         </div>
     </div>
 

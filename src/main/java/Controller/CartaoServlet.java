@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import Exception.DBException;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,8 +41,8 @@ public class CartaoServlet extends HttpServlet {
 
                 try {
                          cartao = new CartaoBuilder()
-                                 .setCartao(15)
-                                 .setConta(43)
+                                 .setCartao(17)
+                                 .setConta(44)
                             .setNome_cartao(nomeCartao)
                             .setNr_cartao(numeroCartao)
                             .setCd_seguranca(codigoCartao)
@@ -75,21 +76,20 @@ public class CartaoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
-        Cartao cartao = new Cartao();
+        HttpSession session = req.getSession(false);
+        Integer cd_conta = (Integer) session.getAttribute("id");
+
+
         switch (acao) {
             case "listarCartao":
-                int userId = cartao.getConta();
-                List<Cartao> cartoes;
+                Cartao cartao = new Cartao();
                 try {
-                    cartoes = cartao.buscarCartao(userId);
-                    System.out.println("o id é" + userId);
+                    List<Cartao> cartoes = cartao.buscarCartao(cd_conta);
+                    req.setAttribute("cartoes", cartoes);
                 } catch (DBException e) {
-                   e.printStackTrace();
-                   req.setAttribute("erro", e.getMessage());
-                   RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
-                   return;
+                    e.printStackTrace();
                 }
-                req.setAttribute("cartoes", cartoes);
+
                 RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
                 dispatcher.forward(req, resp);
                 break;

@@ -198,51 +198,6 @@ public class OracleContaDAO implements ContaDAO {
         return contas;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* public List<Conta> getAll() throws SQLException {
-        Connection conectar = this.abrirConexao();
-        PreparedStatement stm = conectar.prepareStatement("SELECT * FROM t_conta");
-        ResultSet resultado = stm.executeQuery();
-        List<Conta> lista = new ArrayList();
-        while (resultado.next()){
-            Integer cd_conta = resultado.getInt("cd_conta");
-            Double nr_saldo = resultado.getDouble("nr_saldo");
-            String id_email = resultado.getString("id_email");
-            Date dt_abertura = resultado.getDate("dt_abertura");
-            String st_conta = resultado.getString("st_conta");
-            String senha = resultado.getString("senha");
-            String nm_usuario = resultado.getString("nm_usuario");
-            Date dt_nasc = resultado.getDate("dt_nasc");
-
-            Conta nv_conta = new ContaBuilder()
-                    .CdConta(cd_conta)
-                    .NrSaldo(nr_saldo)
-                    .IdEmail(id_email)
-                    .DtAbertura(dt_abertura)
-                    .StConta(st_conta)
-                    .Senha(senha)
-                    .NmUsuario(nm_usuario)
-                    .DtNasc(dt_nasc)
-                    .build();
-
-            lista.add(nv_conta);
-        }
-
-        return lista;
-    }*/
-
     public void exluirPorId(int id) throws SQLException {
         String sql = "delete FROM T_conta WHERE cd_conta = ?";
         Connection conectar = this.abrirConexao();
@@ -301,6 +256,25 @@ public class OracleContaDAO implements ContaDAO {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public double GetSaldoConta(int cd_conta) throws SQLException {
+        Connection conectar = this.abrirConexao();
+        double saldo = 0.0;
+        String sql = "select nr_saldo from T_conta where cd_conta = ?";
+
+        try {
+            PreparedStatement stm = conectar.prepareStatement(sql);
+            stm.setInt(1, cd_conta);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                saldo = rs.getDouble("nr_saldo");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return saldo;
     }
 
 

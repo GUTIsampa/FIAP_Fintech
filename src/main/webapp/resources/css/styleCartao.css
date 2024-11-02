@@ -41,7 +41,7 @@ body{
 .cartao-content {
     position: relative;
     padding: 20px 10px;
-    height: 100%; /* Para que o conteúdo ocupe a altura total do cartão */
+    height: 50%; /* Para que o conteúdo ocupe a altura total do cartão */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -224,7 +224,7 @@ body{
 
 .menuCard {
     background-color: #152e3b;
-    border-style:solid 3px ;
+    border-style:solid;
     border-color: #BE6513;
 }
 
