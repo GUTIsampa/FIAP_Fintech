@@ -16,67 +16,7 @@
 </head>
 
 <body>
-    <header>
-        <div class="desktop">
-            <nav class="navbar">
-                <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
-                <div class="nav-item">
-                    <a class="nav-link" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
-                </div>
-                <div class="active">
-                    <a class="nav-link" href="transferencias.jsp" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="/FintechBackEnd_war_exploded/metas?mostrar=viewMetas" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="">Sair</a>
-                </div>
-            </nav>
-        </div>
-
-        <div class="mobile">
-            <a class="btn menuSandu" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </a>
-            <img class="img-fluid logoMobile" src="./resources/images/Logo2.png" alt="Logo Fintech">
-            <div class="offcanvas offcanvas-start navMobile" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
-                        </div>
-                        <div class="active itemMobile">
-                            <a class="nav-link" aria-current="page" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="metas.jsp" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
-                        </div>
-                        <div class="nav-itemitemMobile">
-                            <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                        </div>
-                        <div class="nav-item">
-                            <a class="nav-link" href="">Sair</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
+<%@include file="header_transferencias.jsp"%>
     <div class="conteudo">
         <div class="container-fluid mt-4">
             <div class="saldo text-center p3" >

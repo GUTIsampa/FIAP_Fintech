@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<c:set var="util" value="${OracleCartaoDAO}" />
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,68 +16,8 @@
     <link rel="stylesheet" href="./resources/css/styleCartao.css">
 </head>
 <body>
-    <header>
-        <div class="desktop">
-            <nav class="navbar">
-                <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
-                <div class="active">
-                    <a class="nav-link" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="/FintechBackEnd_war_exploded/metas?mostrar=viewMetas" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                </div>
-                <div class="nav-item">
-                    <a class="nav-link" href="">Sair</a>
-                </div>
-            </nav>
-        </div>
+<%@include file="header_cartao.jsp"%>
 
-        <div class="mobile">
-            <a class="btn menuSandu" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </a>
-            <img class="img-fluid logoMobile" src="./resources/images/Logo2.png" alt="Logo Fintech">
-            <div class="offcanvas offcanvas-start navMobile" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div>
-                        <div class="active itemMobile">
-                            <a class="nav-link" aria-current="page" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="metas.jsp" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
-                        </div>
-                        <div class="nav-item itemMobile">
-                            <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                        </div>
-                        <div class="nav-item">
-                            <a class="nav-link" href="">Sair</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    
     <div class="conteudo">
         <div class="welcome-message">
             <h1 class="bemvindo">Bem vindo ${usuario}</h1>
@@ -142,26 +83,26 @@
                 </div>
             </div>
         <!-- Formulário de adicionar cartão e cartões salvos -->
-        <c:forEach var="cartao" items="${cartoes}">
+        <!--
             <div class="container-fluid cartao">
                 <div class="cartao-content">
                     <div class="icon-container">
                         <img src="./resources/images/Chip-Card.png" alt="Chip" class="card-icon">
                     </div>
                     <div class="card-holder">
-                        <p class="card-holder-name">${cartao.nomeTitular}</p>
+                        <p class="card-holder-name"></p>
                     </div>
                     <div class="card-number numeroCartao">
-                        <p style="font-size: 30px">${cartao.nr_cartao}</p>
+                        <p style="font-size: 30px"></p>
                     </div>
                     <div class="card-footer">
-                        <p class="expiry-date">${cartao.vencimento}</p>
-                        <p class="card-brand">${cartao.bandeira}</p>
+                        <p class="expiry-date"></p>
+                        <p class="card-brand"></p>
                     </div>
                 </div>
             </div>
-        </c:forEach>
-            <div class="navigation">
+        -->
+            <!--<div class="navigation">
                 <button id="prevButton" disabled>Anterior</button>
                 <button id="nextButton">Próximo</button>
             </div>
@@ -194,28 +135,25 @@
                 });
 
                 showCard(currentIndex); // Inicializa mostrando o primeiro cartão
-            </script>
-        <c:if test="${empty cartoes}">
-        <p class="no-card-message" style="display: block;">
-            Nenhum Cartão Armazenado
-        </p>
-        </c:if>
+            </script>-->
 
         <!-- Dropdown de cartões -->
         <div class="dropdown mt-3">
-            <button class="btn btn-center botaoPadrao dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='/FintechBackEnd_war_exploded/cartao?acao=listarCartao'">
-                Alterar Cartão
-            </button>
-            <ul class="dropdown-menu menuCard" aria-labelledby="dropdownMenuButton">
-                <c:forEach var="cartao" items="${cartoes}">
-                    <li>
-                        <div class="d-flex justify-content-between">
-                            <a class="dropdown-item itemCartao" href="#">Cartão Final: ${cartao.nr_cartao}</a>
-                            <button class="btn btn-sm excluir-cartao" data-cartao="${cartao.cartao}"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
+            <c:if test="${not empty cartoes}">
+                        <form action="<c:url value='cartao?acao=listarCartao' />" method="get">
+                            <input type="hidden"/>
+                            <div class="form-group">
+                                <label for="cartaoSelect">Selecione um cartão:</label>
+                                <select class="form-control" id="cartaoSelect" name="cartaoId">
+                                    <c:if test="${not empty cartoes}">
+                                        <c:forEach var="cartao" items="${cartoes}">
+                                            <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira}</option>
+                                        </c:forEach>
+                                    </c:if>
+                                </select>
+                            </div>
+                        </form>
+                    </c:if>
         </div>
     </div>
         <!-- Controle de fatura -->

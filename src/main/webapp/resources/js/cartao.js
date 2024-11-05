@@ -1,4 +1,4 @@
-document.addEventListener('click', function (event) {
+/*document.addEventListener('click', function (event) {
     const dropdown = document.querySelector('.dropdown');
     const button = document.getElementById('dropdownMenuButton');
 
@@ -11,7 +11,7 @@ document.addEventListener('click', function (event) {
 });
 
 // Array para armazenar cartões criados
-/*let cartoes = [];
+let cartoes = [];
 
 // Função para atualizar o dropdown com os cartões
 function atualizarDropdown() {
@@ -61,7 +61,7 @@ document.getElementById('cardForm').addEventListener('submit', function(event) {
     const modal = bootstrap.Modal.getInstance(document.getElementById('addCardModal'));
     modal.hide();
     document.getElementById('cardForm').reset(); // Reseta o formulário
-});*/
+});
 
 // Função para adicionar listeners aos botões de exclusão
 function adicionarListenersExclusao() {
@@ -81,7 +81,7 @@ function adicionarListenersExclusao() {
 
 // Inicializa o dropdown com os cartões (caso haja algum)
 atualizarDropdown();
-
+*/
 // Gráfico da fatura
 const ctx = document.getElementById('faturaChart').getContext('2d');
 
@@ -145,7 +145,7 @@ const config = {
 };
 
 const faturaChart = new Chart(ctx, config);
-
+/*
 // Formulário de fatura
 document.getElementById('faturaForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio padrão do formulário
@@ -159,4 +159,4 @@ document.getElementById('faturaForm').addEventListener('submit', function(event)
     const modal = bootstrap.Modal.getInstance(document.getElementById('addFaturaModal'));
     modal.hide();
     document.getElementById('faturaForm').reset(); // Reseta o formulário
-});
+});*/

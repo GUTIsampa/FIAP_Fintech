@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Impl.OracleCartaoDAO;
 import Model.Cartao;
 import Model.CartaoBuilder;
 import jakarta.servlet.RequestDispatcher;
@@ -20,6 +21,15 @@ import java.util.List;
 
 @WebServlet("/cartao")
 public class CartaoServlet extends HttpServlet {
+    private OracleCartaoDAO oracleCartaoDAO;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        oracleCartaoDAO = new OracleCartaoDAO();
+    }
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
@@ -78,22 +88,22 @@ public class CartaoServlet extends HttpServlet {
         String acao = req.getParameter("acao");
         HttpSession session = req.getSession(false);
         Integer cd_conta = (Integer) session.getAttribute("id");
+        List<Cartao> cartoes;
 
 
         switch (acao) {
             case "listarCartao":
-                Cartao cartao = new Cartao();
-                try {
-                    List<Cartao> cartoes = cartao.buscarCartao(cd_conta);
-                    req.setAttribute("cartoes", cartoes);
-                } catch (DBException e) {
-                    e.printStackTrace();
-                }
 
-                RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
-                dispatcher.forward(req, resp);
-                break;
+             try{
+                 cartoes = this.oracleCartaoDAO.buscar(cd_conta);
+                 System.out.println("está sendo chamado");
+                 req.setAttribute("cartoes", cartoes);
+                 RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
+                 dispatcher.forward(req, resp);
+             } catch (Exception e) {
+                 e.printStackTrace();
+             }
+             break;
         }
-
     }
 }

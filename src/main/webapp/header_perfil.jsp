@@ -20,16 +20,16 @@
         <nav class="navbar">
             <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
             <div class="nav-item">
-                <a class="nav-link" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/FintechBackEnd_war_exploded/cartao?acao=listarCartao" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>
             </div>
             <div class="nav-item">
-                <a class="nav-link" href="/FintechBackEnd_war_exploded/metas?mostrar=viewMetas" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/metas?mostrar=viewMetas" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
             </div>
             <div class="active">
                 <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>

@@ -37,17 +37,18 @@ public class loginServlet extends HttpServlet {
         if ("Autenticação bem sucedida".equals(resultadoValidacao)) {
             HttpSession session = req.getSession();
             session.setAttribute("email", email);
+            session.setAttribute("usuario", conta.getNomeUsuario());
+
             try {
                     conta = conta.buscarPorEmail(email);
+                    session.setAttribute("usuario", conta.getNomeUsuario());
                     session.setAttribute("dataCriacao",conta.buscarPorEmail(email).buscarPorDtAbertura(email).getDt_abertura());
-                    System.out.println(conta.getCd_conta() + "<- id da conta");
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
             session.setAttribute("id", conta.getCd_conta());
-            System.out.println(conta.getCd_conta() + "<- id da conta que está sendo guardado na session");
             req.getRequestDispatcher("cartao.jsp").forward(req, res);
         } else if ("Conta inexistente".equals(resultadoValidacao)) {
             req.setAttribute("erro", resultadoValidacao);
