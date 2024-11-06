@@ -33,6 +33,7 @@ public class TransferenciaServlet extends HttpServlet {
 
         if ("saldo".equals(acao)) {
             Conta conta = new Conta();
+            
             try {
                 double saldoAtual = conta.buscarPorSaldo(cd_conta_sessao);
                 req.setAttribute("saldoAtual", saldoAtual);
@@ -63,6 +64,7 @@ public class TransferenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Transferencias transferencias;
+        Conta conta;
         String acao = req.getParameter("acao");
         HttpSession session = req.getSession(false);
         Integer cd_conta_sessao = (Integer) session.getAttribute("id");
@@ -93,7 +95,7 @@ public class TransferenciaServlet extends HttpServlet {
 
                 try {
                     transferencias = new TransferenciaBuilder()
-                            .setCd_conta(43)
+                            .setCd_conta(cd_conta_sessao)
                             .setValor_transferencia(valorDouble)
                             .setData_transferencia(new SimpleDateFormat("yyyy-MM-dd").parse(data_trans))
                             .setTipo_transferencia(tipo_trans)
@@ -105,7 +107,20 @@ public class TransferenciaServlet extends HttpServlet {
 
                 try {
                     transferencias.adicionarTransferencia();
+                    if (tipo_trans.equals("recebimento")) {
+                        conta = new Conta();
+                        conta = conta.buscaPorId(cd_conta_sessao);
+                        conta.alterarSaldo(conta.getSaldo() + Double.parseDouble(valor));
+                    } else if (tipo_trans.equals("pagamento")) {
+                        conta = new Conta();
+                        conta = conta.buscaPorId(cd_conta_sessao);
+
+                        System.out.println(conta.getSaldo() - Double.parseDouble(valor));
+                        conta.alterarSaldo(conta.getSaldo() - (Double.parseDouble(valor)));
+                    }
+
                     req.setAttribute("transferencia", "Transferencia adicionada");
+                    
                     String redirectUrl = "transferencias?acao=saldo&view=viewFatura&id=" + cd_conta_sessao;
                     resp.sendRedirect(redirectUrl);
 

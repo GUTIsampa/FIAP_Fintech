@@ -19,19 +19,19 @@ public class OracleTransferenciaDAO {
         PreparedStatement pst = null;
         try {
             con = ConnectionManager.getInstance().getConnection();
-            String sql = "INSERT INTO t_transferencias (ID_TRANSFERENCIA, CD_CONTA, TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA) VALUES ( ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO t_transferencias (CD_CONTA, TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA) VALUES ( ?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, trans.getId_transferencia());
-            pst.setInt(2, trans.getCd_conta());
-            pst.setString(3, trans.getTipo_transferencia());
+            pst.setInt(1, trans.getCd_conta());
+            pst.setString(2, trans.getTipo_transferencia());
             java.sql.Date dt_trans = new java.sql.Date(trans.getData_transferencia().getTime());
-            pst.setDate(4, dt_trans);
-            pst.setDouble(5, trans.getValor_transferencia());
-            pst.setString(6, trans.getNome_transferencia());
+            pst.setDate(3, dt_trans);
+            pst.setDouble(4, trans.getValor_transferencia());
+            pst.setString(5, trans.getNome_transferencia());
             pst.executeUpdate();
             String commit = "commit";
             pst.executeQuery(commit);
             pst.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();

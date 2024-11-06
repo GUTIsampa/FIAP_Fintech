@@ -116,12 +116,11 @@ public class OracleContaDAO implements ContaDAO {
                         .CdConta(resultado.getInt("cd_conta"))
                         .NrSaldo(resultado.getDouble("nr_saldo"))
                         .IdEmail(resultado.getString("id_email"))
-                        .DtAbertura(resultado.getDate("dt_abertura"))
                         .StConta(resultado.getString("st_conta"))
                         .Senha(resultado.getString("senha"))
                         .NmUsuario(resultado.getString("nm_usuario"))
                         .DtNasc(resultado.getDate("dt_nasc"))
-                        .build();
+                        .build(resultado.getDate("dt_abertura"));
             }
         }
 
