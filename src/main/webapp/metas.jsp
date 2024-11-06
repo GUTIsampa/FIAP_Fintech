@@ -23,42 +23,33 @@
                 <h1 class="mb-3 titulo">Metas Fintech</h1>
                 <div class="dropdown mb-3">
                     <form action="<c:url value='/metas?mostrar=viewMetas'/>" method="get">
-                        <button class="btn botaoPadrao dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn botaoPadrao dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Selecione a Meta
                         </button>
-                        <ul class="dropdown-menu menuMeta" aria-labelledby="metaDropdown" id="metaList">
-                            <c:if test="${not empty metas}">
-                                <c:forEach items="${metas}" var="metasUser">
-                                    <li>
-                                        <a class="dropdown-item" href="#" style="color: white" onclick="setMetaName('${metasUser.nome_meta}');">
-                                                ${metasUser.nome_meta} - ${metasUser.valor_meta}
-                                        </a>
-                                    </li>
+
+                        <!-- Dropdown convertido para Select -->
+                        <select class="form-select" id="metaSelect" name="selectedMeta">
+                            <c:if test="${not empty metasDisponiveis}">
+                                <c:forEach items="${metasDisponiveis}" var="metasUser">
+                                    <option value="${metasUser.nome_meta}">${metasUser.nome_meta} - valor Final R$${metasUser.valor_meta}</option>
                                 </c:forEach>
                             </c:if>
-                            <c:if test="${empty metas}">
-                                <li>
-                                    <span class="dropdown-item">Nenhuma meta encontrada.</span>
-                                </li>
+                            <c:if test="${empty metasDisponiveis}">
+                                <option value="" disabled selected>Nenhuma meta encontrada.</option>
                             </c:if>
-
-                        </ul>
-                        <input type="hidden" id="metaInput" name="selectedMeta" value=""> <!-- Campo oculto para armazenar o valor da meta selecionada -->
-
+                        </select>
                     </form>
-                </div>
-                <!-- Imagem dinâmica do Porquinho -->
-                <div class="goal-image" id="goalImageContainer">
-
-                </div>
-
-                <div class="metaNum metaAtual">
-                    <p id="goalStatus">Nome da Meta: <span id="selectedMetaName" style="color: white"> </span></p>
                 </div>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#addMoneyModal">Guardar $</button>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#createGoalModal">Criar Meta</button>
             </div>
         </div>
+        <c:if test="${not empty valor}">
+            <div class="alert alert-info text-center" role="alert">
+                    ${valor}
+            </div>
+        </c:if>
+
 
         <!-- JavaScript para definir o nome da meta -->
         <script>
@@ -80,9 +71,12 @@
                     <div class="modal-body">
                         <input type="number" class="form-control" id="addAmount" name="valGuardar" placeholder="Digite o valor" min="0">
                     </div>
+                        <c:if test="${not empty metasDisponiveis}">
                         <div class="modal-body">
-                            <input type="text" class="form-control" id="addAmoun" name="nomeGuardar" placeholder="A qual meta deseja adicionar o valor" required>
+                            <input type="text" class="form-control" id="addAmoun" name="selectedMeta" placeholder="A qual meta deseja adicionar o valor..." required>
                         </div>
+                        </c:if>
+
                     </form>
                     <div class="modal-footer">
                         <button type="submit" form="formGuardar" class="btn botaoPadrao">Adicionar</button>
@@ -91,11 +85,7 @@
                 </div>
             </div>
         </div>
-        <c:if test="${not empty valor}">
-            <div class="alert alert-info text-center" role="alert">
-                    ${valor}
-            </div>
-        </c:if>
+
         
         <!-- Modal para Criar Meta -->
         <div class="modal fade" id="createGoalModal" tabindex="-1" aria-labelledby="createGoalModalLabel" aria-hidden="true">

@@ -118,8 +118,8 @@ public class OracleMetaDAO {
 
                 meta.add(m);
 
-                System.out.println(vl_meta + "valor retornado");
-                System.out.println(nm_meta + "valor retornado");
+                System.out.println(vl_meta + " valor retornado");
+                System.out.println(nm_meta + " valor retornado");
 
             }
         } catch (SQLException e) {

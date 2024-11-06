@@ -36,10 +36,8 @@ public class MetaServlet extends HttpServlet {
         if ("viewMetas".equals(view)) {
             try {
                 metas = this.oracleMetaDAO.buscarMeta(61);
-                req.setAttribute("metas", metas);
-
+                req.setAttribute("metasDisponiveis", metas);
                 RequestDispatcher rd = req.getRequestDispatcher("metas.jsp");
-                System.out.println(metas);
                 rd.forward(req, resp);
             } catch (DBException e) {
                 throw new RuntimeException(e);
@@ -60,11 +58,11 @@ public class MetaServlet extends HttpServlet {
                 Double valMeta = Double.parseDouble(req.getParameter("valMeta"));
 
                 try {
-                    Meta meta = new Meta(4, 61, valMeta, nomeMeta );
+                    Meta meta = new Meta(6, 61, valMeta, nomeMeta );
                     meta.adicionarMeta();
                     req.setAttribute("meta", "Meta adicionada");
-                    RequestDispatcher rd = req.getRequestDispatcher("metas.jsp");
-                    rd.forward(req, resp);
+                    String redirectUrl = "metas?mostrar=viewMetas";
+                    resp.sendRedirect(redirectUrl);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -79,8 +77,8 @@ public class MetaServlet extends HttpServlet {
                     double valor = Double.parseDouble(valorGuardar);
                     meta.atualizarMeta(nomeGuardar, valor);
                     req.setAttribute("valor", "Meta atualizada");
-                    RequestDispatcher rd = req.getRequestDispatcher("metas.jsp");
-                    rd.forward(req, resp);
+                    String redirectUrl = "metas?mostrar=viewMetas";
+                    resp.sendRedirect(redirectUrl);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

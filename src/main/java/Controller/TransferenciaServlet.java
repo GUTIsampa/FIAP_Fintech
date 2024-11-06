@@ -25,27 +25,38 @@ public class TransferenciaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
+        String view = req.getParameter("view");
         HttpSession session = req.getSession(false);
         Integer cd_conta_sessao = (Integer) session.getAttribute("id");
-        System.out.println(cd_conta_sessao + "chegou aqui");
         String mostrarTrans = req.getParameter("mostrarTrans");
+        boolean shouldForward = false;
 
-        switch (acao) {
-            case "saldo":
-                Conta conta = new Conta();
-                try {
-                    double saldoAtual = conta.buscarPorSaldo(cd_conta_sessao);
-                    req.setAttribute("saldoAtual", saldoAtual);
-                    RequestDispatcher rd = req.getRequestDispatcher("transferencias.jsp");
-                    rd.forward(req, resp);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
+        if ("saldo".equals(acao)) {
+            Conta conta = new Conta();
+            try {
+                double saldoAtual = conta.buscarPorSaldo(cd_conta_sessao);
+                req.setAttribute("saldoAtual", saldoAtual);
+                shouldForward = true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
-            case "vizualizar":
+        if ("viewFatura".equals(view)) {
+            Transferencias tf = new Transferencias();
+            try {
+                List<Transferencias> listaTransferencias = tf.getLista(cd_conta_sessao);
+                req.setAttribute("faturas", listaTransferencias);
+                shouldForward = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
 
+        if (shouldForward) {
+            RequestDispatcher rd = req.getRequestDispatcher("transferencias.jsp");
+            rd.forward(req, resp);
         }
     }
 
@@ -82,7 +93,6 @@ public class TransferenciaServlet extends HttpServlet {
 
                 try {
                     transferencias = new TransferenciaBuilder()
-                            .setId_transferencia(5)
                             .setCd_conta(43)
                             .setValor_transferencia(valorDouble)
                             .setData_transferencia(new SimpleDateFormat("yyyy-MM-dd").parse(data_trans))
@@ -96,12 +106,11 @@ public class TransferenciaServlet extends HttpServlet {
                 try {
                     transferencias.adicionarTransferencia();
                     req.setAttribute("transferencia", "Transferencia adicionada");
-                    RequestDispatcher rd = req.getRequestDispatcher("transferencias.jsp");
-                    rd.forward(req, resp);
+                    String redirectUrl = "transferencias?acao=saldo&view=viewFatura&id=" + cd_conta_sessao;
+                    resp.sendRedirect(redirectUrl);
+
                 } catch (SQLException e) {
                     req.setAttribute("erro", e.getMessage());
-                    RequestDispatcher rd = req.getRequestDispatcher("transferencias.jsp");
-                    rd.forward(req, resp);
                     return;
                 }
 

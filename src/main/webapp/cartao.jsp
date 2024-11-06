@@ -32,7 +32,7 @@
 
         <div class="areaCartao container-fluid">
             <div class="AddCard container-fluid">
-                <button class="btn btn-center botaoPadrao botaoAdd" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
+                <button class="btn btn-center botaoPadrao botaoAdd" style="color: white" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
@@ -142,8 +142,8 @@
             <c:if test="${not empty cartoes}">
                         <form action="<c:url value='cartao?acao=listarCartao' />" method="get">
                             <input type="hidden"/>
-                            <div class="form-group">
-                                <label for="cartaoSelect">Selecione um cartão:</label>
+                            <div class="form-group my-2">
+                                <label for="cartaoSelect" style="color: white">Selecione um cartão:</label>
                                 <select class="form-control" id="cartaoSelect" name="cartaoId">
                                     <c:if test="${not empty cartoes}">
                                         <c:forEach var="cartao" items="${cartoes}">
@@ -164,7 +164,7 @@
 
             <button class="btn btn-center botaoPadrao" data-bs-toggle="modal" data-bs-target="#addFaturaModal">+ Fatura Atual</button>
 
-            <!-- Modal para adicionar fatura -->
+             <!-- Modal para adicionar fatura -->
             <div class="modal fade" id="addFaturaModal" tabindex="-1" aria-labelledby="addFaturaModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -188,8 +188,7 @@
                 </div>
             </div>
         </div>
-    
-    
+
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./resources/js/cartao.js" defer></script>

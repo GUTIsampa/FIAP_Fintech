@@ -94,6 +94,13 @@ const labels = [
     'Atual'
 ]; // Atualize os meses conforme necessário
 
+
+
+
+
+
+
+
 const data = {
     labels: labels,
     datasets: [{

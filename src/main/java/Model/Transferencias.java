@@ -37,6 +37,18 @@ public class Transferencias {
 
     }
 
+    @Override
+    public String toString() {
+        return "Transferencia { " +
+                "ID: " + id_transferencia +
+                ", Conta: " + cd_conta +
+                ", Tipo: " + tipo_transferencia +
+                ", Data: " + data_transferencia +
+                ", Valor: " + valor_transferencia +
+                ", Nome: " + nome_transferencia +
+                " }";
+    }
+
     public int getId_transferencia() {
         return id_transferencia;
     }

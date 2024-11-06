@@ -26,9 +26,19 @@
                 <c:if test="${empty saldoAtual}">
                     Seu saldo não está disponível no momento.
                 </c:if>
+                <c:set var="somaFaturas" value="0" />
+                <c:forEach var="fatura" items="${faturas}">
+                    <c:set var="somaFaturas" value="${somaFaturas + fatura.valor_transferencia}" />
+                </c:forEach>
+                <c:if test="${somaFaturas > saldoAtual}">
+                    <div class="alert alert-warning my-2">
+                        <strong>Atenção!</strong> O valor total das faturas (${somaFaturas}) é maior que o saldo disponível.
+                        Reveja seus gastos.
+                    </div>
+                </c:if>
             </div>
             <div class="mt-5">
-                <button class="btn botaoPadrao" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
+                <button class="btn botaoPadrao" style="color: white" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
             </div>
 
             <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
@@ -81,26 +91,27 @@
                         </tr>
                     </thead>
                     <tbody id="tabelaTransferencias">
-                        <c:choose>
-                            <c:when test="${empty transferencias}">
+
+                            <c:if test="${empty faturas}">
                                 <tr id="mensagemVazia">
                                     <td colspan="4" class="mensagem-vazia coluna">
                                         <h2 class="semVal">Sem valores por enquanto...</h2>
                                         <img src="./resources/images/porquinhoQuebrado.png" alt="Cofrinho Quebrado" class="cofrinhoQuebrado">
+                                        <c:out value="${faturas}" />
                                     </td>
                                 </tr>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach var="trans" items="${transferencias}">
+                            </c:if>
+                            <c:if test="${not empty faturas}">
+                                <c:forEach var="trans" items="${faturas}">
                                     <tr>
-                                        <td class="coluna"><c:out value="${trans.nome_transferencia}" /></td>
-                                        <td class="coluna"><c:out value="${trans.valor_transferencia}" /></td>
-                                        <td class="coluna"><c:out value="${trans.data_transferencia}" /></td>
-                                        <td class="coluna"><c:out value="${trans.tipo_transferencia}" /></td>
+                                        <td class="coluna">${trans.nome_transferencia}</td>
+                                        <td class="coluna">${trans.valor_transferencia}</td>
+                                        <td class="coluna">${trans.data_transferencia}</td>
+                                        <td class="coluna">${trans.tipo_transferencia}</td>
                                     </tr>
                                 </c:forEach>
-                            </c:otherwise>
-                        </c:choose>
+                            </c:if>
+
                     </tbody>
                 </table>
             </div>

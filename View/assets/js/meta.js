@@ -1,4 +1,4 @@
-let goals = [];
+/*let goals = [];
 let currentGoal = null;
 
 // Função para atualizar a imagem e o progresso
@@ -154,4 +154,4 @@ function updateDropdown() {
 }
 
 // Chama a função uma vez para exibir o estado inicial
-updateGoalDisplay();
+updateGoalDisplay();*/
