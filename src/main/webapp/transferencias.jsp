@@ -69,6 +69,16 @@
                                         <option class="opcao" value="pagamento">Pagamento</option>
                                     </select>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="tipo" class="form-label textoForm">Selecione um cartão</label>
+                                    <select class="form-select" id="cartao" name="cartaoTrans" required>
+                                        <c:if test="${not empty cartoes}">
+                                            <c:forEach var="cartao" items="${cartoes}">
+                                                <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
+                                </div>
                                 <div class="text-success" id="mensagemSucesso" style="display: none;">Valor Adicionado com Sucesso!</div>
                             </form>
                         </div>

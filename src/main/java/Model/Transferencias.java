@@ -9,15 +9,15 @@ import java.util.List;
 
 public class Transferencias {
     private int id_transferencia;
-    private int cd_conta;
+    private int id_cartao;
     private String tipo_transferencia;
     private Date data_transferencia;
     private Double valor_transferencia;
     private String nome_transferencia;
 
-    public Transferencias(int id_transferencia, int cd_conta, String tipo_transferencia, Date data_transferencia, Double valor_transferencia, String nome_transferencia) {
+    public Transferencias(int id_transferencia, String tipo_transferencia, Date data_transferencia, Double valor_transferencia, String nome_transferencia, int id_cartao) {
         this.id_transferencia = id_transferencia;
-        this.cd_conta = cd_conta;
+        this.id_cartao = id_cartao;
         this.tipo_transferencia = tipo_transferencia;
         this.data_transferencia = data_transferencia;
         this.valor_transferencia = valor_transferencia;
@@ -29,7 +29,7 @@ public class Transferencias {
 
     public Transferencias(TransferenciaBuilder transferenciaBuilder) {
         this.id_transferencia = transferenciaBuilder.id_transferencia;
-        this.cd_conta = transferenciaBuilder.cd_conta;
+        this.id_cartao = transferenciaBuilder.id_cartao;
         this.tipo_transferencia = transferenciaBuilder.tipo_transferencia;
         this.data_transferencia = transferenciaBuilder.data_transferencia;
         this.valor_transferencia = transferenciaBuilder.valor_transferencia;
@@ -41,7 +41,7 @@ public class Transferencias {
     public String toString() {
         return "Transferencia { " +
                 "ID: " + id_transferencia +
-                ", Conta: " + cd_conta +
+                ", Conta: " + id_cartao +
                 ", Tipo: " + tipo_transferencia +
                 ", Data: " + data_transferencia +
                 ", Valor: " + valor_transferencia +
@@ -57,12 +57,12 @@ public class Transferencias {
         this.id_transferencia = id_transferencia;
     }
 
-    public int getCd_conta() {
-        return cd_conta;
+    public int getId_cartao() {
+        return id_cartao;
     }
 
-    public void setCd_conta(int cd_conta) {
-        this.cd_conta = cd_conta;
+    public void setId_cartao(int id_cartao) {
+        this.id_cartao = id_cartao;
     }
 
     public String getTipo_transferencia() {

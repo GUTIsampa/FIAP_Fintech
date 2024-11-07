@@ -19,14 +19,14 @@ public class OracleTransferenciaDAO {
         PreparedStatement pst = null;
         try {
             con = ConnectionManager.getInstance().getConnection();
-            String sql = "INSERT INTO t_transferencias (CD_CONTA, TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA) VALUES ( ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO t_transferencias (TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA, ID_CARTAO) VALUES ( ?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, trans.getCd_conta());
-            pst.setString(2, trans.getTipo_transferencia());
+            pst.setString(1, trans.getTipo_transferencia());
             java.sql.Date dt_trans = new java.sql.Date(trans.getData_transferencia().getTime());
-            pst.setDate(3, dt_trans);
-            pst.setDouble(4, trans.getValor_transferencia());
-            pst.setString(5, trans.getNome_transferencia());
+            pst.setDate(2, dt_trans);
+            pst.setDouble(3, trans.getValor_transferencia());
+            pst.setString(4, trans.getNome_transferencia());
+            pst.setInt(5, 1);
             pst.executeUpdate();
             String commit = "commit";
             pst.executeQuery(commit);
@@ -53,20 +53,20 @@ public class OracleTransferenciaDAO {
 
         try {
             con = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT * FROM t_transferencias WHERE CD_CONTA = ?";
+            String sql = "SELECT * FROM t_transferencias WHERE ID_CARTAO = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer id_transferencia = rs.getInt("ID_TRANSFERENCIA");
-                Integer cdConta = rs.getInt("CD_CONTA");
+                int id_transferencia = rs.getInt("ID_TRANSFERENCIA");
+                int idCartao = rs.getInt("ID_CARTAO");
                 String tpTransferencia = rs.getString("TP_TRANSFERENCIA");
                 Date date_trans = rs.getDate("DT_TRANSFERENCIA");
                 Double val_transferencia = rs.getDouble("VAL_TRANSFERENCIA");
                 String nome_transferencia = rs.getString("NOME_TRANSFERENCIA");
 
-                Transferencias trans = new Transferencias(id_transferencia, cdConta, tpTransferencia, date_trans, val_transferencia, nome_transferencia);
+                Transferencias trans = new Transferencias(id_transferencia, tpTransferencia, date_trans, val_transferencia, nome_transferencia, idCartao);
                 listaTransferencias.add(trans);
             }
         } catch (SQLException e) {

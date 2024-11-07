@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TransferenciaBuilder {
     protected int id_transferencia;
-    protected int cd_conta;
+    protected int id_cartao;
     protected String tipo_transferencia;
     protected Date data_transferencia;
     protected Double valor_transferencia;
@@ -19,8 +19,8 @@ public class TransferenciaBuilder {
         return this;
     }
 
-    public TransferenciaBuilder setCd_conta(int cd_conta) {
-        this.cd_conta = cd_conta;
+    public TransferenciaBuilder setId_cartao(int id_cartao) {
+        this.id_cartao = id_cartao;
         return this;
     }
 

@@ -56,7 +56,7 @@
                         <a class="nav-link" aria-current="page" href="cartao.jsp" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
                     </div>
                     <div class="nav-item itemMobile">
-                        <a class="nav-link" href="/FintechBackEnd_war_exploded/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/transferencias?acao=saldo&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>
                     </div>
                     <div class="nav-item itemMobile">
                         <a class="nav-link" href="investimento.jsp" data-page="investimentos"><i class="fa-solid fa-money-bill-trend-up icones"></i> Investimentos</a>

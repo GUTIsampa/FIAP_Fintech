@@ -152,7 +152,7 @@ const config = {
 };
 
 const faturaChart = new Chart(ctx, config);
-/*
+
 // Formulário de fatura
 document.getElementById('faturaForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio padrão do formulário
@@ -166,4 +166,4 @@ document.getElementById('faturaForm').addEventListener('submit', function(event)
     const modal = bootstrap.Modal.getInstance(document.getElementById('addFaturaModal'));
     modal.hide();
     document.getElementById('faturaForm').reset(); // Reseta o formulário
-});*/
+});

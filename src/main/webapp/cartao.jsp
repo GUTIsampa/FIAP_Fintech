@@ -82,60 +82,6 @@
                     </div>
                 </div>
             </div>
-        <!-- Formulário de adicionar cartão e cartões salvos -->
-        <!--
-            <div class="container-fluid cartao">
-                <div class="cartao-content">
-                    <div class="icon-container">
-                        <img src="./resources/images/Chip-Card.png" alt="Chip" class="card-icon">
-                    </div>
-                    <div class="card-holder">
-                        <p class="card-holder-name"></p>
-                    </div>
-                    <div class="card-number numeroCartao">
-                        <p style="font-size: 30px"></p>
-                    </div>
-                    <div class="card-footer">
-                        <p class="expiry-date"></p>
-                        <p class="card-brand"></p>
-                    </div>
-                </div>
-            </div>
-        -->
-            <!--<div class="navigation">
-                <button id="prevButton" disabled>Anterior</button>
-                <button id="nextButton">Próximo</button>
-            </div>
-
-            <script>
-                const cartoes = document.querySelectorAll('.cartao');
-                let currentIndex = 0;
-
-                function showCard(index) {
-                    cartoes.forEach((cartao, i) => {
-                        cartao.classList.toggle('d-none', i !== index);
-                    });
-
-                    document.getElementById('prevButton').disabled = index === 0;
-                    document.getElementById('nextButton').disabled = index === cartoes.length - 1;
-                }
-
-                document.getElementById('prevButton').addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        showCard(currentIndex);
-                    }
-                });
-
-                document.getElementById('nextButton').addEventListener('click', () => {
-                    if (currentIndex < cartoes.length - 1) {
-                        currentIndex++;
-                        showCard(currentIndex);
-                    }
-                });
-
-                showCard(currentIndex); // Inicializa mostrando o primeiro cartão
-            </script>-->
 
         <!-- Dropdown de cartões -->
         <div class="dropdown mt-3">
@@ -192,5 +138,6 @@
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./resources/js/cartao.js" defer></script>
+
 </body>
 </html>
