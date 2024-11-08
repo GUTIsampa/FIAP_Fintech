@@ -34,9 +34,6 @@
             <div class="active">
                 <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
             </div>
-            <div class="nav-item">
-                <a class="nav-link" href="">Sair</a>
-            </div>
         </nav>
     </div>
 
@@ -66,9 +63,6 @@
                     </div>
                     <div class="active itemMobile">
                         <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" href="">Sair</a>
                     </div>
                 </div>
             </div>

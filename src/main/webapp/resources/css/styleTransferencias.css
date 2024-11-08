@@ -8,6 +8,19 @@ body{
     background-image: url(../images/Background.png);
 }
 
+.botaoPadrao:hover{
+    background-color: #11405A !important;
+    border-style: solid !important;
+    border-color: #BE6513 !important;
+    color: #BE6513 !important;
+    text-decoration: underline !important;
+}
+
+.botaoPadrao{
+    background-color: #11405A !important;
+    color: #BE6513 !important;
+}
+
 .conteudo{
     padding-top: 25px;
 }
@@ -75,18 +88,6 @@ body{
     text-align: center;
 }
 
-.botaoPadrao:hover{
-    background-color: #11405A;
-    border-style: solid;
-    border-color: #BE6513;
-    color: #BE6513;
-    text-decoration: underline;
-}
-
-.botaoPadrao{
-    background-color: #BE6513;
-    color: #11405A;
-}
 
 .textoForm{
     color: #11405A;
@@ -127,3 +128,6 @@ body{
     height: 10vmax;
     margin-bottom: 2vmax;
 }
+
+
+

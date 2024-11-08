@@ -195,11 +195,11 @@ body{
 }
 
 .botaoPadrao:hover{
-    background-color: #11405A;
-    border-style: solid;
-    border-color: #BE6513;
-    color: #BE6513;
-    text-decoration: underline;
+    background-color: #11405A !important;
+    border-style: solid !important;
+    border-color: #BE6513 !important;
+    color: #BE6513 !important;
+    text-decoration: underline !important;
 }
 
 .excluir-cartao {
@@ -267,6 +267,17 @@ body{
 .coluna{
     background-color: #11405A !important;
     color: #BE6513 !important;
+}
+
+.botaoPadrao{
+    background-color: #BE6513 !important;
+    color: #11405A !important;
+}
+
+.AddCard{
+    align-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 

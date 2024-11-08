@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./resources/css/styleTransferencias.css">
 </head>
 
 
@@ -33,9 +34,6 @@
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-            </div>
-            <div class="nav-item">
-                <a class="nav-link" href="">Sair</a>
             </div>
         </nav>
     </div>
@@ -64,11 +62,8 @@
                     <div class="nav-item itemMobile">
                         <a class="nav-link" href="metas.jsp" data-page="metas"><i class="fa-solid fa-piggy-bank icones"></i> Metas</a>
                     </div>
-                    <div class="nav-itemitemMobile">
+                    <div class="nav-item itemMobile">
                         <a class="nav-link" href="perfil.jsp" data-page="perfil"><i class="fa-solid fa-user icones"></i> Perfil</a>
-                    </div>
-                    <div class="nav-item">
-                        <a class="nav-link" href="">Sair</a>
                     </div>
                 </div>
             </div>

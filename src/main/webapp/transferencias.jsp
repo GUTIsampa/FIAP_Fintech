@@ -38,8 +38,8 @@
                     </div>
                 </c:if>
             </div>
-            <div class="mt-5">
-                <button class="btn botaoPadrao" style="color: white" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
+            <div class="mt-5 text-center container-fluid">
+                <button class="btn botaoPadrao" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
             </div>
 
             <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">

@@ -31,7 +31,7 @@
 
         <div class="areaCartao container-fluid">
             <div class="AddCard container-fluid">
-                <button class="btn btn-center botaoPadrao botaoAdd" style="color: white" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
+                <button class="btn btn-center botaoPadrao botaoAdd" data-bs-toggle="modal" data-bs-target="#addCardModal"><i class="fa-solid fa-plus"></i> Cartão</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
