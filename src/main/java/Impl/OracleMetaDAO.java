@@ -104,7 +104,7 @@ public class OracleMetaDAO {
 
         try {
             conn = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT valor_meta, nome_meta  FROM t_meta WHERE cd_conta = ?";
+            String sql = "SELECT *  FROM t_meta WHERE cd_conta = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, cd_conta);
             rs = stmt.executeQuery();
@@ -113,13 +113,16 @@ public class OracleMetaDAO {
                 Meta m = new Meta();
                 Double vl_meta = rs.getDouble("VALOR_META");
                 String nm_meta = rs.getString("NOME_META");
+                int id_meta = rs.getInt("ID_META");
                 m.setValor_meta(vl_meta);
                 m.setNome_meta(nm_meta);
+                m.setId_meta(id_meta);
 
                 meta.add(m);
 
                 System.out.println(vl_meta + " valor retornado");
                 System.out.println(nm_meta + " valor retornado");
+                System.out.println(id_meta + " valor retornado");
 
             }
         } catch (SQLException e) {
@@ -168,10 +171,5 @@ public class OracleMetaDAO {
             }
         }
         return lista;
-    }
-
-    public static void main(String[] args) throws DBException {
-        OracleMetaDAO dao = new OracleMetaDAO();
-        dao.buscarMeta(61);
     }
 }
