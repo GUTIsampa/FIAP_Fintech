@@ -36,7 +36,6 @@
                                 <tr id="mensagemVazia">
                                     <td colspan="4" class="mensagem-vazia coluna">
                                         <h2 class="semVal">Sem metas por enquanto...</h2>
-                                        <c:out value="${metasDisponiveis}" />
                                     </td>
                                 </tr>
                             </c:if>
@@ -62,15 +61,6 @@
                     ${valor}
             </div>
         </c:if>
-
-
-        <!-- JavaScript para definir o nome da meta -->
-        <script>
-            function setMetaName(metaName) {
-                // Atualiza o conteúdo da div com o nome da meta selecionada
-                document.getElementById('selectedMetaName').textContent = metaName;
-            }
-        </script>
 
         <!-- Modal para Adicionar Dinheiro -->
         <div class="modal fade" id="addMoneyModal" tabindex="-1" aria-labelledby="addMoneyModalLabel" aria-hidden="true">
@@ -135,44 +125,6 @@
                     ${meta}
             </div>
         </c:if>
-
-
-        <!-- Modal para Notificação -->
-        <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="notificationModalLabel">Notificação</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body metacriada">
-                        Meta Criada!
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn botaoPadrao" data-bs-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para Meta Concluída -->
-        <div class="modal fade" id="goalCompletedModal" tabindex="-1" aria-labelledby="goalCompletedModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="goalCompletedModalLabel">Parabéns!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body sucesso">
-                        Parabéns! Você concluiu a Meta!!!!! 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn botaoPadrao" onclick="concludeGoal()">Concluir Meta</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>
     <script src="./resources/js/meta.js"></script>

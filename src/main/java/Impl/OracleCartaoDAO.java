@@ -56,18 +56,17 @@ public class OracleCartaoDAO {
             try {
                 connect = ConnectionManager.getInstance().getConnection();
 
-                String sql = "INSERT INTO t_cartao (ID_CARTAO, CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV, NOMETITULAR) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO t_cartao (CD_CONTA, NR_CARTAO, NM_BANDEIRA, DT_VENCIMENTO, NR_CVV, NOMETITULAR) VALUES ( ?, ?, ?, ?, ?, ?)";
 
 
                 stmt = connect.prepareStatement(sql);
-                stmt.setInt(1, cartao.getCartao());
-                stmt.setInt(2, idConta);
-                stmt.setString(3, cartao.getNr_cartao());
-                stmt.setString(4, cartao.getBandeira());
+                stmt.setInt(1, idConta);
+                stmt.setString(2, cartao.getNr_cartao());
+                stmt.setString(3, cartao.getBandeira());
                 java.sql.Date dt_vencimento = new java.sql.Date(cartao.getVencimento().getTime());
-                stmt.setDate(5, dt_vencimento);
-                stmt.setString(6, cartao.getCd_seguranca());
-                stmt.setString(7, cartao.getNomeTitular());
+                stmt.setDate(4, dt_vencimento);
+                stmt.setString(5, cartao.getCd_seguranca());
+                stmt.setString(6, cartao.getNomeTitular());
                 stmt.executeUpdate();
                 String commit = "commit";
                 stmt.executeQuery(commit);
@@ -103,7 +102,7 @@ public class OracleCartaoDAO {
                     "DT_VENCIMENTO = ?," +
                     "NR_CVV = ? ," +
                     "NOMETITULAR = ? " +
-                    "where ID_CARTAO = 1";
+                    "where ID_CARTAO = ?";
 
 
             stmt = connect.prepareStatement(sql);
@@ -112,6 +111,8 @@ public class OracleCartaoDAO {
             java.sql.Date dt_vencimento = new java.sql.Date(cartao.getVencimento().getTime());
             stmt.setDate(3, dt_vencimento);
             stmt.setString(4, cartao.getCd_seguranca());
+            stmt.setString(5, cartao.getNomeTitular());
+            stmt.setInt(6, cartao.getCartao());
             stmt.executeUpdate();
             stmt.close();
 

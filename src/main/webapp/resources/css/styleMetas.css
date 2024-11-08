@@ -52,6 +52,15 @@ body{
     }
 }
 
+.mensagem-vazia {
+    text-align: center;
+}
+
+.coluna{
+    background-color: #11405A !important;
+    color: #BE6513 !important;
+}
+
 .colunaGasto {
     background-color: #11405A !important;
     color: #BE6513 !important;

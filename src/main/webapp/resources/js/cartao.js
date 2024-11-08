@@ -95,12 +95,6 @@ const labels = [
 ]; // Atualize os meses conforme necessário
 
 
-
-
-
-
-
-
 const data = {
     labels: labels,
     datasets: [{

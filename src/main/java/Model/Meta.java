@@ -5,6 +5,8 @@ import Impl.OracleMetaDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import Exception.DBException;
 
 public class Meta {
@@ -14,13 +16,27 @@ public class Meta {
     private String nome_meta;
     private double valorFinalMeta;
 
+    public Meta(Integer id_meta, Integer cd_conta, Double valor_meta, String nome_meta, double valorFinalMeta) {
+        this.id_meta = id_meta;
+        this.cd_conta = cd_conta;
+        this.valor_meta = valor_meta;
+        this.valorFinalMeta = valorFinalMeta;
+        this.nome_meta = nome_meta;
+    }
+
     public Meta(Integer id_meta, Integer cd_conta, Double valor_meta, String nome_meta) {
         this.id_meta = id_meta;
         this.cd_conta = cd_conta;
         this.valor_meta = valor_meta;
-
         this.nome_meta = nome_meta;
     }
+
+    public Meta( Integer cd_conta, Double valor_meta, String nome_meta) {
+        this.cd_conta = cd_conta;
+        this.valor_meta = valor_meta;
+        this.nome_meta = nome_meta;
+    }
+
 
     public Meta() {
 
@@ -80,6 +96,15 @@ public class Meta {
     public void atualizarMeta(String nome, Double valor) throws DBException {
         OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
         oracleMetaDAO.atualizar(nome, valor);
+    }
+
+    public Meta getMetaById(int id_meta) throws DBException {
+        OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
+        return oracleMetaDAO.getMetabyId(id_meta);
+    }
+    public void updateValorMeta(Meta meta) throws DBException {
+        OracleMetaDAO oracleMetaDAO = new OracleMetaDAO();
+        oracleMetaDAO.updateValorMeta(meta);
     }
 
 }

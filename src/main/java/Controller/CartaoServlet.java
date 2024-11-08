@@ -34,6 +34,8 @@ public class CartaoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
+        HttpSession session = req.getSession(false);
+        Integer cd_conta_sessao = (Integer) session.getAttribute("id");
         Cartao cartao;
 
         switch (acao) {
@@ -52,8 +54,8 @@ public class CartaoServlet extends HttpServlet {
 
                 try {
                     cartao = new CartaoBuilder()
-                            .setCartao(17)
-                            .setConta(44)
+
+                            .setConta(cd_conta_sessao)
                             .setNome_cartao(nomeCartao)
                             .setNr_cartao(numeroCartao)
                             .setCd_seguranca(codigoCartao)
@@ -67,14 +69,11 @@ public class CartaoServlet extends HttpServlet {
                 try {
                     cartao.adicionarCartao();
                     req.setAttribute("cartao", "Cartao cadastrado com sucesso");
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
-                    dispatcher.forward(req, resp);
-
+                    String redirectUrl = "/FintechBackEnd_war_exploded/cartao";
+                    resp.sendRedirect(redirectUrl);
 
                 } catch (SQLException | DBException e) {
                     req.setAttribute("erro", e.getMessage());
-                    RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
-                    dispatcher.forward(req, resp);
                     return;
                 }
 

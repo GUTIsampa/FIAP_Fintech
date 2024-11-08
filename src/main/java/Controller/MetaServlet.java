@@ -54,6 +54,7 @@ public class MetaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
         HttpSession session = req.getSession(false);
+        Integer cd_conta_sessao = (Integer) session.getAttribute("id");
 
 
         switch (acao) {
@@ -62,7 +63,7 @@ public class MetaServlet extends HttpServlet {
                 Double valMeta = Double.parseDouble(req.getParameter("valMeta"));
 
                 try {
-                    Meta meta = new Meta(10, 43, valMeta, nomeMeta );
+                    Meta meta = new Meta( cd_conta_sessao,valMeta, nomeMeta );
                     meta.adicionarMeta();
                     req.setAttribute("meta", "Meta adicionada");
                     String redirectUrl = "metas?mostrar=viewMetas";
@@ -74,13 +75,18 @@ public class MetaServlet extends HttpServlet {
 
             case "guardar":
                 String valorAdicionar = req.getParameter("valGuardar");
-                String nomeGuardar = req.getParameter("nomeGuardar");
+                String metaId = req.getParameter("selectedMeta");
+                int idmetaInt = Integer.parseInt(metaId);
+                double valorAcrescentado = Double.parseDouble(valorAdicionar);
 
                 try {
-                    Meta meta = new Meta();
-                    double valor = Double.parseDouble(valorAdicionar);
-                    session.setAttribute("metaValor", valor);
-                    meta.setValorFinalMeta(valor);
+                    Meta meta = oracleMetaDAO.getMetabyId(idmetaInt);
+                    double valorAtualMeta = meta.getValorFinalMeta();
+                    double valorAtualizadoMeta = valorAcrescentado + valorAtualMeta;
+                    meta.setValorFinalMeta(valorAtualizadoMeta);
+                    meta.updateValorMeta(meta);
+                    session.setAttribute("metaValor", valorAtualizadoMeta);
+                    meta.setValorFinalMeta(valorAtualizadoMeta);
                     req.setAttribute("valor", "Meta atualizada");
                     String redirectUrl = "metas?mostrar=viewMetas";
                     resp.sendRedirect(redirectUrl);

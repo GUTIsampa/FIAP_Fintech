@@ -31,12 +31,6 @@
                 <c:forEach var="fatura" items="${faturas}">
                     <c:set var="somaFaturas" value="${somaFaturas + fatura.valor_transferencia}" />
                 </c:forEach>
-                <c:if test="${somaFaturas > saldoAtual}">
-                    <div class="alert alert-warning my-2">
-                        <strong>Atenção!</strong> O valor total das faturas (${somaFaturas}) é maior que o saldo disponível.
-                        Reveja seus gastos.
-                    </div>
-                </c:if>
             </div>
             <div class="mt-5 text-center container-fluid">
                 <button class="btn botaoPadrao" data-bs-toggle="modal" data-bs-target="#modalFormulario">Adicionar Valor</button>
@@ -76,7 +70,7 @@
                                         <c:if test="${not empty cartoes}">
                                             <option value="0">Transação não feita por cartão</option>
                                             <c:forEach var="cartao" items="${cartoes}">
-                                                <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira} | ${cartao.cartao}</option>
+                                                <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira}</option>
                                             </c:forEach>
                                         </c:if>
                                     </select>
