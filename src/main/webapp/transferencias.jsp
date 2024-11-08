@@ -93,7 +93,7 @@
             </div>
 
             <div class="mt-4 divTabela text-center">
-                <table class="table corpoTabela">
+                <table class="table">
                     <thead class="cabecalho">
                         <tr>
                             <th class="coluna">Nome</th>

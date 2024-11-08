@@ -25,16 +25,9 @@ body{
     padding-top: 25px;
 }
 
-.corpoTab {
-    border: 3px solid var(--orangef) !important;
-    width: fit-content;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    padding: 1em;
-    background-color: #11405A;
-    border-radius: 15px;
-    box-shadow: 5px 5px 5px 5px #000;
+.fatura .table th {
+    background-color: #11405A !important;
+    color: #BE6513 !important;
 }
 
 

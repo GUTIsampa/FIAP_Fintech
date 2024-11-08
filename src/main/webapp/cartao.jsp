@@ -89,9 +89,9 @@
             <table class="table corpoTab">
                 <thead>
                     <tr>
-                        <th class="coluna">Nome</th>
-                        <th class="coluna">Bandeira</th>
-                        <th class="coluna">Fatura mês anterior R$</th>
+                        <th class="colunaGasto">Nome</th>
+                        <th class="colunaGasto">Bandeira</th>
+                        <th class="colunaGasto">Fatura mês anterior R$</th>
                     </tr>
                 </thead>
                 <tbody id="tabelaFaturas">
