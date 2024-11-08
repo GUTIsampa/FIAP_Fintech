@@ -1,4 +1,8 @@
-
+:root {
+    --bluef: #11405A;
+    --orangef: #be6613;
+    --bluefd: #152e3b
+}
 
 body{
     background-image: url(/View/assets/images/Background.png);
@@ -19,6 +23,21 @@ body{
     padding-top: 25px;
 }
 
+.titulofaturaMobile {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .table thead th {
+        font-size: 16px;
+    }
+
+    .table tbody td {
+        padding: 10px;
+    }
+
 
 .areaCartao{
     border: 3px solid var(--orangef);
@@ -35,7 +54,7 @@ body{
     max-width: 45vmax;
     min-width: 30vmax;
     min-height: 20vmax;
-    
+
 
 }
 .cartao-content {
@@ -224,7 +243,7 @@ body{
 
 .menuCard {
     background-color: #152e3b;
-    border-style:solid 3px ;
+    border-style: solid;
     border-color: #BE6513;
 }
 
@@ -271,6 +290,7 @@ body{
     box-shadow: 5px 5px 5px 5px #000;
     margin-bottom: 1em;
 }
+
 
 #faturaChart {
     max-width: 45vmax; /* Limita a largura do gráfico */

@@ -172,14 +172,15 @@ public class OracleCartaoDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Integer id_conta = rs.getInt("ID_CARTAO");
+                Integer id_conta = rs.getInt("CD_CONTA");
                 String nr_cartao = rs.getString("NR_CARTAO");
                 String bandeira = rs.getString("NM_BANDEIRA");
                 Date date_vencimento = rs.getDate("DT_VENCIMENTO");
                 String cvv = rs.getString("NR_CVV");
+                Integer id_cartao = rs.getInt("ID_CARTAO");
                 String nomeTitular = rs.getString("NOMETITULAR");
 
-               Cartao cartao = new Cartao(id_conta,nr_cartao, bandeira, date_vencimento, cvv, nomeTitular);
+               Cartao cartao = new Cartao(id_conta,nr_cartao, bandeira, date_vencimento, cvv, id_cartao, nomeTitular);
 
                listaCartao.add(cartao);
             }

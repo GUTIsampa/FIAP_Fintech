@@ -20,7 +20,7 @@
         <nav class="navbar">
             <img class="logofin img-fluid" src="./resources/images/Logo2.png" alt="Logo Fintech">
             <div class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/FintechBackEnd_war_exploded/cartao?acao=listarCartao" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/cartao" data-page="cartao"><i class="fa-regular fa-credit-card icones"></i> Cartão</a>
             </div>
             <div class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/transferencias?acao=saldo&view=viewFatura&id=${sessionScope.id}" data-page="transferencias"><i class="fa-solid fa-money-bill-transfer icones"></i> Transferências</a>

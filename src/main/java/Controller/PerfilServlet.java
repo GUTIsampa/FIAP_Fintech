@@ -15,7 +15,6 @@ public class PerfilServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         Integer cd_conta_sessao = (Integer) session.getAttribute("id");
-        System.out.println(cd_conta_sessao + "chegou aqui no perfil");
 
     }
 

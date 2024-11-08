@@ -28,10 +28,6 @@ public class CadastroServlet extends HttpServlet {
                 String email = req.getParameter("email");
                 String senha = req.getParameter("senha");
                 String dataNascimento = req.getParameter("dataNascimento");
-                System.out.println(nome);
-                System.out.println(email);
-                System.out.println(senha);
-                System.out.println(dataNascimento);
 
                 Conta contaModel;
                 try {
@@ -95,8 +91,6 @@ public class CadastroServlet extends HttpServlet {
                 contaModel = new Conta();
                 try {
                     Conta contaParaAlterar = contaModel.buscaPorId(50);
-                    System.out.println(contaParaAlterar.getNomeUsuario());
-                    System.out.println("chegou");
                     contaParaAlterar.setSenha("EssaSenha");
                     contaParaAlterar.alterar();
                 } catch (SQLException e) {
@@ -116,7 +110,6 @@ public class CadastroServlet extends HttpServlet {
                 Conta contaModel = new Conta();
                 try {
                     for (Conta conta : contaModel.getAll()) {
-                        System.out.println(conta.getEmail());
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

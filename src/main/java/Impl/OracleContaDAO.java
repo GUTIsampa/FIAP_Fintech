@@ -35,8 +35,7 @@ public class OracleContaDAO implements ContaDAO {
             ps = con.prepareStatement(sql);
             ps.setString(1, conta.getEmail());
             rs = ps.executeQuery();
-            System.out.println(conta.getEmail());
-            System.out.println(conta.getSenha());
+
             if (!rs.next()) {
                 return "Conta inexistente";
             }

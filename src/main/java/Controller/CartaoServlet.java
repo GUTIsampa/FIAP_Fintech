@@ -4,6 +4,7 @@ package Controller;
 import Impl.OracleCartaoDAO;
 import Model.Cartao;
 import Model.CartaoBuilder;
+import Model.Transferencias;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -50,9 +51,9 @@ public class CartaoServlet extends HttpServlet {
                 System.out.println(bandeiraCartao);
 
                 try {
-                         cartao = new CartaoBuilder()
-                                 .setCartao(17)
-                                 .setConta(44)
+                    cartao = new CartaoBuilder()
+                            .setCartao(17)
+                            .setConta(44)
                             .setNome_cartao(nomeCartao)
                             .setNr_cartao(numeroCartao)
                             .setCd_seguranca(codigoCartao)
@@ -80,9 +81,9 @@ public class CartaoServlet extends HttpServlet {
                 break;
 
 
-
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
@@ -90,20 +91,21 @@ public class CartaoServlet extends HttpServlet {
         Integer cd_conta = (Integer) session.getAttribute("id");
         List<Cartao> cartoes;
 
+            try {
+                cartoes = this.oracleCartaoDAO.buscar(cd_conta);
+                Transferencias transferencias = new Transferencias();
+                for (Cartao cartao : cartoes) {
+                   double totalGastos =  transferencias.faturaMesAnterior(cd_conta, cartao.getCartao());
+                   cartao.setTotalGastos(totalGastos);
+                }
+                session.setAttribute("cartoes", cartoes);
 
-        switch (acao) {
-            case "listarCartao":
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-             try{
-                 cartoes = this.oracleCartaoDAO.buscar(cd_conta);
-                 System.out.println("está sendo chamado");
-                 req.setAttribute("cartoes", cartoes);
-                 RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
-                 dispatcher.forward(req, resp);
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }
-             break;
-        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("cartao.jsp");
+        dispatcher.forward(req, resp);
+
     }
 }

@@ -47,7 +47,7 @@ public class TransferenciaServlet extends HttpServlet {
             Transferencias tf = new Transferencias();
             try {
                 List<Transferencias> listaTransferencias = tf.getLista(cd_conta_sessao);
-                req.setAttribute("faturas", listaTransferencias);
+                session.setAttribute("faturas", listaTransferencias);
                 shouldForward = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -78,7 +78,6 @@ public class TransferenciaServlet extends HttpServlet {
                 if (valor != null && !valor.trim().isEmpty()) {
                     try {
                         valorDouble = Double.parseDouble(valor.trim());
-                        System.out.println(valorDouble);
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                         System.out.println("valor invalido");
@@ -92,17 +91,10 @@ public class TransferenciaServlet extends HttpServlet {
                 if (cartaoTrans != null && !cartaoTrans.trim().isEmpty()) {
                     try {
                         valorInt = Integer.parseInt(cartaoTrans.trim());
-                        System.out.println(valorInt);
+
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
-                        System.out.println("valor invalido");
                     }
-
-                    System.out.println(nome_trans);
-                    System.out.println(valorDouble);
-                    System.out.println(data_trans);
-                    System.out.println(tipo_trans);
-                    System.out.println(valorInt);
 
                     try {
                         transferencias = new TransferenciaBuilder()
@@ -111,6 +103,7 @@ public class TransferenciaServlet extends HttpServlet {
                                 .setTipo_transferencia(tipo_trans)
                                 .setNome_transferencia(nome_trans)
                                 .setId_cartao(valorInt)
+                                .setCd_conta(cd_conta_sessao)
                                 .build();
                     } catch (ParseException e) {
                         throw new RuntimeException();
@@ -125,8 +118,6 @@ public class TransferenciaServlet extends HttpServlet {
                         } else if (tipo_trans.equals("pagamento")) {
                             conta = new Conta();
                             conta = conta.buscaPorId(cd_conta_sessao);
-
-                            System.out.println(conta.getSaldo() - Double.parseDouble(valor));
                             conta.alterarSaldo(conta.getSaldo() - (Double.parseDouble(valor)));
                         }
 
@@ -142,11 +133,8 @@ public class TransferenciaServlet extends HttpServlet {
 
                     break;
 
-
                 }
-
         }
-
     }
 }
 

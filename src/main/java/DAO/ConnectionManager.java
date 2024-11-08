@@ -26,7 +26,6 @@ public class ConnectionManager {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
             connection = DriverManager.getConnection (this.url, this.usuario, this.senha);
-            System.out.println("Conexão aberta");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -170,20 +170,7 @@ public class Conta {
     public void alterarSaldo(double valor) throws SQLException {
         OracleContaDAO contaDao = new OracleContaDAO();
         Double saldoAtual = this.getSaldo();
-        this.setSaldo(saldoAtual += valor);
+        this.setSaldo(valor);
         contaDao.alterarSaldo(this);
     }
-
-    public static void main(String[] args) throws SQLException, ParseException {
-        Conta conta = new Conta();
-        //Conta builder = new ContaBuilder().IdEmail("asdas@gmail.com").StConta("Ativo").DtNasc(new SimpleDateFormat("yyyy-MM-dd").parse("2001-04-29")).Senha("1234587").NmUsuario("OutroTeste").build();
-        Conta contaAtiva = conta.buscarPorEmail("teste@gmail.com");
-        contaAtiva.alterarSaldo(100.0);
-
-
-      /*  Conta cuenta = conta.buscaPorId(47);
-        System.out.println(cuenta.getEmail());*/
-
-          }
-
 }

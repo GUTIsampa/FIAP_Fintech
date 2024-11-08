@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -71,10 +72,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="tipo" class="form-label textoForm">Selecione um cartão</label>
-                                    <select class="form-select" id="cartao" name="cartaoTrans" required>
+                                    <select class="form-select" id="cartao" name="cartaoTrans">
                                         <c:if test="${not empty cartoes}">
+                                            <option value="0">Transação não feita por cartão</option>
                                             <c:forEach var="cartao" items="${cartoes}">
-                                                <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira}</option>
+                                                <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira} | ${cartao.cartao}</option>
                                             </c:forEach>
                                         </c:if>
                                     </select>
@@ -116,7 +118,9 @@
                                     <tr>
                                         <td class="coluna">${trans.nome_transferencia}</td>
                                         <td class="coluna">${trans.valor_transferencia}</td>
-                                        <td class="coluna">${trans.data_transferencia}</td>
+                                        <td class="coluna">
+                                        <fmt:formatDate value="${trans.data_transferencia}" pattern="dd/MM/yyyy" />
+                                        </td>
                                         <td class="coluna">${trans.tipo_transferencia}</td>
                                     </tr>
                                 </c:forEach>

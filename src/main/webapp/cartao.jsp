@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<c:set var="util" value="${OracleCartaoDAO}" />
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -82,57 +81,40 @@
                     </div>
                 </div>
             </div>
-
-        <!-- Dropdown de cartões -->
-        <div class="dropdown mt-3">
-            <c:if test="${not empty cartoes}">
-                        <form action="<c:url value='cartao?acao=listarCartao' />" method="get">
-                            <input type="hidden"/>
-                            <div class="form-group my-2">
-                                <label for="cartaoSelect" style="color: white">Selecione um cartão:</label>
-                                <select class="form-control" id="cartaoSelect" name="cartaoId">
-                                    <c:if test="${not empty cartoes}">
-                                        <c:forEach var="cartao" items="${cartoes}">
-                                            <option value="${cartao.cartao}">Cartão: ${cartao.nomeTitular} | ${cartao.bandeira}</option>
-                                        </c:forEach>
-                                    </c:if>
-                                </select>
-                            </div>
-                        </form>
-                    </c:if>
-        </div>
     </div>
         <!-- Controle de fatura -->
         <div class="container mt-5 fatura">
             <h2 class="titulofatura">Controle de Fatura</h2>
             <h3 class="titulofaturaMobile">Controle de Fatura</h3>
-            <canvas id="faturaChart"></canvas>
-
-            <button class="btn btn-center botaoPadrao" data-bs-toggle="modal" data-bs-target="#addFaturaModal">+ Fatura Atual</button>
-
-             <!-- Modal para adicionar fatura -->
-            <div class="modal fade" id="addFaturaModal" tabindex="-1" aria-labelledby="addFaturaModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addFaturaModalLabel">Adicionar à Fatura Atual</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="faturaForm">
-                                <div class="mb-3">
-                                    <label for="faturaValue" class="form-label textoModal">Acrescentar à Fatura Atual</label>
-                                    <input type="number" class="form-control" id="faturaValue" placeholder="R$" required>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn botaoFechar" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" form="faturaForm" class="btn botaoCadastrar">Adicionar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="table corpoTab">
+                <thead>
+                    <tr>
+                        <th class="coluna">Nome</th>
+                        <th class="coluna">Bandeira</th>
+                        <th class="coluna">Fatura mês anterior R$</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaFaturas">
+                <c:if test="${empty cartoes}">
+                    <tr id="mensagemVazia">
+                        <td colspan="4" class="mensagem-vazia coluna">
+                            <h2 class="semVal">Sem valores por enquanto...</h2>
+                            <img src="./resources/images/porquinhoQuebrado.png" alt="Cofrinho Quebrado" class="cofrinhoQuebrado">
+                            <c:out value="${cartoes}" />
+                        </td>
+                    </tr>
+                </c:if>
+                <c:if test="${not empty cartoes}">
+                    <c:forEach var="fatura" items="${cartoes}">
+                        <tr>
+                            <td class="coluna">${fatura.nomeTitular}</td>
+                            <td class="coluna">${fatura.bandeira}</td>
+                            <td class="coluna">${fatura.totalGastos}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                </tbody>
+            </table>
         </div>
 
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>

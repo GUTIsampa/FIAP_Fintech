@@ -20,6 +20,7 @@ public class Cartao {
     private Date vencimento;
     private String cd_seguranca;
     private String nomeTitular;
+    private double totalGastos;
 
     public Cartao(Integer conta, String nr_cartao, String bandeira, Date vencimento, String cd_seguranca,  String nomeTitular) {
         this.conta = conta;
@@ -120,6 +121,14 @@ public class Cartao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public double getTotalGastos() {
+        return totalGastos;
+    }
+
+    public void setTotalGastos(double totalGastos) {
+        this.totalGastos = totalGastos;
     }
 
     public void adicionarCartao() throws DBException, SQLException {

@@ -1,4 +1,10 @@
 
+:root {
+    --bluef: #11405A;
+    --orangef: #be6613;
+    --bluefd: #152e3b
+}
+
 
 body{
     background-image: url(../images/Background.png);
@@ -17,6 +23,18 @@ body{
 }
 .conteudo{
     padding-top: 25px;
+}
+
+.corpoTab {
+    border: 3px solid var(--orangef) !important;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 1em;
+    background-color: #11405A;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px #000;
 }
 
 
@@ -166,37 +184,11 @@ body{
         min-height: 45vmax !important ;
     }
 }
-.custom-table {
-    max-width: 600px; /* Ajuste a largura máxima da tabela */
-    margin: 0 auto; /* Centraliza a tabela na página */
-}
 .btn-center {
     display: block;
     margin: 20px auto; /* Centraliza o botão */
     background-color: #BE6513;
     color: #11405A;
-}
-
-
-
-.custom-table {
-    background-color: #152e3b; /* Cor de fundo da tabela */
-    color: #BE6513; /* Cor do texto da tabela */
-    border-color: #BE6513; /* Cor da borda da tabela */;
-}
-
-.custom-table th, .custom-table td {
-    border: 1px solid #BE6513; /* Borda das células */
-}
-
-.custom-table th {
-    background-color: var(--bluefd); /* Cor de fundo para o cabeçalho da tabela */
-    color: #BE6513; /* Cor do texto do cabeçalho */
-}
-
-.custom-table td {
-    color: #BE6513; /* Cor do texto das células */
-    background-color: var(--bluef);
 }
 
 .titulofatura{

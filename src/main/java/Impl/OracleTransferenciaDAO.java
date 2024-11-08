@@ -19,14 +19,19 @@ public class OracleTransferenciaDAO {
         PreparedStatement pst = null;
         try {
             con = ConnectionManager.getInstance().getConnection();
-            String sql = "INSERT INTO t_transferencias (TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA, ID_CARTAO) VALUES ( ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO t_transferencias (TP_TRANSFERENCIA, DT_TRANSFERENCIA, VAL_TRANSFERENCIA, NOME_TRANSFERENCIA, ID_CARTAO, CD_CONTA) VALUES ( ?, ?, ?, ?, ?, ?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, trans.getTipo_transferencia());
             java.sql.Date dt_trans = new java.sql.Date(trans.getData_transferencia().getTime());
             pst.setDate(2, dt_trans);
             pst.setDouble(3, trans.getValor_transferencia());
             pst.setString(4, trans.getNome_transferencia());
-            pst.setInt(5, 1);
+            if (trans.getId_cartao() != 0) {
+                pst.setInt(5, trans.getId_cartao());
+            } else
+                {pst.setNull(5, java.sql.Types.INTEGER);
+            }
+            pst.setInt(6, trans.getCd_conta());
             pst.executeUpdate();
             String commit = "commit";
             pst.executeQuery(commit);
@@ -53,7 +58,7 @@ public class OracleTransferenciaDAO {
 
         try {
             con = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT * FROM t_transferencias WHERE ID_CARTAO = ?";
+            String sql = "SELECT * FROM t_transferencias WHERE CD_CONTA = ? order by dt_transferencia desc FETCH FIRST 50 ROWS ONLY";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
             rs = stmt.executeQuery();
@@ -65,8 +70,10 @@ public class OracleTransferenciaDAO {
                 Date date_trans = rs.getDate("DT_TRANSFERENCIA");
                 Double val_transferencia = rs.getDouble("VAL_TRANSFERENCIA");
                 String nome_transferencia = rs.getString("NOME_TRANSFERENCIA");
+                int cd_conta = rs.getInt("CD_CONTA");
 
-                Transferencias trans = new Transferencias(id_transferencia, tpTransferencia, date_trans, val_transferencia, nome_transferencia, idCartao);
+
+                Transferencias trans = new Transferencias(id_transferencia, tpTransferencia, date_trans, val_transferencia, nome_transferencia, idCartao, cd_conta);
                 listaTransferencias.add(trans);
             }
         } catch (SQLException e) {
@@ -82,4 +89,35 @@ public class OracleTransferenciaDAO {
         }
         return listaTransferencias;
     }
+
+    public double faturaMesAnterior(int cd_conta, int id_cartao) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        double valorSomado = 0.0;
+
+        try {
+            con = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT SUM(VAL_TRANSFERENCIA) FROM t_transferencias WHERE dt_transferencia >= TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') AND dt_transferencia < TRUNC(SYSDATE, 'MM') AND CD_CONTA = ? AND TP_TRANSFERENCIA = 'pagamento' AND ID_CARTAO = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, cd_conta);
+            stmt.setInt(2, id_cartao);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                valorSomado = rs.getDouble(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return valorSomado;
+    }
+
 }

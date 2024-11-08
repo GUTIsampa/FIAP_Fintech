@@ -31,7 +31,6 @@ public class loginServlet extends HttpServlet {
         String senha = req.getParameter("senha");
         Conta conta = new Conta(email, senha);
         String resultadoValidacao = dao.validarUsuario(conta);
-        System.out.println(resultadoValidacao);
 
         // se houver um usuário no banco de dados, redireciona para a página seguinte, senao, volta a tela de login
         if ("Autenticação bem sucedida".equals(resultadoValidacao)) {
@@ -49,7 +48,7 @@ public class loginServlet extends HttpServlet {
             }
 
             session.setAttribute("id", conta.getCd_conta());
-            res.sendRedirect(req.getContextPath() + "/cartao?acao=listarCartao");
+            res.sendRedirect(req.getContextPath() + "/cartao");
         } else if ("Conta inexistente".equals(resultadoValidacao)) {
             req.setAttribute("erro", resultadoValidacao);
             req.setAttribute("cadastrar", "Ainda não possui uma conta? Cadastre-se agora mesmo!");
