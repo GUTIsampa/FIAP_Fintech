@@ -25,11 +25,12 @@ body{
     padding-top: 25px;
 }
 
-.fatura .table th {
+.colunaGasto {
     background-color: #11405A !important;
     color: #BE6513 !important;
+    border: 3px solid var(--orangef) !important;
+    border-radius: 15px;
 }
-
 
 .areaCartao{
     border: 3px solid var(--orangef);

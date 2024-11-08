@@ -81,12 +81,12 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
         <!-- Controle de fatura -->
         <div class="container mt-5 fatura">
             <h2 class="titulofatura">Controle de Fatura</h2>
             <h3 class="titulofaturaMobile">Controle de Fatura</h3>
-            <table class="table corpoTab">
+            <table class="table">
                 <thead>
                     <tr>
                         <th class="colunaGasto">Nome</th>
@@ -94,7 +94,7 @@
                         <th class="colunaGasto">Fatura mês anterior R$</th>
                     </tr>
                 </thead>
-                <tbody id="tabelaFaturas">
+                <tbody>
                 <c:if test="${empty cartoes}">
                     <tr id="mensagemVazia">
                         <td colspan="4" class="mensagem-vazia coluna">
@@ -107,18 +107,17 @@
                 <c:if test="${not empty cartoes}">
                     <c:forEach var="fatura" items="${cartoes}">
                         <tr>
-                            <td class="coluna">${fatura.nomeTitular}</td>
-                            <td class="coluna">${fatura.bandeira}</td>
-                            <td class="coluna">${fatura.totalGastos}</td>
+                            <td class="colunaGasto">${fatura.nomeTitular}</td>
+                            <td class="colunaGasto">${fatura.bandeira}</td>
+                            <td class="colunaGasto">${fatura.totalGastos}</td>
                         </tr>
                     </c:forEach>
                 </c:if>
                 </tbody>
             </table>
         </div>
-
+    </div>
     <script src="./resources/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./resources/js/cartao.js" defer></script>
 
 </body>
