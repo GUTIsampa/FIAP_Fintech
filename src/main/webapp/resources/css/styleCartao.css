@@ -262,3 +262,11 @@ body{
     margin: 0 auto; /* Centraliza o gráfico */
     max-height: 30vmax;
 }
+
+.coluna{
+    background-color: #11405A !important;
+    color: #BE6513 !important;
+}
+
+
+
