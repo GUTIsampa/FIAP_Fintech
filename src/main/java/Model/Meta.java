@@ -12,6 +12,7 @@ public class Meta {
     private Integer cd_conta;
     private Double valor_meta;
     private String nome_meta;
+    private double valorFinalMeta;
 
     public Meta(Integer id_meta, Integer cd_conta, Double valor_meta, String nome_meta) {
         this.id_meta = id_meta;
@@ -61,6 +62,14 @@ public class Meta {
 
     public void setNome_meta(String nome_meta) {
         this.nome_meta = nome_meta;
+    }
+
+    public double getValorFinalMeta() {
+        return valorFinalMeta;
+    }
+
+    public void setValorFinalMeta(double valorFinalMeta) {
+        this.valorFinalMeta = valorFinalMeta;
     }
 
     public void adicionarMeta() {

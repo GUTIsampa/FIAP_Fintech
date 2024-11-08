@@ -22,23 +22,36 @@
             <div class="goal-container text-center container-fluid">
                 <h1 class="mb-3 titulo">Metas Fintech</h1>
                 <div class="dropdown mb-3">
-                    <form action="<c:url value='/metas?mostrar=viewMetas'/>" method="get">
-                        <button class="btn botaoPadrao dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Selecione a Meta
-                        </button>
-
-                        <!-- Dropdown convertido para Select -->
-                        <select class="form-select" id="metaSelect" name="selectedMeta">
+                    <div class="container mt-5 meta">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="colunaGasto">Nome</th>
+                                <th class="colunaGasto">Valor Atual R$</th>
+                                <th class="colunaGasto">Valor a ser atingido R$</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:if test="${empty metasDisponiveis}">
+                                <tr id="mensagemVazia">
+                                    <td colspan="4" class="mensagem-vazia coluna">
+                                        <h2 class="semVal">Sem metas por enquanto...</h2>
+                                        <c:out value="${metasDisponiveis}" />
+                                    </td>
+                                </tr>
+                            </c:if>
                             <c:if test="${not empty metasDisponiveis}">
-                                <c:forEach items="${metasDisponiveis}" var="metasUser">
-                                    <option value="${metasUser.nome_meta}">${metasUser.nome_meta} - valor Final R$${metasUser.valor_meta}</option>
+                                <c:forEach var="meta" items="${metasDisponiveis}">
+                                    <tr>
+                                        <td class="colunaGasto">${meta.nome_meta}</td>
+                                        <td class="colunaGasto">${meta.valorFinalMeta}</td>
+                                        <td class="colunaGasto">${meta.valor_meta}</td>
+                                    </tr>
                                 </c:forEach>
                             </c:if>
-                            <c:if test="${empty metasDisponiveis}">
-                                <option value="" disabled selected>Nenhuma meta encontrada.</option>
-                            </c:if>
-                        </select>
-                    </form>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#addMoneyModal">Guardar $</button>
                 <button class="btn botaoPadrao botaoInf" data-bs-toggle="modal" data-bs-target="#createGoalModal">Criar Meta</button>
@@ -73,7 +86,15 @@
                     </div>
                         <c:if test="${not empty metasDisponiveis}">
                         <div class="modal-body">
-                            <input type="text" class="form-control" id="addAmoun" name="selectedMeta" placeholder="A qual meta deseja adicionar o valor..." required>
+                            <select class="form-control" id="addAmoun" name="selectedMeta"  required>
+                                <option value="" disabled selected>Selecione a meta para adicionar o valor...</option>
+                              <c:forEach var="metasAtuais" items="${metasDisponiveis}">
+                                  <option value="${metasAtuais.id_meta}">${metasAtuais.nome_meta}</option>
+                              </c:forEach>
+
+
+
+                            </select>
                         </div>
                         </c:if>
 

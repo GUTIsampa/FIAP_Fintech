@@ -14,7 +14,7 @@ import java.util.List;
 
 import Exception.DBException;
 
-public class OracleFaturaDAO {
+public class  OracleFaturaDAO {
     private Connection con;
 
     public void cadastrar(Fatura fatura) throws DBException {
